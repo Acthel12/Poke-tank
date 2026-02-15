@@ -8,18 +8,21 @@ using System.Windows.Forms;
 
 namespace Poke_tank
 {
-    public partial class Menu_Principal : Form
+    public partial class Seleccionar_Partida : Form
     {
-        public Menu_Principal()
+        public Seleccionar_Partida()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void bntCargar_Click(object sender, EventArgs e)
         {
-            Seleccionar_Partida from1 = new Seleccionar_Partida();
 
-            from1.Show();
+        }
+
+        private void bntEliminar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
