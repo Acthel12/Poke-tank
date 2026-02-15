@@ -57,6 +57,7 @@
             button1.TabIndex = 1;
             button1.Text = "Iniciar nueva partida";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
