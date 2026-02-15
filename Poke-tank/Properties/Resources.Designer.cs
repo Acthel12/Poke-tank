@@ -93,6 +93,56 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MAPA_FLAVIO_S_ADVENTURES_FONDO {
+            get {
+                object obj = ResourceManager.GetObject("MAPA FLAVIO\'S ADVENTURES FONDO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nivel_1 {
+            get {
+                object obj = ResourceManager.GetObject("nivel 1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nivel_11 {
+            get {
+                object obj = ResourceManager.GetObject("nivel 11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nivel_2 {
+            get {
+                object obj = ResourceManager.GetObject("nivel 2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nivel_3 {
+            get {
+                object obj = ResourceManager.GetObject("nivel 3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TIPOGRAFIA_FLAVIO_ADVENTURES_SIN_FONDO {
             get {
                 object obj = ResourceManager.GetObject("TIPOGRAFIA FLAVIO ADVENTURES SIN FONDO", resourceCulture);

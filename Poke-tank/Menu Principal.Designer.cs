@@ -50,10 +50,11 @@
             // 
             button1.BackColor = Color.DodgerBlue;
             button1.FlatStyle = FlatStyle.Popup;
+            button1.Font = new Font("Berlin Sans FB Demi", 12F, FontStyle.Bold);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(516, 371);
+            button1.Location = new Point(480, 370);
             button1.Name = "button1";
-            button1.Size = new Size(160, 47);
+            button1.Size = new Size(239, 47);
             button1.TabIndex = 1;
             button1.Text = "Iniciar nueva partida";
             button1.UseVisualStyleBackColor = false;
@@ -62,22 +63,24 @@
             // 
             button2.BackColor = Color.DodgerBlue;
             button2.FlatStyle = FlatStyle.Popup;
+            button2.Font = new Font("Berlin Sans FB Demi", 12F, FontStyle.Bold);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(516, 442);
+            button2.Location = new Point(480, 441);
             button2.Name = "button2";
-            button2.Size = new Size(160, 47);
+            button2.Size = new Size(239, 47);
             button2.TabIndex = 2;
-            button2.Text = "no se";
+            button2.Text = "Cargar partida";
             button2.UseVisualStyleBackColor = false;
             // 
             // button3
             // 
             button3.BackColor = Color.DodgerBlue;
             button3.FlatStyle = FlatStyle.Popup;
+            button3.Font = new Font("Berlin Sans FB Demi", 12F, FontStyle.Bold);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(516, 523);
+            button3.Location = new Point(480, 522);
             button3.Name = "button3";
-            button3.Size = new Size(160, 47);
+            button3.Size = new Size(239, 47);
             button3.TabIndex = 3;
             button3.Text = "Salir";
             button3.UseVisualStyleBackColor = false;
