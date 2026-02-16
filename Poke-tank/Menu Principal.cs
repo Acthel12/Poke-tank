@@ -25,7 +25,6 @@ namespace Poke_tank
         private void botonIniciarPartida_Click(object sender, EventArgs e)
         {
             Mapa from2 = new Mapa();
-
             from2.Show();
         }
     }

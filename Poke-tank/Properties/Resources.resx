@@ -121,14 +121,20 @@
   <data name="MAPA FLAVIO'S ADVENTURES FONDO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MAPA FLAVIO'S ADVENTURES FONDO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="T14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Flavio secreto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Flavio secreto.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="nivel 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nivel 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="nivel 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nivel 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fondo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fondo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="T80U" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T80U.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="T72" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\T72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,11 +148,17 @@
   <data name="nivel 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nivel 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="M1Abrams_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\M1Abrams_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bola amarilla bailando" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bola amarilla bailando.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="T80U" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T80U.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fondoNivel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondoNivel1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bola amarilla rezando" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bola amarilla rezando.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bola amarilla yesquero" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bola amarilla yesquero.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="nivel 11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nivel 11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,19 +166,13 @@
   <data name="T90A" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\T90A.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="T14" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="M1Abrams_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\M1Abrams_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bola amarilla bailando" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bola amarilla bailando.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fondoNivel3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondoNivel3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Bola amarilla yesquero" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Bola amarilla yesquero.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bola amarilla rezando" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bola amarilla rezando.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Flavio secreto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Flavio secreto.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fondoNivel2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondoNivel2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

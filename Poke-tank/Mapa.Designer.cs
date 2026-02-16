@@ -45,6 +45,7 @@
             botonNivel1.Size = new Size(97, 52);
             botonNivel1.TabIndex = 0;
             botonNivel1.UseVisualStyleBackColor = false;
+            botonNivel1.Click += botonNivel1_Click;
             // 
             // botonNivel2
             // 
@@ -56,6 +57,7 @@
             botonNivel2.Size = new Size(97, 52);
             botonNivel2.TabIndex = 1;
             botonNivel2.UseVisualStyleBackColor = false;
+            botonNivel2.Click += botonNivel2_Click;
             // 
             // botonNivel3
             // 
@@ -67,6 +69,7 @@
             botonNivel3.Size = new Size(101, 46);
             botonNivel3.TabIndex = 2;
             botonNivel3.UseVisualStyleBackColor = false;
+            botonNivel3.Click += botonNivel3_Click;
             // 
             // botonSorpresaFlavio
             // 
