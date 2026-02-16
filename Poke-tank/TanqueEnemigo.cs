@@ -14,6 +14,10 @@ namespace Poke_tank
             Random dado = new Random();
             int chance = dado.Next(0, 100);
 
+            if (chance < 25)
+            {
+                return "El enemigo falla su ataque.";
+            }
             if (chance < 70)
             {
                 int dano = objetivo.RecibirAtaque(this.Ataque);

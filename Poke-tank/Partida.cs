@@ -50,17 +50,16 @@ namespace Poke_tank
 
         private void GenerarEnemigos()
         {
-            AgregarEnemigo(nombresT80, "T-80", 100, 20, 10, 15);
             AgregarEnemigo(nombresT72, "T-72", 80, 15, 5, 10);
-
+            AgregarEnemigo(nombresT80, "T-80", 100, 20, 10, 15);
 
             if (random.Next(1, 101) <= 25)
             {
-                AgregarEnemigo(nombresT14, "T-14 Armata", 150, 35, 20, 25);
+                AgregarEnemigo(nombresT14, "T-14 Armata", 150, 35, 15, 25);
             }
             else
             {
-                AgregarEnemigo(nombresT90, "T-90", 90, 18, 8, 12);
+                AgregarEnemigo(nombresT90, "T-90", 120, 25, 8, 12);
             }
         }
 
@@ -68,6 +67,12 @@ namespace Poke_tank
         {
             string nombreAlAzar = listaNombres[random.Next(listaNombres.Length)];
             enemigos.Add(new TanqueEnemigo(nombreAlAzar, modelo, vida, ataque, defensa, exp));
+        }
+
+        public void DerrotarEnemigo(TanqueEnemigo enemigo)
+        {
+            enemigosDerrotados.Add(enemigo);
+            enemigos.Remove(enemigo);
         }
     }
 }
