@@ -100,6 +100,7 @@
             botonPuntuaciones.TabIndex = 4;
             botonPuntuaciones.Text = "Ver puntuaciones";
             botonPuntuaciones.UseVisualStyleBackColor = false;
+            botonPuntuaciones.Click += botonPuntuaciones_Click; // Línea añadida
             // 
             // Menu_Principal
             // 

@@ -28,5 +28,13 @@ namespace Poke_tank
 
             from2.Show();
         }
+
+        // Este es el cambio añadido para abrir la ventana de puntuaciones
+        private void botonPuntuaciones_Click(object sender, EventArgs e)
+        {
+            PuntuacionesForm from3 = new PuntuacionesForm();
+
+            from3.Show();
+        }
     }
 }
