@@ -17,7 +17,8 @@ namespace Poke_tank
 
         private void botonSorpresaFlavio_Click(object sender, EventArgs e)
         {
-
+            Flaviosorpresa from1 = new Flaviosorpresa();
+            from1.ShowDialog();
         }
     }
 }

@@ -15,11 +15,18 @@ namespace Poke_tank
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void botonCargarPartida_Click_1(object sender, EventArgs e)
         {
             Seleccionar_Partida from1 = new Seleccionar_Partida();
 
             from1.Show();
+        }
+
+        private void botonIniciarPartida_Click(object sender, EventArgs e)
+        {
+            Mapa from2 = new Mapa();
+
+            from2.Show();
         }
     }
 }

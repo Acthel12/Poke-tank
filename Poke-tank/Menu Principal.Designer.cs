@@ -29,87 +29,105 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu_Principal));
-            pictureBox1 = new PictureBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            fondoMenuPrincipal = new PictureBox();
+            botonIniciarPartida = new Button();
+            botonCargarPartida = new Button();
+            botonSalir = new Button();
+            botonPuntuaciones = new Button();
+            ((System.ComponentModel.ISupportInitialize)fondoMenuPrincipal).BeginInit();
             SuspendLayout();
             // 
-            // pictureBox1
+            // fondoMenuPrincipal
             // 
-            pictureBox1.Image = Properties.Resources.def_GIF_FONDO_MENU_PPAL_FLAVIO_ADVENTURES;
-            pictureBox1.Location = new Point(-35, -62);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1296, 853);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            fondoMenuPrincipal.Image = Properties.Resources.def_GIF_FONDO_MENU_PPAL_FLAVIO_ADVENTURES;
+            fondoMenuPrincipal.Location = new Point(0, -67);
+            fondoMenuPrincipal.Name = "fondoMenuPrincipal";
+            fondoMenuPrincipal.Size = new Size(1296, 853);
+            fondoMenuPrincipal.SizeMode = PictureBoxSizeMode.Zoom;
+            fondoMenuPrincipal.TabIndex = 0;
+            fondoMenuPrincipal.TabStop = false;
             // 
-            // button1
+            // botonIniciarPartida
             // 
-            button1.BackColor = Color.DodgerBlue;
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Berlin Sans FB Demi", 12F, FontStyle.Bold);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(480, 370);
-            button1.Name = "button1";
-            button1.Size = new Size(239, 47);
-            button1.TabIndex = 1;
-            button1.Text = "Iniciar nueva partida";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            botonIniciarPartida.BackColor = Color.DodgerBlue;
+            botonIniciarPartida.FlatStyle = FlatStyle.Popup;
+            botonIniciarPartida.Font = new Font("Berlin Sans FB Demi", 12F, FontStyle.Bold);
+            botonIniciarPartida.ForeColor = Color.White;
+            botonIniciarPartida.Location = new Point(516, 375);
+            botonIniciarPartida.Name = "botonIniciarPartida";
+            botonIniciarPartida.Size = new Size(239, 47);
+            botonIniciarPartida.TabIndex = 1;
+            botonIniciarPartida.Text = "Iniciar nueva partida";
+            botonIniciarPartida.UseVisualStyleBackColor = false;
+            botonIniciarPartida.Click += botonIniciarPartida_Click;
             // 
-            // button2
+            // botonCargarPartida
             // 
-            button2.BackColor = Color.DodgerBlue;
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.Font = new Font("Berlin Sans FB Demi", 12F, FontStyle.Bold);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(480, 441);
-            button2.Name = "button2";
-            button2.Size = new Size(239, 47);
-            button2.TabIndex = 2;
-            button2.Text = "Cargar partida";
-            button2.UseVisualStyleBackColor = false;
+            botonCargarPartida.BackColor = Color.DodgerBlue;
+            botonCargarPartida.FlatStyle = FlatStyle.Popup;
+            botonCargarPartida.Font = new Font("Berlin Sans FB Demi", 12F, FontStyle.Bold);
+            botonCargarPartida.ForeColor = Color.White;
+            botonCargarPartida.Location = new Point(516, 441);
+            botonCargarPartida.Name = "botonCargarPartida";
+            botonCargarPartida.Size = new Size(239, 47);
+            botonCargarPartida.TabIndex = 2;
+            botonCargarPartida.Text = "Cargar partida";
+            botonCargarPartida.UseVisualStyleBackColor = false;
+            botonCargarPartida.Click += botonCargarPartida_Click_1;
             // 
-            // button3
+            // botonSalir
             // 
-            button3.BackColor = Color.DodgerBlue;
-            button3.FlatStyle = FlatStyle.Popup;
-            button3.Font = new Font("Berlin Sans FB Demi", 12F, FontStyle.Bold);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(480, 522);
-            button3.Name = "button3";
-            button3.Size = new Size(239, 47);
-            button3.TabIndex = 3;
-            button3.Text = "Salir";
-            button3.UseVisualStyleBackColor = false;
+            botonSalir.BackColor = Color.DodgerBlue;
+            botonSalir.FlatStyle = FlatStyle.Popup;
+            botonSalir.Font = new Font("Berlin Sans FB Demi", 12F, FontStyle.Bold);
+            botonSalir.ForeColor = Color.White;
+            botonSalir.Location = new Point(516, 586);
+            botonSalir.Name = "botonSalir";
+            botonSalir.Size = new Size(239, 47);
+            botonSalir.TabIndex = 3;
+            botonSalir.Text = "Salir";
+            botonSalir.UseVisualStyleBackColor = false;
+            // 
+            // botonPuntuaciones
+            // 
+            botonPuntuaciones.BackColor = Color.DodgerBlue;
+            botonPuntuaciones.FlatStyle = FlatStyle.Popup;
+            botonPuntuaciones.Font = new Font("Berlin Sans FB Demi", 12F, FontStyle.Bold);
+            botonPuntuaciones.ForeColor = Color.White;
+            botonPuntuaciones.Location = new Point(516, 511);
+            botonPuntuaciones.Name = "botonPuntuaciones";
+            botonPuntuaciones.Size = new Size(239, 47);
+            botonPuntuaciones.TabIndex = 4;
+            botonPuntuaciones.Text = "Ver puntuaciones";
+            botonPuntuaciones.UseVisualStyleBackColor = false;
             // 
             // Menu_Principal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(1207, 680);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(pictureBox1);
+            ClientSize = new Size(1262, 673);
+            Controls.Add(botonPuntuaciones);
+            Controls.Add(botonSalir);
+            Controls.Add(botonCargarPartida);
+            Controls.Add(botonIniciarPartida);
+            Controls.Add(fondoMenuPrincipal);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Menu_Principal";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Flavio's Tank Adventures";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)fondoMenuPrincipal).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private PictureBox pictureBox1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private PictureBox fondoMenuPrincipal;
+        private Button botonIniciarPartida;
+        private Button botonCargarPartida;
+        private Button botonSalir;
+        private Button botonPuntuaciones;
     }
 }

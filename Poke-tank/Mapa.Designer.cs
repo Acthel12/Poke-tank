@@ -70,7 +70,7 @@
             // 
             // botonSorpresaFlavio
             // 
-            botonSorpresaFlavio.Location = new Point(1111, 551);
+            botonSorpresaFlavio.Location = new Point(1162, 545);
             botonSorpresaFlavio.Name = "botonSorpresaFlavio";
             botonSorpresaFlavio.Size = new Size(5, 5);
             botonSorpresaFlavio.TabIndex = 3;
@@ -83,7 +83,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.MAPA_FLAVIO_S_ADVENTURES_FONDO;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1207, 680);
+            ClientSize = new Size(1262, 673);
             Controls.Add(botonSorpresaFlavio);
             Controls.Add(botonNivel3);
             Controls.Add(botonNivel2);
@@ -93,6 +93,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Mapa";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Flavio's Tank Adventure";
             ResumeLayout(false);
         }
