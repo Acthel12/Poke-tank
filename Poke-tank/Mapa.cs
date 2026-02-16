@@ -14,13 +14,12 @@ namespace Poke_tank
         {
             InitializeComponent();
             
-            // --- CAMBIOS PARA FORZAR VISIBILIDAD EN WINDOWS ---
             if (this.botonFinalizar != null)
             {
-                this.botonFinalizar.Location = new Point(20, 20); // Esquina superior izquierda
-                this.botonFinalizar.BackColor = Color.Red;       // Color sólido para evitar transparencia
-                this.botonFinalizar.BringToFront();              // Al frente del fondo
-                this.Controls.SetChildIndex(this.botonFinalizar, 0); // Prioridad máxima en Windows
+                this.botonFinalizar.Location = new Point(20, 20); 
+                this.botonFinalizar.BackColor = Color.Red;       
+                this.botonFinalizar.BringToFront();            
+                this.Controls.SetChildIndex(this.botonFinalizar, 0); 
             }
         }
 
@@ -30,7 +29,7 @@ namespace Poke_tank
             from1.ShowDialog();
         }
 
-        // Nuevo método para consolidar y guardar la puntuación final de la campaña
+     
         private void FinalizarAventura()
         {
             if (DatosGlobales.PartadaActualIndex >= 0 && DatosGlobales.PartadaActualIndex < DatosGlobales.ListaPartidas.Count)
@@ -59,7 +58,7 @@ namespace Poke_tank
             this.Close(); // Regresa al Menú Principal
         }
 
-        // Evento para el botón de finalizar (debes asegurarte que el botón se llame botonFinalizar en el designer)
+      
         private void botonFinalizar_Click(object sender, EventArgs e)
         {
             FinalizarAventura();
