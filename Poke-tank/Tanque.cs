@@ -1,38 +1,61 @@
-﻿
+﻿using System;
+
 namespace Poke_tank
 {
     public class Tanque
     {
         public string Nombre { get; set; }
+        public string Modelo { get; set; }
         public int Vida { get; set; }
+        public int VidaMaxima { get; set; }
         public int Ataque { get; set; }
-        public int Defensa_temporal { get; set; }
         public int Defensa { get; set; }
         public int Velocidad { get; set; }
-        public Tanque(string nombre, int vida, int ataque, int defensa, int velocidad)
+
+        private bool estaDefendiendo = false;
+
+        public Tanque(string nombre, string modelo, int vida, int ataque, int defensa, int velocidad)
         {
             Nombre = nombre;
+            Modelo = modelo;
             Vida = vida;
+            VidaMaxima = vida; 
             Ataque = ataque;
             Defensa = defensa;
-            Defensa_temporal = defensa;
             Velocidad = velocidad;
         }
-        public void RecibirAtaque(int dano)
+
+        public int RecibirAtaque(int ataqueEntrante)
         {
-            int danoRecibido = dano - Defensa_temporal;
-            if (danoRecibido < 0) danoRecibido = 0;
-            Vida -= danoRecibido;
+            int defensaTotal = Defensa;
+
+            if (estaDefendiendo)
+            {
+                defensaTotal = Defensa * 2;
+                estaDefendiendo = false; 
+            }
+
+            int dano = ataqueEntrante - defensaTotal;
+
+            if (dano < 0) dano = 0;
+
+            Vida -= dano;
             if (Vida < 0) Vida = 0;
+
+            return dano;
         }
+
+        public void BloquearSiguienteAtaque()
+        {
+            estaDefendiendo = true;
+        }
+
         public void Reparar(int cantidad)
         {
             Vida += cantidad;
+            if (Vida > VidaMaxima) Vida = VidaMaxima;
         }
-        public void BloquearSiguienteAtaque()
-        {
-            Defensa_temporal = Defensa * 2;
-        }
+
         public bool EstaVivo()
         {
             return Vida > 0;
