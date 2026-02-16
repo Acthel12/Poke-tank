@@ -22,6 +22,34 @@ namespace Poke_tank
                 this.Controls.SetChildIndex(this.botonFinalizar, 0); 
             }
         }
+        //cambia el fondo del formulario de la batalla según el nivel seleccionado
+        private void CambiarFondo(FormBatalla formulario, System.Drawing.Image imagen)
+        {
+            if (formulario == null || imagen == null) return;
+            formulario.BackgroundImage = imagen;
+            formulario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+        }
+
+        //especificamos las imágenes y las aplicamos al form de batalla
+        private void botonNivel1_Click(object sender, EventArgs e)
+        {
+            FormBatalla from2 = new FormBatalla();
+            CambiarFondo(from2, Properties.Resources.fondoNivel1);
+            from2.ShowDialog();
+        }
+
+        private void botonNivel2_Click(object sender, EventArgs e)
+        {
+            FormBatalla from3 = new FormBatalla();
+            CambiarFondo(from3, Properties.Resources.fondoNivel2);
+            from3.ShowDialog();
+        }
+        private void botonNivel3_Click(object sender, EventArgs e)
+        {
+            FormBatalla from4 = new FormBatalla();
+            CambiarFondo(from4, Properties.Resources.fondoNivel3);
+            from4.ShowDialog();
+        }
 
         private void botonSorpresaFlavio_Click(object sender, EventArgs e)
         {
@@ -32,9 +60,9 @@ namespace Poke_tank
      
         private void FinalizarAventura()
         {
-            if (DatosGlobales.PartadaActualIndex >= 0 && DatosGlobales.PartadaActualIndex < DatosGlobales.ListaPartidas.Count)
+            if (DatosGlobales.PartidaActualIndex >= 0 && DatosGlobales.PartidaActualIndex < DatosGlobales.ListaPartidas.Count)
             {
-                var partida = DatosGlobales.ListaPartidas[DatosGlobales.PartadaActualIndex];
+                var partida = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
 
                 if (partida.enemigosDerrotados.Count > 0)
                 {

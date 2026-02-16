@@ -15,7 +15,7 @@ public static class DatosGlobales
     public static List<Partida> ListaPartidas = new List<Partida>();
     public static List<Puntuacion> ListaPuntuaciones = new List<Puntuacion>();
 
-    public static int PartadaActualIndex { get; set; } = -1;
+    public static int PartidaActualIndex { get; set; } = -1;
 
     public static void GuardarDatos()
     {

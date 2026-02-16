@@ -23,9 +23,9 @@ namespace Poke_tank
         private void FormBatalla_Load(object sender, EventArgs e)
         {
             
-            if (DatosGlobales.PartadaActualIndex >= 0 && DatosGlobales.PartadaActualIndex < DatosGlobales.ListaPartidas.Count)
+            if (DatosGlobales.PartidaActualIndex >= 0 && DatosGlobales.PartidaActualIndex < DatosGlobales.ListaPartidas.Count)
             {
-                partidaactual = DatosGlobales.ListaPartidas[DatosGlobales.PartadaActualIndex];
+                partidaactual = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
                 
                 if (partidaactual != null && partidaactual.enemigos.Count > 0)
                 {
