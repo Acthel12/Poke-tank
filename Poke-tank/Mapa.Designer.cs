@@ -84,7 +84,7 @@
             botonFinalizar.FlatStyle = FlatStyle.Flat;
             botonFinalizar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             botonFinalizar.ForeColor = Color.White;
-            botonFinalizar.Location = new Point(1050, 30); // Movido un poco más al centro
+            botonFinalizar.Location = new Point(1050, 30);
             botonFinalizar.Name = "botonFinalizar";
             botonFinalizar.Size = new Size(140, 40);
             botonFinalizar.TabIndex = 4;
