@@ -29,52 +29,53 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mapa));
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            botonNivel1 = new Button();
+            botonNivel2 = new Button();
+            botonNivel3 = new Button();
+            botonSorpresaFlavio = new Button();
             SuspendLayout();
             // 
-            // button1
+            // botonNivel1
             // 
-            button1.BackColor = Color.Transparent;
-            button1.BackgroundImage = Properties.Resources.nivel_11;
-            button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.Location = new Point(370, 466);
-            button1.Name = "button1";
-            button1.Size = new Size(97, 52);
-            button1.TabIndex = 0;
-            button1.UseVisualStyleBackColor = false;
+            botonNivel1.BackColor = Color.Transparent;
+            botonNivel1.BackgroundImage = Properties.Resources.nivel_11;
+            botonNivel1.BackgroundImageLayout = ImageLayout.Stretch;
+            botonNivel1.Location = new Point(370, 466);
+            botonNivel1.Name = "botonNivel1";
+            botonNivel1.Size = new Size(97, 52);
+            botonNivel1.TabIndex = 0;
+            botonNivel1.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // botonNivel2
             // 
-            button2.BackColor = Color.Transparent;
-            button2.BackgroundImage = Properties.Resources.nivel_2;
-            button2.BackgroundImageLayout = ImageLayout.Stretch;
-            button2.Location = new Point(90, 109);
-            button2.Name = "button2";
-            button2.Size = new Size(97, 52);
-            button2.TabIndex = 1;
-            button2.UseVisualStyleBackColor = false;
+            botonNivel2.BackColor = Color.Transparent;
+            botonNivel2.BackgroundImage = Properties.Resources.nivel_2;
+            botonNivel2.BackgroundImageLayout = ImageLayout.Stretch;
+            botonNivel2.Location = new Point(90, 109);
+            botonNivel2.Name = "botonNivel2";
+            botonNivel2.Size = new Size(97, 52);
+            botonNivel2.TabIndex = 1;
+            botonNivel2.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // botonNivel3
             // 
-            button3.BackColor = Color.Transparent;
-            button3.BackgroundImage = Properties.Resources.nivel_3;
-            button3.BackgroundImageLayout = ImageLayout.Stretch;
-            button3.Location = new Point(452, 70);
-            button3.Name = "button3";
-            button3.Size = new Size(101, 46);
-            button3.TabIndex = 2;
-            button3.UseVisualStyleBackColor = false;
+            botonNivel3.BackColor = Color.Transparent;
+            botonNivel3.BackgroundImage = Properties.Resources.nivel_3;
+            botonNivel3.BackgroundImageLayout = ImageLayout.Stretch;
+            botonNivel3.Location = new Point(452, 70);
+            botonNivel3.Name = "botonNivel3";
+            botonNivel3.Size = new Size(101, 46);
+            botonNivel3.TabIndex = 2;
+            botonNivel3.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // botonSorpresaFlavio
             // 
-            button4.Location = new Point(1111, 551);
-            button4.Name = "button4";
-            button4.Size = new Size(5, 5);
-            button4.TabIndex = 3;
-            button4.UseVisualStyleBackColor = true;
+            botonSorpresaFlavio.Location = new Point(1162, 545);
+            botonSorpresaFlavio.Name = "botonSorpresaFlavio";
+            botonSorpresaFlavio.Size = new Size(5, 5);
+            botonSorpresaFlavio.TabIndex = 3;
+            botonSorpresaFlavio.UseVisualStyleBackColor = true;
+            botonSorpresaFlavio.Click += botonSorpresaFlavio_Click;
             // 
             // Mapa
             // 
@@ -82,25 +83,26 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.MAPA_FLAVIO_S_ADVENTURES_FONDO;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1207, 680);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            ClientSize = new Size(1262, 673);
+            Controls.Add(botonSorpresaFlavio);
+            Controls.Add(botonNivel3);
+            Controls.Add(botonNivel2);
+            Controls.Add(botonNivel1);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Mapa";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Flavio's Tank Adventure";
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button botonNivel1;
+        private Button botonNivel2;
+        private Button botonNivel3;
+        private Button botonSorpresaFlavio;
     }
 }
