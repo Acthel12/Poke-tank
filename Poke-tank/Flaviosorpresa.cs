@@ -8,16 +8,11 @@ using System.Windows.Forms;
 
 namespace Poke_tank
 {
-    public partial class Mapa : Form
+    public partial class Flaviosorpresa : Form
     {
-        public Mapa()
+        public Flaviosorpresa()
         {
             InitializeComponent();
-        }
-
-        private void botonSorpresaFlavio_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

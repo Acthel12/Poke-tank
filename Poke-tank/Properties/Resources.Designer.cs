@@ -63,9 +63,49 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bola_amarilla_bailando {
+            get {
+                object obj = ResourceManager.GetObject("bola amarilla bailando", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bola_amarilla_rezando {
+            get {
+                object obj = ResourceManager.GetObject("bola amarilla rezando", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Bola_amarilla_yesquero {
+            get {
+                object obj = ResourceManager.GetObject("Bola amarilla yesquero", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap def_GIF_FONDO_MENU_PPAL_FLAVIO_ADVENTURES {
             get {
                 object obj = ResourceManager.GetObject("def GIF FONDO MENU PPAL FLAVIO ADVENTURES", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Flavio_secreto {
+            get {
+                object obj = ResourceManager.GetObject("Flavio secreto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
