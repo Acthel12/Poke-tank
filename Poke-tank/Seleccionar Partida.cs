@@ -14,5 +14,15 @@ namespace Poke_tank
         {
             InitializeComponent();
         }
+
+        private void bntCargar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bntEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
