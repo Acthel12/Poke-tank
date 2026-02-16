@@ -28,5 +28,12 @@ namespace Poke_tank
 
             from2.Show();
         }
+
+        private void botonPuntuaciones_Click(object sender, EventArgs e)
+        {
+            PuntuacionesForm from3 = new PuntuacionesForm();
+
+            from3.Show();
+        }
     }
 }

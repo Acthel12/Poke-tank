@@ -8,13 +8,13 @@ using System.Windows.Forms;
 
 namespace Poke_tank
 {
-
     public partial class FormBatalla : Form
     {
         private Random random = new Random();
-        Partida partidaactual;
-        Tanque Jugador;
-        TanqueEnemigo enemigoactual;
+        Partida? partidaactual;
+        Tanque? Jugador;
+        TanqueEnemigo? enemigoactual;
+
         public FormBatalla()
         {
             InitializeComponent();
@@ -22,22 +22,36 @@ namespace Poke_tank
 
         private void FormBatalla_Load(object sender, EventArgs e)
         {
-            partidaactual = DatosGlobales.ListaPartidas[DatosGlobales.PartadaActualIndex];
-            enemigoactual = partidaactual.enemigos[0];
+            
+            if (DatosGlobales.PartadaActualIndex >= 0 && DatosGlobales.PartadaActualIndex < DatosGlobales.ListaPartidas.Count)
+            {
+                partidaactual = DatosGlobales.ListaPartidas[DatosGlobales.PartadaActualIndex];
+                
+                if (partidaactual != null && partidaactual.enemigos.Count > 0)
+                {
+                    enemigoactual = partidaactual.enemigos[0];
+                    Jugador = partidaactual.tanqueUsuario;
 
+                    if (Jugador != null)
+                    {
+                        labelNombreJugador.Text = Jugador.Nombre;
+                        progressBarVidaJugador.Maximum = Jugador.VidaMaxima;
+                        progressBarVidaJugador.Value = Jugador.Vida;
+                    }
 
-            Jugador = partidaactual.tanqueUsuario;
-            labelNombreJugador.Text = Jugador.Nombre;
-            progressBarVidaJugador.Maximum = Jugador.VidaMaxima;
-            progressBarVidaJugador.Value = Jugador.Vida;
-
-            ConfigurarEnemigo();
+                    ConfigurarEnemigo();
+                }
+            }
         }
+
         private void ConfigurarEnemigo()
         {
+            if (enemigoactual == null) return;
+
             labelNombreEnemigo.Text = enemigoactual.Nombre;
             progressBarVidaEnemigo.Maximum = enemigoactual.VidaMaxima;
             progressBarVidaEnemigo.Value = enemigoactual.Vida;
+            
             switch (enemigoactual.Modelo)
             {
                 case "T-80":
@@ -54,16 +68,19 @@ namespace Poke_tank
                     break;
                 case "T-14 Armata":
                     pictureBoxEnemigo.Image = Properties.Resources.T14;
-                    MessageBox.Show("A aparecido El JEFE SECRETO", "Alerta!!!");
+                    MessageBox.Show("¡Ha aparecido El JEFE SECRETO!", "Alerta!!!");
                     break;
             }
         }
 
         private void buttonDisparar_Click(object sender, EventArgs e)
         {
+            if (Jugador == null || enemigoactual == null) return;
+
             string resultadoJugador;
             Color color;
             int suerte = random.Next(1, 101);
+            
             if (suerte <= 25)
             {
                 resultadoJugador = $"{Jugador.Nombre} ha fallado su ataque.";
@@ -75,44 +92,58 @@ namespace Poke_tank
                 resultadoJugador = $"{Jugador.Nombre} ha infligido {dano} de daño a {enemigoactual.Nombre}.";
                 color = Color.Green;
             }
+
             EscribirLog(resultadoJugador, color);
             if (!ActualizarEstado()) return;
             TurnoEnemigo();
         }
+
         private void EscribirLog(string mensaje, Color color)
         {
             richTextBoxCombatLog.SelectionStart = richTextBoxCombatLog.TextLength;
             richTextBoxCombatLog.SelectionLength = 0;
-
             richTextBoxCombatLog.SelectionColor = color;
             richTextBoxCombatLog.AppendText(mensaje + Environment.NewLine);
-
             richTextBoxCombatLog.SelectionColor = Color.Black;
             richTextBoxCombatLog.ScrollToCaret();
         }
+
         private bool ActualizarEstado()
         {
+            if (Jugador == null || enemigoactual == null || partidaactual == null) return false;
+
             progressBarVidaJugador.Value = Jugador.Vida;
             progressBarVidaEnemigo.Value = enemigoactual.Vida;
+
             if (!Jugador.EstaVivo())
             {
                 MessageBox.Show($"{Jugador.Nombre} ha sido derrotado. ¡Has perdido!");
                 buttonDisparar.Enabled = false;
-                FormBatalla.ActiveForm.Close();
+                this.Close();
                 return false;
             }
+
             if (!enemigoactual.EstaVivo())
             {
-                MessageBox.Show($"{enemigoactual.Nombre} ha sido derrotado. ¡Has ganado!");
+
+                partidaactual.enemigosDerrotados.Add(enemigoactual);
+                if (partidaactual.enemigos.Count > 0) 
+                {
+                    partidaactual.enemigos.RemoveAt(0);
+                }
+
+                MessageBox.Show($"{enemigoactual.Nombre} ha sido derrotado. ¡Has ganado la batalla!");
+                
                 buttonDisparar.Enabled = false;
-                partidaactual.DerrotarEnemigo(enemigoactual);
-                FormBatalla.ActiveForm.Close();
+                this.Close();
                 return false;
             }
             return true;
         }
+
         private void TurnoEnemigo()
         {
+            if (enemigoactual == null || Jugador == null) return;
             string resultadoEnemigo = enemigoactual.elegirAccion(Jugador);
             EscribirLog(resultadoEnemigo, Color.Purple);
             ActualizarEstado();
@@ -120,14 +151,15 @@ namespace Poke_tank
 
         private void buttonDefensa_Click(object sender, EventArgs e)
         {
+            if (Jugador == null) return;
             Jugador.BloquearSiguienteAtaque();
             EscribirLog($"{Jugador.Nombre} se prepara para bloquear el próximo ataque.", Color.Blue);
             TurnoEnemigo();
-
         }
 
         private void buttonReparar_Click(object sender, EventArgs e)
         {
+            if (Jugador == null) return;
             Jugador.Reparar(20);
             if (ActualizarEstado())
             {
@@ -138,12 +170,13 @@ namespace Poke_tank
 
         private void buttonHuir_Click(object sender, EventArgs e)
         {
+            if (Jugador == null || enemigoactual == null) return;
             int suerte = random.Next(1, 101);
             if (suerte <= 50)
             {
                 MessageBox.Show($"{Jugador.Nombre} ha huido exitosamente.");
                 enemigoactual.Vida = enemigoactual.VidaMaxima;
-                FormBatalla.ActiveForm.Close();
+                this.Close();
             }
             else
             {
