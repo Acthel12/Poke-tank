@@ -33,6 +33,7 @@
             botonNivel2 = new Button();
             botonNivel3 = new Button();
             botonSorpresaFlavio = new Button();
+            botonFinalizar = new Button();
             SuspendLayout();
             // 
             // botonNivel1
@@ -80,6 +81,20 @@
             botonSorpresaFlavio.UseVisualStyleBackColor = true;
             botonSorpresaFlavio.Click += botonSorpresaFlavio_Click;
             // 
+            // botonFinalizar
+            // 
+            botonFinalizar.BackColor = Color.Firebrick;
+            botonFinalizar.FlatStyle = FlatStyle.Flat;
+            botonFinalizar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            botonFinalizar.ForeColor = Color.White;
+            botonFinalizar.Location = new Point(1050, 30);
+            botonFinalizar.Name = "botonFinalizar";
+            botonFinalizar.Size = new Size(140, 40);
+            botonFinalizar.TabIndex = 4;
+            botonFinalizar.Text = "Finalizar Aventura";
+            botonFinalizar.UseVisualStyleBackColor = false;
+            botonFinalizar.Click += botonFinalizar_Click;
+            // 
             // Mapa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -87,6 +102,7 @@
             BackgroundImage = Properties.Resources.MAPA_FLAVIO_S_ADVENTURES_FONDO;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1262, 673);
+            Controls.Add(botonFinalizar);
             Controls.Add(botonSorpresaFlavio);
             Controls.Add(botonNivel3);
             Controls.Add(botonNivel2);
@@ -98,6 +114,8 @@
             Name = "Mapa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Flavio's Tank Adventure";
+            // Aseguramos que el botón esté al frente
+            botonFinalizar.BringToFront();
             ResumeLayout(false);
         }
 
@@ -107,5 +125,6 @@
         private Button botonNivel2;
         private Button botonNivel3;
         private Button botonSorpresaFlavio;
+        private Button botonFinalizar;
     }
 }
