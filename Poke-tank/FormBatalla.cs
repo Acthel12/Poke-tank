@@ -11,7 +11,6 @@ namespace Poke_tank
     public partial class FormBatalla : Form
     {
         private Random random = new Random();
-        // Usamos ? para evitar los warnings CS8618 de campos no nulos
         Partida? partidaactual;
         Tanque? Jugador;
         TanqueEnemigo? enemigoactual;
@@ -23,7 +22,7 @@ namespace Poke_tank
 
         private void FormBatalla_Load(object sender, EventArgs e)
         {
-            // Verificamos que el índice sea válido antes de asignar
+            
             if (DatosGlobales.PartadaActualIndex >= 0 && DatosGlobales.PartadaActualIndex < DatosGlobales.ListaPartidas.Count)
             {
                 partidaactual = DatosGlobales.ListaPartidas[DatosGlobales.PartadaActualIndex];
@@ -126,14 +125,13 @@ namespace Poke_tank
 
             if (!enemigoactual.EstaVivo())
             {
-                // Registramos el progreso en la partida actual
+
                 partidaactual.enemigosDerrotados.Add(enemigoactual);
                 if (partidaactual.enemigos.Count > 0) 
                 {
                     partidaactual.enemigos.RemoveAt(0);
                 }
 
-                // Hemos quitado el guardado automático de Puntuacion aquí
                 MessageBox.Show($"{enemigoactual.Nombre} ha sido derrotado. ¡Has ganado la batalla!");
                 
                 buttonDisparar.Enabled = false;
