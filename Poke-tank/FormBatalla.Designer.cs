@@ -35,6 +35,7 @@
             progressBarVidaJugador = new ProgressBar();
             labelNombreJugador = new Label();
             groupBoxComandos = new GroupBox();
+            buttonHuir = new Button();
             buttonReparar = new Button();
             buttonDefensa = new Button();
             buttonDisparar = new Button();
@@ -101,6 +102,7 @@
             // 
             // groupBoxComandos
             // 
+            groupBoxComandos.Controls.Add(buttonHuir);
             groupBoxComandos.Controls.Add(buttonReparar);
             groupBoxComandos.Controls.Add(buttonDefensa);
             groupBoxComandos.Controls.Add(buttonDisparar);
@@ -111,6 +113,16 @@
             groupBoxComandos.TabStop = false;
             groupBoxComandos.Text = "Comandos";
             // 
+            // buttonHuir
+            // 
+            buttonHuir.Location = new Point(6, 107);
+            buttonHuir.Name = "buttonHuir";
+            buttonHuir.Size = new Size(488, 23);
+            buttonHuir.TabIndex = 3;
+            buttonHuir.Text = "Huir";
+            buttonHuir.UseVisualStyleBackColor = true;
+            buttonHuir.Click += buttonHuir_Click;
+            // 
             // buttonReparar
             // 
             buttonReparar.Location = new Point(6, 80);
@@ -119,6 +131,7 @@
             buttonReparar.TabIndex = 2;
             buttonReparar.Text = "Reparar";
             buttonReparar.UseVisualStyleBackColor = true;
+            buttonReparar.Click += buttonReparar_Click;
             // 
             // buttonDefensa
             // 
@@ -128,6 +141,7 @@
             buttonDefensa.TabIndex = 1;
             buttonDefensa.Text = "Defensa";
             buttonDefensa.UseVisualStyleBackColor = true;
+            buttonDefensa.Click += buttonDefensa_Click;
             // 
             // buttonDisparar
             // 
@@ -193,5 +207,6 @@
         private Button buttonDefensa;
         private Button buttonDisparar;
         private RichTextBox richTextBoxCombatLog;
+        private Button buttonHuir;
     }
 }
