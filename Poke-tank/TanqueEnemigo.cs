@@ -4,31 +4,30 @@ namespace Poke_tank
 {
     public class TanqueEnemigo : Tanque
     {
-        private Random random = new Random();
-        public TanqueEnemigo(string nombre, int vida, int ataque, int defensa, int velocidad) : base(nombre, vida, ataque, defensa, velocidad)
+        public TanqueEnemigo(string nombre, string modelo, int vida, int ataque, int defensa, int velocidad)
+            : base(nombre, modelo, vida, ataque, defensa, velocidad)
         {
         }
 
-        public void elegirAccion(Tanque tanque_usuario)
+        public string elegirAccion(Tanque objetivo)
         {
-            if (Vida < 30)
+            Random dado = new Random();
+            int chance = dado.Next(0, 100);
+
+            if (chance < 70)
             {
-                Reparar(20);
-                MessageBox.Show($"{Nombre} se ha reparado a sí mismo.");
+                int dano = objetivo.RecibirAtaque(this.Ataque);
+                return $"El enemigo dispara y te causa {dano} de daño.";
+            }
+            else if (chance < 90)
+            {
+                this.BloquearSiguienteAtaque();
+                return "El enemigo activa su blindaje reactivo.";
             }
             else
             {
-                if (random.Next(0, 2) == 0)
-                {
-                    BloquearSiguienteAtaque();
-                    MessageBox.Show($"{Nombre} se ha preparado para bloquear el siguiente ataque.");
-                }
-                else
-                {
-                    tanque_usuario.RecibirAtaque(Ataque);
-                    MessageBox.Show($"{Nombre} ha atacado a {tanque_usuario.Nombre} causando {Ataque} de daño.");
-
-                }
+                this.Reparar(20);
+                return "El enemigo realiza reparaciones de emergencia (+20 HP).";
             }
         }
     }
