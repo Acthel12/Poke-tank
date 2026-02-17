@@ -126,11 +126,7 @@ namespace Poke_tank
             if (!enemigoactual.EstaVivo())
             {
 
-                partidaactual.enemigosDerrotados.Add(enemigoactual);
-                if (partidaactual.enemigos.Count > 0) 
-                {
-                    partidaactual.enemigos.RemoveAt(0);
-                }
+                partidaactual.DerrotarEnemigo(enemigoactual,Jugador);
 
                 MessageBox.Show($"{enemigoactual.Nombre} ha sido derrotado. ¡Has ganado la batalla!");
                 
