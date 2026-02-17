@@ -10,7 +10,6 @@ namespace Poke_tank
 {
     public partial class Mapa : Form
     {
-        // Propiedad que refleja el nivel seleccionado. Setter privado para control centralizado.
         public Mapa()
         {
             InitializeComponent();
@@ -41,13 +40,14 @@ namespace Poke_tank
             form.ShowDialog();
         }
 
+        //botón de easter egg flavionística
         private void botonSorpresaFlavio_Click(object sender, EventArgs e)
         {
             Flaviosorpresa from1 = new Flaviosorpresa();
             from1.ShowDialog();
         }
 
-     
+        //al finalizar la aventura, se registra la puntuación total obtenida en la campaña, basada en el número de enemigos derrotados y se muestra al usuario
         private void FinalizarAventura()
         {
             if (DatosGlobales.PartidaActualIndex >= 0 && DatosGlobales.PartidaActualIndex < DatosGlobales.ListaPartidas.Count)
@@ -75,11 +75,13 @@ namespace Poke_tank
             this.Close(); //para regresar al menú
         }
 
-      
+        //botón para finalizar la aventura y registrar la puntuación obtenida
         private void botonFinalizar_Click(object sender, EventArgs e)
         {
             FinalizarAventura();
         }
+
+        //método para seleccionar el fondo del mapa automáticamente según el nivel escogido
         private void SeleccionarMapa(Form form )
         {
             if (DatosGlobales.NivelSeleccionado == 0)

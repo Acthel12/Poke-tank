@@ -11,7 +11,9 @@ namespace Poke_tank
 
         public Tanque tanqueUsuario { get; set; }
         public List<TanqueEnemigo> enemigosDerrotados { get; set; } 
-        public List<TanqueEnemigo> enemigos { get; set; } 
+        public List<TanqueEnemigo> enemigos { get; set; }
+
+        //nombres para escoger al azar para los tanques enemigos según su modelo
 
         private static readonly string[] nombresT80 = {
             "Doomhammer", "Hellfire Engine", "Oblivion", "Widowmaker",
@@ -60,10 +62,9 @@ namespace Poke_tank
             Partida nueva = new Partida(jugador);
             DatosGlobales.ListaPartidas.Add(nueva);
             DatosGlobales.PartidaActualIndex = DatosGlobales.ListaPartidas.Count - 1;
-            //guarda inmediatamente la partida creada
-            
-
         }
+
+        //genera los enemigos para la partida según el nivel seleccionado
         private void GenerarEnemigos()
         {
 
@@ -78,12 +79,15 @@ namespace Poke_tank
                 AgregarEnemigo(nombresT90, "T-90", 120, 25, 8, 12);
             }
         }
+
+        //método para agregar un enemigo a la lista, escogiendo un nombre al azar de la lista correspondiente al modelo
         private void AgregarEnemigo(string[] listaNombres, string modelo, int vida, int ataque, int defensa, int exp)
         {
             string nombreAlAzar = listaNombres[random.Next(listaNombres.Length)];
             enemigos.Add(new TanqueEnemigo(nombreAlAzar, modelo, vida, ataque, defensa, exp));
         }
 
+        //se registra la derrota de un enemigo en la lista, agregándolo a la lista de enemigos derrotados y restaurando la vida del usuario
         public void DerrotarEnemigo(TanqueEnemigo enemigo, Tanque usuario)
         {
             enemigosDerrotados.Add(enemigo);

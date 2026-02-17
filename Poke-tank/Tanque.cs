@@ -2,6 +2,7 @@
 
 namespace Poke_tank
 {
+    //representa un tanque en el juego, con propiedades y comportamientos del tanque
     public class Tanque
     {
         public string Nombre { get; set; }
@@ -25,6 +26,7 @@ namespace Poke_tank
             Velocidad = velocidad;
         }
 
+        //recibe un ataque entrante, calcula el daño recibido teniendo en cuenta la defensa y si el tanque está defendiendo. Luego actualiza la vida del tanque
         public int RecibirAtaque(int ataqueEntrante)
         {
             int defensaTotal = Defensa;
@@ -45,17 +47,20 @@ namespace Poke_tank
             return dano;
         }
 
+        //activa el modo defensa para el siguiente ataque recibido, lo que duplica la defensa del tanque para ese ataque
         public void BloquearSiguienteAtaque()
         {
             estaDefendiendo = true;
         }
 
+        //repara el tanque restaurando una cantidad de vida, sin exceder la vida máxima
         public void Reparar(int cantidad)
         {
             Vida += cantidad;
             if (Vida > VidaMaxima) Vida = VidaMaxima;
         }
 
+        //verifica si el tanque sigue vivo, es decir, si su vida es mayor a 0
         public bool EstaVivo()
         {
             return Vida > 0;

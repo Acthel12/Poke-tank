@@ -4,6 +4,7 @@ namespace Poke_tank
 {
     public class TanqueEnemigo : Tanque
     {
+        //comportamiento del tanque enemigo
         public TanqueEnemigo(string nombre, string modelo, int vida, int ataque, int defensa, int velocidad)
             : base(nombre, modelo, vida, ataque, defensa, velocidad)
         {

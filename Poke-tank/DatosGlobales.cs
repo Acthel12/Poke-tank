@@ -14,10 +14,11 @@ public static class DatosGlobales
     
     public static List<Partida> ListaPartidas = new List<Partida>();
     public static List<Puntuacion> ListaPuntuaciones = new List<Puntuacion>();
-    public static int NivelSeleccionado { get; set; } = 0; // Variable para controlar el nivel seleccionado
+    public static int NivelSeleccionado { get; set; } = 0; //controlar el nivel seleccionado
 
     public static int PartidaActualIndex { get; set; } = -1;
 
+    //guardar los datos en un archivo json, si no existe la carpeta, se crea, y si no existe el archivo, se crea con una lista vacia
     public static void GuardarDatos()
     {
         try
@@ -39,11 +40,12 @@ public static class DatosGlobales
         }
     }
 
+    //cargar los datos desde un archivo json
     public static void CargarDatos()
     {
         try
         {
-            // Cargar Partidas
+            //cargar partidas
             if (File.Exists(archivoPartidas))
             {
                 string json = File.ReadAllText(archivoPartidas);
@@ -54,7 +56,7 @@ public static class DatosGlobales
                 ListaPartidas = new List<Partida>();
             }
 
-            // Cargar Puntuaciones
+            //cargar puntuaciones
             if (File.Exists(archivoPuntuaciones))
             {
                 string jsonP = File.ReadAllText(archivoPuntuaciones);

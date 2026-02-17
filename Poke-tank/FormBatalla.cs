@@ -22,7 +22,7 @@ namespace Poke_tank
 
         private void FormBatalla_Load(object sender, EventArgs e)
         {
-            
+            //validaciones para evitar errores por índices fuera de rango o datos nulos
             if (DatosGlobales.PartidaActualIndex >= 0 && DatosGlobales.PartidaActualIndex < DatosGlobales.ListaPartidas.Count)
             {
                 partidaactual = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
@@ -44,6 +44,7 @@ namespace Poke_tank
             }
         }
 
+        //configura el enemigo en la interfaz según el modelo
         private void ConfigurarEnemigo()
         {
             if (enemigoactual == null) return;
@@ -73,6 +74,7 @@ namespace Poke_tank
             }
         }
 
+        //acción de disparar, con una probabilidad de fallo del 25%. Si acierta, inflige daño al enemigo
         private void buttonDisparar_Click(object sender, EventArgs e)
         {
             if (Jugador == null || enemigoactual == null) return;
@@ -98,6 +100,7 @@ namespace Poke_tank
             TurnoEnemigo();
         }
 
+        //método para escribir en el log de combate con un color específico
         private void EscribirLog(string mensaje, Color color)
         {
             richTextBoxCombatLog.SelectionStart = richTextBoxCombatLog.TextLength;
@@ -108,6 +111,7 @@ namespace Poke_tank
             richTextBoxCombatLog.ScrollToCaret();
         }
 
+        //actualiza las barras de vida y verifica si el jugador o el enemigo han sido derrotados
         private bool ActualizarEstado()
         {
             if (Jugador == null || enemigoactual == null || partidaactual == null) return false;
@@ -137,6 +141,7 @@ namespace Poke_tank
             return true;
         }
 
+        //método para que el enemigo elija su acción y se ejecute, luego se actualiza el estado del combate
         private void TurnoEnemigo()
         {
             if (enemigoactual == null || Jugador == null) return;
@@ -145,6 +150,7 @@ namespace Poke_tank
             ActualizarEstado();
         }
 
+        //defensa, en esta el jugador se prepara para bloquear el próximo ataque del enemigo
         private void buttonDefensa_Click(object sender, EventArgs e)
         {
             if (Jugador == null) return;
@@ -153,6 +159,7 @@ namespace Poke_tank
             TurnoEnemigo();
         }
 
+        //repara al jugador, restaurando 20 puntos de vida
         private void buttonReparar_Click(object sender, EventArgs e)
         {
             if (Jugador == null) return;
@@ -164,6 +171,7 @@ namespace Poke_tank
             }
         }
 
+        //acción de huir, con una probabilidad del 50% de éxito. Si falla, el enemigo ataca
         private void buttonHuir_Click(object sender, EventArgs e)
         {
             if (Jugador == null || enemigoactual == null) return;

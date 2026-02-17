@@ -14,6 +14,7 @@ namespace Poke_tank
         {
             InitializeComponent();
         }
+        //iniciar partida con el boton
         private void botonIniciarPartida_Click(object sender, EventArgs e)
         {
             Mapa from1 = new Mapa();
@@ -21,13 +22,14 @@ namespace Poke_tank
 
             from1.ShowDialog();
         }
-
+        //mostrar puntuaciones con el boton
         private void botonPuntuaciones_Click(object sender, EventArgs e)
         {
             Puntuaciones from2 = new Puntuaciones();
 
             from2.ShowDialog();
         }
+        //salir del juego con el boton
         private void botonSalir_Click(object sender, EventArgs e)
         {
             this.Close();
