@@ -10,8 +10,7 @@ namespace Poke_tank
 {
     public partial class Mapa : Form
     {
-        // Propiedad que refleja el nivel seleccionado. Setter privado para control centralizado.
-        public static int Nivel { get; private set; } = 0; //variable para controlar el nivel seleccionado
+        public static int Nivel { get; private set; } = 0; //control del nivel seleccionado
 
         public Mapa()
         {
