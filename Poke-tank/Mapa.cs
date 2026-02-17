@@ -10,6 +10,9 @@ namespace Poke_tank
 {
     public partial class Mapa : Form
     {
+        // Propiedad que refleja el nivel seleccionado. Setter privado para control centralizado.
+        public static int Nivel { get; private set; } = 0; //variable para controlar el nivel seleccionado
+
         public Mapa()
         {
             InitializeComponent();
@@ -22,33 +25,23 @@ namespace Poke_tank
                 this.Controls.SetChildIndex(this.botonFinalizar, 0); 
             }
         }
-        //cambia el fondo del formulario de la batalla según el nivel seleccionado
-        private void CambiarFondo(FormBatalla formulario, System.Drawing.Image imagen)
-        {
-            if (formulario == null || imagen == null) return;
-            formulario.BackgroundImage = imagen;
-            formulario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-        }
 
-        //especificamos las imágenes y las aplicamos al form de batalla
+        //iniciamos la partida según el nivel escogido
         private void botonNivel1_Click(object sender, EventArgs e)
         {
-            FormBatalla from2 = new FormBatalla();
-            CambiarFondo(from2, Properties.Resources.fondoNivel1);
-            from2.ShowDialog();
+            Partida.iniciarPartida("Comandante Flavio Rosales", "T-90", 140, 30, 15, 14, Properties.Resources.fondoNivel1);
+            Nivel = 1;
         }
 
         private void botonNivel2_Click(object sender, EventArgs e)
         {
-            FormBatalla from3 = new FormBatalla();
-            CambiarFondo(from3, Properties.Resources.fondoNivel2);
-            from3.ShowDialog();
+            Partida.iniciarPartida("Capitán Flavio Rosales", "T-80", 120, 20, 12, 12, Properties.Resources.fondoNivel2);
+            Nivel = 2;
         }
         private void botonNivel3_Click(object sender, EventArgs e)
         {
-            FormBatalla from4 = new FormBatalla();
-            CambiarFondo(from4, Properties.Resources.fondoNivel3);
-            from4.ShowDialog();
+            Partida.iniciarPartida("Coronel Flavio Rosales", "T-72", 100, 15, 10, 10, Properties.Resources.fondoNivel3);
+            Nivel = 3;
         }
 
         private void botonSorpresaFlavio_Click(object sender, EventArgs e)
@@ -66,7 +59,7 @@ namespace Poke_tank
 
                 if (partida.enemigosDerrotados.Count > 0)
                 {
-                    // Registramos la puntuación una sola vez al final
+                    //registramos la puntuación una sola vez al final
                     Puntuacion recordFinal = new Puntuacion(
                         partida.tanqueUsuario.Nombre, 
                         partida.enemigosDerrotados.Count
@@ -83,7 +76,7 @@ namespace Poke_tank
                 }
             }
 
-            this.Close(); // Regresa al Menú Principal
+            this.Close(); //para regresar al menú
         }
 
       
