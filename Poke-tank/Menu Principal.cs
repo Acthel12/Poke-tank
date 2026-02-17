@@ -19,24 +19,24 @@ namespace Poke_tank
             Mapa from1 = new Mapa();
             Partida.iniciarPartida("Comandante Flavio Rosales", "M1A1", 140, 30, 15, 14);
 
-            from1.Show();
+            from1.ShowDialog();
         }
 
         private void botonPuntuaciones_Click(object sender, EventArgs e)
         {
             Puntuaciones from2 = new Puntuaciones();
 
-            from2.Show();
+            from2.ShowDialog();
         }
 
         private void fondoMenuPrincipal_Click(object sender, EventArgs e)
         {
-            DatosGlobales.CargarDatos();
+            
         }
 
         private void botonSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
     }
 }
