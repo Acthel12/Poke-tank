@@ -45,7 +45,6 @@
             fondoMenuPrincipal.SizeMode = PictureBoxSizeMode.Zoom;
             fondoMenuPrincipal.TabIndex = 0;
             fondoMenuPrincipal.TabStop = false;
-            fondoMenuPrincipal.Click += fondoMenuPrincipal_Click;
             // 
             // botonIniciarPartida
             // 

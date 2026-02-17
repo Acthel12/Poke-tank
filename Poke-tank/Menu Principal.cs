@@ -28,12 +28,6 @@ namespace Poke_tank
 
             from2.ShowDialog();
         }
-
-        private void fondoMenuPrincipal_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void botonSalir_Click(object sender, EventArgs e)
         {
             this.Close();
