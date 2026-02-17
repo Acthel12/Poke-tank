@@ -15,13 +15,6 @@ namespace Poke_tank
         {
             InitializeComponent();
             
-            if (this.botonFinalizar != null)
-            {
-                this.botonFinalizar.Location = new Point(20, 20); 
-                this.botonFinalizar.BackColor = Color.Red;       
-                this.botonFinalizar.BringToFront();            
-                this.Controls.SetChildIndex(this.botonFinalizar, 0); 
-            }
         }
 
         //iniciamos la partida según el nivel escogido

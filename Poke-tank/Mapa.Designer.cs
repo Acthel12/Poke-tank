@@ -87,11 +87,11 @@
             botonFinalizar.FlatStyle = FlatStyle.Flat;
             botonFinalizar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             botonFinalizar.ForeColor = Color.White;
-            botonFinalizar.Location = new Point(1050, 30);
+            botonFinalizar.Location = new Point(1019, 30);
             botonFinalizar.Name = "botonFinalizar";
-            botonFinalizar.Size = new Size(140, 40);
+            botonFinalizar.Size = new Size(171, 40);
             botonFinalizar.TabIndex = 4;
-            botonFinalizar.Text = "Finalizar Aventura";
+            botonFinalizar.Text = "Finalizar aventura";
             botonFinalizar.UseVisualStyleBackColor = false;
             botonFinalizar.Click += botonFinalizar_Click;
             // 
@@ -114,8 +114,6 @@
             Name = "Mapa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Flavio's Tank Adventure";
-            // Aseguramos que el botón esté al frente
-            botonFinalizar.BringToFront();
             ResumeLayout(false);
         }
 

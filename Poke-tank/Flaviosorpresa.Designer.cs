@@ -57,50 +57,50 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(12, 304);
+            label1.Font = new Font("Microsoft New Tai Lue", 9F, FontStyle.Bold);
+            label1.Location = new Point(29, 304);
             label1.Name = "label1";
-            label1.Size = new Size(289, 22);
+            label1.Size = new Size(243, 20);
             label1.TabIndex = 1;
             label1.Text = "¡Has encontrado al flavio secreto!";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(891, 293);
+            label2.Font = new Font("Microsoft New Tai Lue", 9F, FontStyle.Bold);
+            label2.Location = new Point(908, 293);
             label2.Name = "label2";
-            label2.Size = new Size(283, 22);
+            label2.Size = new Size(240, 20);
             label2.TabIndex = 2;
             label2.Text = "con el poder del decano supremo";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(884, 366);
+            label3.Font = new Font("Microsoft New Tai Lue", 9F, FontStyle.Bold);
+            label3.Location = new Point(901, 366);
             label3.Name = "label3";
-            label3.Size = new Size(300, 22);
+            label3.Size = new Size(254, 20);
             label3.TabIndex = 3;
             label3.Text = "ahora tendrás la bendición máxima";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(977, 520);
+            label5.Font = new Font("Microsoft New Tai Lue", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(987, 510);
             label5.Name = "label5";
-            label5.Size = new Size(110, 22);
+            label5.Size = new Size(93, 20);
             label5.TabIndex = 5;
             label5.Text = "¡felicidades!";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(884, 442);
+            label4.Font = new Font("Microsoft New Tai Lue", 9F, FontStyle.Bold);
+            label4.Location = new Point(901, 442);
             label4.Name = "label4";
-            label4.Size = new Size(311, 22);
+            label4.Size = new Size(259, 20);
             label4.TabIndex = 6;
             label4.Text = "de la calvicie eterna y todopoderosa";
             // 
