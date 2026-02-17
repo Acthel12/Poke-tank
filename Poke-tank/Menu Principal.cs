@@ -25,6 +25,8 @@ namespace Poke_tank
         private void botonIniciarPartida_Click(object sender, EventArgs e)
         {
             Mapa from2 = new Mapa();
+            Partida.iniciarPartida("Comandante Flavio Rosales", "M1A1", 140, 30, 15, 14);
+
             from2.Show();
         }
 
@@ -33,6 +35,11 @@ namespace Poke_tank
             PuntuacionesForm from3 = new PuntuacionesForm();
 
             from3.Show();
+        }
+
+        private void fondoMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            DatosGlobales.CargarDatos();
         }
     }
 }

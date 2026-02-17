@@ -14,6 +14,7 @@ public static class DatosGlobales
     
     public static List<Partida> ListaPartidas = new List<Partida>();
     public static List<Puntuacion> ListaPuntuaciones = new List<Puntuacion>();
+    public static int NivelSeleccionado { get; set; } = 0; // Variable para controlar el nivel seleccionado
 
     public static int PartidaActualIndex { get; set; } = -1;
 

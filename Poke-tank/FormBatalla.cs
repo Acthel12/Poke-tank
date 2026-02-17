@@ -29,7 +29,7 @@ namespace Poke_tank
                 
                 if (partidaactual != null && partidaactual.enemigos.Count > 0)
                 {
-                    enemigoactual = partidaactual.enemigos[0];
+                    enemigoactual = partidaactual.enemigos[DatosGlobales.NivelSeleccionado];
                     Jugador = partidaactual.tanqueUsuario;
 
                     if (Jugador != null)
