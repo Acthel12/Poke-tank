@@ -84,9 +84,11 @@ namespace Poke_tank
             enemigos.Add(new TanqueEnemigo(nombreAlAzar, modelo, vida, ataque, defensa, exp));
         }
 
-        public void DerrotarEnemigo(TanqueEnemigo enemigo)
+        public void DerrotarEnemigo(TanqueEnemigo enemigo, Tanque usuario)
         {
             enemigosDerrotados.Add(enemigo);
+            usuario.Vida = usuario.VidaMaxima;
+            enemigo.Vida = enemigo.VidaMaxima;
         }
     }
 }
