@@ -63,7 +63,6 @@ namespace Poke_tank
                     );
 
                     DatosGlobales.ListaPuntuaciones.Add(recordFinal);
-                    DatosGlobales.GuardarDatos();
 
                     MessageBox.Show($"Campaña finalizada. ¡Puntaje total: {recordFinal.PuntosTotales} puntos registrados!");
                 }

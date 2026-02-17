@@ -61,7 +61,7 @@ namespace Poke_tank
             DatosGlobales.ListaPartidas.Add(nueva);
             DatosGlobales.PartidaActualIndex = DatosGlobales.ListaPartidas.Count - 1;
             //guarda inmediatamente la partida creada
-            DatosGlobales.GuardarDatos();
+            
 
         }
         private void GenerarEnemigos()
