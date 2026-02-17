@@ -51,7 +51,7 @@ namespace Poke_tank
         }
 
         //crea una nueva partida
-        public static void iniciarPartida(string nombreJugador, string modelo, int vida, int ataque, int defensa, int velocidad, Image fondo)
+        public static void iniciarPartida(string nombreJugador, string modelo, int vida, int ataque, int defensa, int velocidad)
         {
             //crea tanque del jugador
             Tanque jugador = new Tanque(nombreJugador, modelo, vida, ataque, defensa, velocidad);
@@ -63,45 +63,22 @@ namespace Poke_tank
             //guarda inmediatamente la partida creada
             DatosGlobales.GuardarDatos();
 
-            //abre el formulario de batalla con el fondo correspondiente
-            FormBatalla form1 = new FormBatalla();
-            if (form1 != null && fondo != null)
-            {
-                form1.BackgroundImage = fondo;
-                form1.BackgroundImageLayout = ImageLayout.Stretch;
-            }
-            form1.ShowDialog();
-
-            //guarda datos después de la batalla
-            DatosGlobales.GuardarDatos();
         }
         private void GenerarEnemigos()
         {
-            var nivel = Mapa.Nivel; //obtenemos el nivel seleccionado en el mapa para generar enemigos acorde a ese nivel
 
-            if (nivel == 1)
+            AgregarEnemigo(nombresT72, "T-72", 80, 15, 5, 10);
+            AgregarEnemigo(nombresT80, "T-80", 100, 20, 10, 15);
+            if (random.Next(1, 101) <= 25)
             {
-                AgregarEnemigo(nombresT72, "T-72", 80, 15, 5, 10);
-            }
-            else if (nivel == 2)
-            {
-                AgregarEnemigo(nombresT80, "T-80", 100, 20, 10, 15);
+                AgregarEnemigo(nombresT14, "T-14 Armata", 150, 35, 15, 25);
             }
             else
             {
-
-                if (random.Next(1, 101) <= 25)
-                {
-                    AgregarEnemigo(nombresT14, "T-14 Armata", 150, 35, 15, 25);
-                }
-                else
-                {
-                    AgregarEnemigo(nombresT90, "T-90", 120, 25, 8, 12);
-                }
+                AgregarEnemigo(nombresT90, "T-90", 120, 25, 8, 12);
             }
         }
-
-private void AgregarEnemigo(string[] listaNombres, string modelo, int vida, int ataque, int defensa, int exp)
+        private void AgregarEnemigo(string[] listaNombres, string modelo, int vida, int ataque, int defensa, int exp)
         {
             string nombreAlAzar = listaNombres[random.Next(listaNombres.Length)];
             enemigos.Add(new TanqueEnemigo(nombreAlAzar, modelo, vida, ataque, defensa, exp));
@@ -110,7 +87,6 @@ private void AgregarEnemigo(string[] listaNombres, string modelo, int vida, int 
         public void DerrotarEnemigo(TanqueEnemigo enemigo)
         {
             enemigosDerrotados.Add(enemigo);
-            enemigos.Remove(enemigo);
         }
     }
 }
