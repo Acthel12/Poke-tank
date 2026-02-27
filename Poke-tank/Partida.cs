@@ -10,7 +10,7 @@ namespace Poke_tank
         private Random random = new Random();
 
         public Tanque tanqueUsuario { get; set; }
-        public List<TanqueEnemigo> enemigosDerrotados { get; set; } 
+        public List<TanqueEnemigo> enemigosDerrotados { get; set; }
         public List<TanqueEnemigo> enemigos { get; set; }
 
         //nombres para escoger al azar para los tanques enemigos según su modelo
@@ -92,6 +92,14 @@ namespace Poke_tank
         {
             enemigosDerrotados.Add(enemigo);
             usuario.Vida = usuario.VidaMaxima;
+            enemigo.Vida = enemigo.VidaMaxima;
+        }
+
+        //Funcion para restaurar la vida del usuario al máximo y la del enemigo actual al ´máximo, para reiniciar el combate
+        public void ReiniciarCombate()
+        {
+            TanqueEnemigo enemigo = enemigos[DatosGlobales.NivelSeleccionado];
+            this.tanqueUsuario.Vida = this.tanqueUsuario.VidaMaxima;
             enemigo.Vida = enemigo.VidaMaxima;
         }
     }

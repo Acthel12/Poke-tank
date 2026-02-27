@@ -26,7 +26,7 @@ namespace Poke_tank
             if (DatosGlobales.PartidaActualIndex >= 0 && DatosGlobales.PartidaActualIndex < DatosGlobales.ListaPartidas.Count)
             {
                 partidaactual = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
-                
+
                 if (partidaactual != null && partidaactual.enemigos.Count > 0)
                 {
                     enemigoactual = partidaactual.enemigos[DatosGlobales.NivelSeleccionado];
@@ -52,7 +52,7 @@ namespace Poke_tank
             labelNombreEnemigo.Text = enemigoactual.Nombre;
             progressBarVidaEnemigo.Maximum = enemigoactual.VidaMaxima;
             progressBarVidaEnemigo.Value = enemigoactual.Vida;
-            
+
             switch (enemigoactual.Modelo)
             {
                 case "T-80":
@@ -82,7 +82,7 @@ namespace Poke_tank
             string resultadoJugador;
             Color color;
             int suerte = random.Next(1, 101);
-            
+
             if (suerte <= 25)
             {
                 resultadoJugador = $"{Jugador.Nombre} ha fallado su ataque.";
@@ -130,10 +130,10 @@ namespace Poke_tank
             if (!enemigoactual.EstaVivo())
             {
 
-                partidaactual.DerrotarEnemigo(enemigoactual,Jugador);
+                partidaactual.DerrotarEnemigo(enemigoactual, Jugador);
 
                 MessageBox.Show($"{enemigoactual.Nombre} ha sido derrotado. ¡Has ganado la batalla!");
-                
+
                 buttonDisparar.Enabled = false;
                 this.Close();
                 return false;
@@ -179,7 +179,6 @@ namespace Poke_tank
             if (suerte <= 50)
             {
                 MessageBox.Show($"{Jugador.Nombre} ha huido exitosamente.");
-                enemigoactual.Vida = enemigoactual.VidaMaxima;
                 this.Close();
             }
             else
@@ -187,6 +186,11 @@ namespace Poke_tank
                 EscribirLog($"{Jugador.Nombre} ha fallado al intentar huir.", Color.Orange);
                 TurnoEnemigo();
             }
+        }
+
+        private void FormBatalla_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            partidaactual.ReiniciarCombate();
         }
     }
 }
