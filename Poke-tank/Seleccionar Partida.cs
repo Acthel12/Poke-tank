@@ -41,8 +41,7 @@ namespace Poke_tank
                 {
                     DatosGlobales.ListaPartidas.RemoveAt(index);
                     DatosGlobales.GuardarDatos();
-                    dgvPartidas.DataSource = null;
-                    dgvPartidas.DataSource = DatosGlobales.ListaPartidas;
+                    Seleccionar_Partida_Load(sender, e); // Recargar la lista de partidas
                 }
             }
             else
@@ -60,7 +59,7 @@ namespace Poke_tank
             var partidasMostrar = partidas.Select(p => new
             {
                 Nombre_Tanque = p.tanqueUsuario.Nombre,
-                Enemigos_Derrotados = p.enemigosDerrotados.Count()
+                Enemigos_Derrotados = p.enemigosDerrotados.Count
             }).ToList();
 
             dgvPartidas.DataSource = partidasMostrar;
