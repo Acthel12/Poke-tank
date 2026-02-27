@@ -34,5 +34,11 @@ namespace Poke_tank
         {
             this.Close();
         }
+
+        private void buttonCargarPartida_Click(object sender, EventArgs e)
+        {
+            Seleccionar_Partida form = new Seleccionar_Partida();
+            form.ShowDialog();
+        }
     }
 }
