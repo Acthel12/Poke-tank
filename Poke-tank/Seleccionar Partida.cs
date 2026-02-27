@@ -41,7 +41,7 @@ namespace Poke_tank
                 {
                     DatosGlobales.ListaPartidas.RemoveAt(index);
                     DatosGlobales.GuardarDatos();
-                    Seleccionar_Partida_Load(sender, e); // Recargar la lista de partidas
+                    ActualizarPartidas(); // Recargar la lista de partidas
                 }
             }
             else
@@ -52,8 +52,15 @@ namespace Poke_tank
 
         private void Seleccionar_Partida_Load(object sender, EventArgs e)
         {
+            ActualizarPartidas();
+        }
+
+        private void ActualizarPartidas()
+        {
             List<Partida> partidas = DatosGlobales.ListaPartidas;
 
+            //limpiamos el DataGridView antes de cargar los datos
+            dgvPartidas.DataSource = null;
 
             //Usamos una funcion LINQ para Filtrar los datos para la DataGriewView
             var partidasMostrar = partidas.Select(p => new
@@ -63,7 +70,6 @@ namespace Poke_tank
             }).ToList();
 
             dgvPartidas.DataSource = partidasMostrar;
-
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows.Forms;
 
@@ -19,28 +20,16 @@ namespace Poke_tank
         //iniciamos la partida según el nivel escogido
         private void botonNivel1_Click(object sender, EventArgs e)
         {
-            DatosGlobales.NivelSeleccionado = 0;
-            Form form = new FormBatalla();
-            SeleccionarMapa(form);
-            form.ShowDialog();
-            Mapa_Load(sender, e); //para actualizar el estado de los botones después de cada batalla
+            SeleccionarNivel(0);
         }
 
         private void botonNivel2_Click(object sender, EventArgs e)
         {
-            DatosGlobales.NivelSeleccionado = 1;
-            Form form = new FormBatalla();
-            SeleccionarMapa(form);
-            form.ShowDialog();
-            Mapa_Load(sender, e); //para actualizar el estado de los botones después de cada batalla
+            SeleccionarNivel(1);
         }
         private void botonNivel3_Click(object sender, EventArgs e)
         {
-            DatosGlobales.NivelSeleccionado = 2;
-            Form form = new FormBatalla();
-            SeleccionarMapa(form);
-            form.ShowDialog();
-            Mapa_Load(sender, e); //para actualizar el estado de los botones después de cada batalla
+            SeleccionarNivel(2);
         }
 
         //botón de easter egg flavionística
@@ -70,6 +59,8 @@ namespace Poke_tank
                     //Terminamos con la partida
                     DatosGlobales.ListaPartidas.Remove(partida);
 
+                    DatosGlobales.GuardarDatos();
+
                     MessageBox.Show($"Campaña finalizada. ¡Puntaje total: {recordFinal.PuntosTotales} puntos registrados!");
                 }
                 else
@@ -84,7 +75,9 @@ namespace Poke_tank
         //botón para finalizar la aventura y registrar la puntuación obtenida
         private void botonFinalizar_Click(object sender, EventArgs e)
         {
-            if (botonFinalizar.Text == "Finalizar campaña")
+            Partida partidaActual = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
+
+            if (partidaActual.enemigosDerrotados.Count >= 3)
             {
                 FinalizarAventura();
             }
@@ -97,59 +90,32 @@ namespace Poke_tank
         //método para seleccionar el fondo del mapa automáticamente según el nivel escogido
         private void SeleccionarMapa(Form form)
         {
-            if (DatosGlobales.NivelSeleccionado == 0)
+            form.BackgroundImage = DatosGlobales.NivelSeleccionado switch
             {
-                form.BackgroundImage = Properties.Resources.fondoNivel1;
-            }
-            else if (DatosGlobales.NivelSeleccionado == 1)
-            {
-                form.BackgroundImage = Properties.Resources.fondoNivel2;
-            }
-            else if (DatosGlobales.NivelSeleccionado == 2)
-            {
-                form.BackgroundImage = Properties.Resources.fondoNivel3;
-            }
+                0 => Properties.Resources.fondoNivel1,
+
+                1 => Properties.Resources.fondoNivel2,
+
+                2 => Properties.Resources.fondoNivel3,
+            };
         }
 
         //al cargar el mapa, se habilitan o deshabilitan los botones de los niveles según el progreso del usuario en la campaña
         private void Mapa_Load(object sender, EventArgs e)
         {
+            ActualizarMapa();
+        }
+        private void ActualizarMapa()
+        {
             Partida partidaActual = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
-            bool partidaGanada = false;
 
             //Comprobamos el número de enemigos derrotados para determinar qué niveles están disponibles
-            if (partidaActual == null)
-            {
-                return;
-            }
-            if (partidaActual.enemigosDerrotados.Count == 0)
-            {
-                botonNivel1.Enabled = true;
-                botonNivel2.Enabled = false;
-                botonNivel3.Enabled = false;
-            }
-            else if (partidaActual.enemigosDerrotados.Count == 1)
-            {
-                botonNivel1.Enabled = false;
-                botonNivel2.Enabled = true;
-                botonNivel3.Enabled = false;
-            }
-            else if (partidaActual.enemigosDerrotados.Count == 2)
-            {
-                botonNivel1.Enabled = false;
-                botonNivel2.Enabled = false;
-                botonNivel3.Enabled = true;
-            }
-            else 
-            {
-                botonNivel1.Enabled = true;
-                botonNivel2.Enabled = true; 
-                botonNivel3.Enabled = true;
-                partidaGanada = true;
-            }
+            botonNivel1.Enabled = (partidaActual.enemigosDerrotados.Count == 0 || partidaActual.enemigosDerrotados.Count >= 3);
+            botonNivel2.Enabled = (partidaActual.enemigosDerrotados.Count == 1 || partidaActual.enemigosDerrotados.Count >= 3);
+            botonNivel3.Enabled = (partidaActual.enemigosDerrotados.Count >= 2 );
 
             //Comprobamos si el usuario ha derrotado a los 3 enemigos para mostrar el botón de finalizar campaña, si no se cambia por salir
-            if (partidaGanada)
+            if (partidaActual.enemigosDerrotados.Count >= 3)
             {
                 botonFinalizar.Text = "Finalizar campaña";
             }
@@ -157,6 +123,15 @@ namespace Poke_tank
             {
                 botonFinalizar.Text = "Salir";
             }
+        }
+        //método para seleccionar el nivel desde el menú del mapa, se llama desde los botones de cada nivel
+        public void SeleccionarNivel(int nivel)
+        {
+            DatosGlobales.NivelSeleccionado = nivel;
+            Form form = new FormBatalla();
+            SeleccionarMapa(form);
+            form.ShowDialog();
+            ActualizarMapa();
         }
     }
 }
