@@ -126,6 +126,8 @@
             Name = "Menu_Principal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Flavio's Tank Adventures";
+            FormClosed += Menu_Principal_FormClosed;
+            Load += Menu_Principal_Load;
             ((System.ComponentModel.ISupportInitialize)fondoMenuPrincipal).EndInit();
             ResumeLayout(false);
         }

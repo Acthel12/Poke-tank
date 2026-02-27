@@ -40,5 +40,15 @@ namespace Poke_tank
             Seleccionar_Partida form = new Seleccionar_Partida();
             form.ShowDialog();
         }
+
+        private void Menu_Principal_Load(object sender, EventArgs e)
+        {
+            DatosGlobales.CargarDatos();
+        }
+
+        private void Menu_Principal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DatosGlobales.GuardarDatos();
+        }
     }
 }
