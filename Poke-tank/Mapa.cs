@@ -13,7 +13,7 @@ namespace Poke_tank
         public Mapa()
         {
             InitializeComponent();
-            
+
         }
 
         //iniciamos la partida según el nivel escogido
@@ -23,6 +23,7 @@ namespace Poke_tank
             Form form = new FormBatalla();
             SeleccionarMapa(form);
             form.ShowDialog();
+            Mapa_Load(sender, e); //para actualizar el estado de los botones después de cada batalla
         }
 
         private void botonNivel2_Click(object sender, EventArgs e)
@@ -31,6 +32,7 @@ namespace Poke_tank
             Form form = new FormBatalla();
             SeleccionarMapa(form);
             form.ShowDialog();
+            Mapa_Load(sender, e); //para actualizar el estado de los botones después de cada batalla
         }
         private void botonNivel3_Click(object sender, EventArgs e)
         {
@@ -38,6 +40,7 @@ namespace Poke_tank
             Form form = new FormBatalla();
             SeleccionarMapa(form);
             form.ShowDialog();
+            Mapa_Load(sender, e); //para actualizar el estado de los botones después de cada batalla
         }
 
         //botón de easter egg flavionística
@@ -58,7 +61,7 @@ namespace Poke_tank
                 {
                     //registramos la puntuación una sola vez al final
                     Puntuacion recordFinal = new Puntuacion(
-                        partida.tanqueUsuario.Nombre, 
+                        partida.tanqueUsuario.Nombre,
                         partida.enemigosDerrotados.Count
                     );
 
@@ -82,7 +85,7 @@ namespace Poke_tank
         }
 
         //método para seleccionar el fondo del mapa automáticamente según el nivel escogido
-        private void SeleccionarMapa(Form form )
+        private void SeleccionarMapa(Form form)
         {
             if (DatosGlobales.NivelSeleccionado == 0)
             {
@@ -95,6 +98,41 @@ namespace Poke_tank
             else if (DatosGlobales.NivelSeleccionado == 2)
             {
                 form.BackgroundImage = Properties.Resources.fondoNivel3;
+            }
+        }
+
+        //al cargar el mapa, se habilitan o deshabilitan los botones de los niveles según el progreso del usuario en la campaña
+        private void Mapa_Load(object sender, EventArgs e)
+        {
+            Partida partidaActual = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
+
+            if (partidaActual == null)
+            {
+                return;
+            }
+            if (partidaActual.enemigosDerrotados.Count == 0)
+            {
+                botonNivel1.Enabled = true;
+                botonNivel2.Enabled = false;
+                botonNivel3.Enabled = false;
+            }
+            else if (partidaActual.enemigosDerrotados.Count == 1)
+            {
+                botonNivel1.Enabled = false;
+                botonNivel2.Enabled = true;
+                botonNivel3.Enabled = false;
+            }
+            else if (partidaActual.enemigosDerrotados.Count == 2)
+            {
+                botonNivel1.Enabled = false;
+                botonNivel2.Enabled = false;
+                botonNivel3.Enabled = true;
+            }
+            else 
+            {
+                botonNivel1.Enabled = true;
+                botonNivel2.Enabled = true; 
+                botonNivel3.Enabled = true;
             }
         }
     }
