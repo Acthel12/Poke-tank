@@ -66,6 +66,9 @@ namespace Poke_tank
                     );
 
                     DatosGlobales.ListaPuntuaciones.Add(recordFinal);
+                    
+                    //Terminamos con la partida
+                    DatosGlobales.ListaPartidas.Remove(partida);
 
                     MessageBox.Show($"Campaña finalizada. ¡Puntaje total: {recordFinal.PuntosTotales} puntos registrados!");
                 }
@@ -81,7 +84,14 @@ namespace Poke_tank
         //botón para finalizar la aventura y registrar la puntuación obtenida
         private void botonFinalizar_Click(object sender, EventArgs e)
         {
-            FinalizarAventura();
+            if (botonFinalizar.Text == "Finalizar campaña")
+            {
+                FinalizarAventura();
+            }
+            else
+            {
+                this.Close(); //para salir sin registrar puntuación
+            }
         }
 
         //método para seleccionar el fondo del mapa automáticamente según el nivel escogido
@@ -105,7 +115,9 @@ namespace Poke_tank
         private void Mapa_Load(object sender, EventArgs e)
         {
             Partida partidaActual = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
+            bool partidaGanada = false;
 
+            //Comprobamos el número de enemigos derrotados para determinar qué niveles están disponibles
             if (partidaActual == null)
             {
                 return;
@@ -133,6 +145,17 @@ namespace Poke_tank
                 botonNivel1.Enabled = true;
                 botonNivel2.Enabled = true; 
                 botonNivel3.Enabled = true;
+                partidaGanada = true;
+            }
+
+            //Comprobamos si el usuario ha derrotado a los 3 enemigos para mostrar el botón de finalizar campaña, si no se cambia por salir
+            if (partidaGanada)
+            {
+                botonFinalizar.Text = "Finalizar campaña";
+            }
+            else
+            {
+                botonFinalizar.Text = "Salir";
             }
         }
     }
