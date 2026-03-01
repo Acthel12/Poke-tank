@@ -12,7 +12,9 @@ namespace Poke_tank
         public int Ataque { get; set; }
         public int Defensa { get; set; }
         public int Velocidad { get; set; }
+        public int VelocidadBase { get; set; }
 
+        private int PenalizacionPrecision  = 0; 
         private bool estaDefendiendo = false;
 
         public Tanque(string nombre, string modelo, int vida, int ataque, int defensa, int velocidad)
@@ -24,6 +26,7 @@ namespace Poke_tank
             Ataque = ataque;
             Defensa = defensa;
             Velocidad = velocidad;
+            VelocidadBase = velocidad;
         }
 
         //recibe un ataque entrante, calcula el daño recibido teniendo en cuenta la defensa y si el tanque está defendiendo. Luego actualiza la vida del tanque
@@ -65,5 +68,8 @@ namespace Poke_tank
         {
             return Vida > 0;
         }
+
+        //Reducir la velocidad del tanque por una batalla
+
     }
 }

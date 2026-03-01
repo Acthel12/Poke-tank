@@ -8,8 +8,16 @@ using System.Windows.Forms;
 
 namespace Poke_tank
 {
+    public enum AccionUsuario
+    {
+        Disparar,
+        Defender,
+        Reparar,
+        Huir
+    }
     public partial class FormBatalla : Form
     {
+        private AccionUsuario accionSeleccionada;
         private Random random = new Random();
         Partida? partidaactual;
         Tanque? Jugador;
@@ -79,25 +87,8 @@ namespace Poke_tank
         {
             if (Jugador == null || enemigoactual == null) return;
 
-            string resultadoJugador;
-            Color color;
-            int suerte = random.Next(1, 101);
-
-            if (suerte <= 25)
-            {
-                resultadoJugador = $"{Jugador.Nombre} ha fallado su ataque.";
-                color = Color.Orange;
-            }
-            else
-            {
-                int dano = enemigoactual.RecibirAtaque(Jugador.Ataque);
-                resultadoJugador = $"{Jugador.Nombre} ha infligido {dano} de daño a {enemigoactual.Nombre}.";
-                color = Color.Green;
-            }
-
-            EscribirLog(resultadoJugador, color);
-            if (!ActualizarEstado()) return;
-            TurnoEnemigo();
+            accionSeleccionada = AccionUsuario.Disparar;
+            GestionarTurno();
         }
 
         //método para escribir en el log de combate con un color específico
@@ -114,7 +105,7 @@ namespace Poke_tank
         //actualiza las barras de vida y verifica si el jugador o el enemigo han sido derrotados
         private bool ActualizarEstado()
         {
-            if (Jugador == null || enemigoactual == null || partidaactual == null) return false;
+            if (Jugador == null || enemigoactual == null || partidaactual == null || this.IsDisposed) return false;
 
             progressBarVidaJugador.Value = Jugador.Vida;
             progressBarVidaEnemigo.Value = enemigoactual.Vida;
@@ -147,32 +138,71 @@ namespace Poke_tank
             if (enemigoactual == null || Jugador == null) return;
             string resultadoEnemigo = enemigoactual.elegirAccion(Jugador);
             EscribirLog(resultadoEnemigo, Color.Purple);
-            ActualizarEstado();
         }
 
         //defensa, en esta el jugador se prepara para bloquear el próximo ataque del enemigo
         private void buttonDefensa_Click(object sender, EventArgs e)
         {
-            if (Jugador == null) return;
-            Jugador.BloquearSiguienteAtaque();
-            EscribirLog($"{Jugador.Nombre} se prepara para bloquear el próximo ataque.", Color.Blue);
-            TurnoEnemigo();
+            accionSeleccionada = AccionUsuario.Defender;
+            GestionarTurno();
         }
 
         //repara al jugador, restaurando 20 puntos de vida
         private void buttonReparar_Click(object sender, EventArgs e)
         {
-            if (Jugador == null) return;
-            Jugador.Reparar(20);
-            if (ActualizarEstado())
-            {
-                EscribirLog($"{Jugador.Nombre} se ha reparado (+20 HP).", Color.Green);
-                TurnoEnemigo();
-            }
+            accionSeleccionada = AccionUsuario.Reparar;
+            GestionarTurno();
         }
 
         //acción de huir, con una probabilidad del 50% de éxito. Si falla, el enemigo ataca
         private void buttonHuir_Click(object sender, EventArgs e)
+        {
+            accionSeleccionada = AccionUsuario.Huir;
+            GestionarTurno();
+        }
+
+        private void FormBatalla_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (partidaactual == null) return;
+
+            partidaactual.ReiniciarCombate();
+        }
+
+        private void Disparar()
+        {
+            if (Jugador == null || enemigoactual == null) return;
+
+            string resultadoJugador;
+            Color color;
+            int suerte = random.Next(1, 101);
+
+            if (suerte <= 25)
+            {
+                resultadoJugador = $"{Jugador.Nombre} ha fallado su ataque.";
+                color = Color.Orange;
+            }
+            else
+            {
+                int dano = enemigoactual.RecibirAtaque(Jugador.Ataque);
+                resultadoJugador = $"{Jugador.Nombre} ha infligido {dano} de daño a {enemigoactual.Nombre}.";
+                color = Color.Green;
+            }
+
+            EscribirLog(resultadoJugador, color);
+        }
+        private void Defender()
+        {
+            if (Jugador == null) return;
+            Jugador.BloquearSiguienteAtaque();
+            EscribirLog($"{Jugador.Nombre} se prepara para bloquear el próximo ataque.", Color.Blue);
+        }
+        private void Reparar()
+        {
+            if (Jugador == null) return;
+            Jugador.Reparar(20);
+            EscribirLog($"{Jugador.Nombre} se ha reparado (+20 HP).", Color.Green);
+        }
+        private void Huir()
         {
             if (Jugador == null || enemigoactual == null) return;
             int suerte = random.Next(1, 101);
@@ -184,13 +214,67 @@ namespace Poke_tank
             else
             {
                 EscribirLog($"{Jugador.Nombre} ha fallado al intentar huir.", Color.Orange);
-                TurnoEnemigo();
             }
         }
-
-        private void FormBatalla_FormClosed(object sender, FormClosedEventArgs e)
+        private void TurnoJugador()
         {
-            partidaactual.ReiniciarCombate();
+            switch (accionSeleccionada)
+            {
+                case AccionUsuario.Disparar:
+                    Disparar();
+                    break;
+                case AccionUsuario.Defender:
+                    Defender();
+                    break;
+                case AccionUsuario.Reparar:
+                    Reparar();
+                    break;
+                case AccionUsuario.Huir:
+                    Huir();
+                    break;
+            }
+        }
+        private void GestionarTurno()
+        {
+            if (Jugador.Velocidad > enemigoactual.Velocidad)
+            {
+                TurnoJugador();
+                if (ActualizarEstado())
+                {
+                    TurnoEnemigo();
+                    ActualizarEstado();
+                }
+            }
+            else if (Jugador.Velocidad < enemigoactual.Velocidad)
+            {
+                TurnoEnemigo();
+                if (ActualizarEstado())
+                {
+                    TurnoJugador();
+                    ActualizarEstado();
+                }
+            }
+            else
+            {
+                if (random.Next(0, 2) == 0)
+                {
+                    TurnoJugador();
+                    if (ActualizarEstado())
+                    {
+                        TurnoEnemigo();
+                        ActualizarEstado();
+                    }
+                }
+                else
+                {
+                    TurnoEnemigo();
+                    if (ActualizarEstado())
+                    {
+                        TurnoJugador();
+                        ActualizarEstado();
+                    }
+                }
+            }
         }
     }
 }
