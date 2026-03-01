@@ -40,8 +40,8 @@ namespace Poke_tank
                     .Select(p => new
                     {
                         Tanque = p.NombreTanque,
-                        Destruidos = p.TanquesDerrotados,
-                        Puntos = p.PuntosTotales, // Muestra el cálculo de 100 x tanque si PuntosTotales lo contiene
+                        Destruidos = p.TanquesDerrotados.Count,
+                        Puntos = p.PuntosTotales,
                         Fecha = p.Fecha.ToShortDateString()
                     })
                     .ToList();
