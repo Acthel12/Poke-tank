@@ -214,6 +214,7 @@ namespace Poke_tank
         {
             if (partidaactual == null) return;
 
+            partidaactual.CalcularPuntuacion();
             partidaactual.ReiniciarCombate();
         }
 
@@ -262,7 +263,7 @@ namespace Poke_tank
         private void Reparar()
         {
             if (Jugador == null) return;
-            Jugador.Reparar(20);
+            Jugador.Reparar(15);
             EscribirLog($"{Jugador.Nombre} se ha reparado (+20 HP).", Color.Green);
         }
         private void Huir()

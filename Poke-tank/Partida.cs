@@ -12,6 +12,8 @@ namespace Poke_tank
         public Tanque tanqueUsuario { get; set; }
         public List<TanqueEnemigo> enemigosDerrotados { get; set; }
         public List<TanqueEnemigo> enemigos { get; set; }
+        public Puntuacion puntuacion { get; set; } //quiero que se guarde la puntuacion de la partida para mostrarla al cargar partidas
+        public DateTime fechaCreacion { get; set; } //para mostrar la fecha de creación de la partida en la lista de partidas guardadas
 
         //nombres para escoger al azar para los tanques enemigos según su modelo
 
@@ -43,6 +45,8 @@ namespace Poke_tank
 
         public Partida(Tanque tanqueUsuario)
         {
+            this.fechaCreacion = DateTime.Now;
+
             this.tanqueUsuario = tanqueUsuario;
 
             this.enemigosDerrotados = new List<TanqueEnemigo>();
@@ -60,6 +64,8 @@ namespace Poke_tank
 
             //crea partida y agregar a datos globales
             Partida nueva = new Partida(jugador);
+            nueva.CalcularPuntuacion(); //inicializa la puntuación de la partida
+
             DatosGlobales.ListaPartidas.Add(nueva);
             DatosGlobales.PartidaActualIndex = DatosGlobales.ListaPartidas.Count - 1;
         }
@@ -68,15 +74,15 @@ namespace Poke_tank
         private void GenerarEnemigos()
         {
 
-            AgregarEnemigo(nombresT72, "T-72", 80, 15, 5, 10);
-            AgregarEnemigo(nombresT80, "T-80", 100, 20, 10, 15);
+            AgregarEnemigo(nombresT72, "T-72", 80, 20, 5, 10);
+            AgregarEnemigo(nombresT80, "T-80", 100, 25, 10, 15);
             if (random.Next(1, 101) <= 25)
             {
                 AgregarEnemigo(nombresT14, "T-14 Armata", 150, 35, 15, 25);
             }
             else
             {
-                AgregarEnemigo(nombresT90, "T-90", 120, 25, 8, 12);
+                AgregarEnemigo(nombresT90, "T-90", 120, 30, 8, 12);
             }
         }
 
@@ -91,8 +97,8 @@ namespace Poke_tank
         public void DerrotarEnemigo(TanqueEnemigo enemigo, Tanque usuario)
         {
             enemigosDerrotados.Add(enemigo);
-            usuario.Vida = usuario.VidaMaxima;
-            enemigo.Vida = enemigo.VidaMaxima;
+            usuario.RestaurarStats();
+            enemigo.RestaurarStats();
         }
 
         //Funcion para restaurar la vida del usuario al máximo y la del enemigo actual al ´máximo, para reiniciar el combate
@@ -101,6 +107,11 @@ namespace Poke_tank
             TanqueEnemigo enemigo = enemigos[DatosGlobales.NivelSeleccionado];
             this.tanqueUsuario.RestaurarStats();
             enemigo.RestaurarStats();
+        }
+        //Funcion para calcular la puntuación al finalizar la partida, basada en el número de enemigos derrotados y se muestra al usuario
+        public void CalcularPuntuacion()
+        {
+            this.puntuacion = new Puntuacion(this.tanqueUsuario.Nombre, this.enemigosDerrotados);
         }
     }
 }

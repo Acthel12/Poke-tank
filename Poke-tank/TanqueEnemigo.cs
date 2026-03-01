@@ -40,7 +40,7 @@ namespace Poke_tank
             }
             else
             {
-                this.Reparar(20);
+                this.Reparar(15);
                 return "El enemigo realiza reparaciones de emergencia (+20 HP).";
             }
         }

@@ -18,7 +18,7 @@ namespace Poke_tank
         private void botonIniciarPartida_Click(object sender, EventArgs e)
         {
             Mapa from1 = new Mapa();
-            Partida.iniciarPartida("Comandante Flavio Rosales", "M1A1", 140, 20, 10, 14);
+            Partida.iniciarPartida("Comandante Flavio Rosales", "M1A1", 140, 30, 10, 14);
 
             from1.ShowDialog();
         }

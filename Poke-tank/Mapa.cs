@@ -44,14 +44,14 @@ namespace Poke_tank
         {
             if (DatosGlobales.PartidaActualIndex >= 0 && DatosGlobales.PartidaActualIndex < DatosGlobales.ListaPartidas.Count)
             {
-                var partida = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
+                Partida partida = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
 
                 if (partida.enemigosDerrotados.Count > 0)
                 {
                     //registramos la puntuación una sola vez al final
                     Puntuacion recordFinal = new Puntuacion(
                         partida.tanqueUsuario.Nombre,
-                        partida.enemigosDerrotados.Count
+                        partida.enemigosDerrotados
                     );
 
                     DatosGlobales.ListaPuntuaciones.Add(recordFinal);
