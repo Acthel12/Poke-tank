@@ -11,7 +11,7 @@ namespace Poke_tank
         public List<TanqueEnemigo> TanquesDerrotados { get; set; }
         public DateTime Fecha { get; set; }
 
-        public int PuntosTotales = 0 ; 
+        public int PuntosTotales { get; set; } 
 
         //Constructor vacio para json serializer
         public Puntuacion() {}
