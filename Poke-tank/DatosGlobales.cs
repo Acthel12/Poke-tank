@@ -26,7 +26,7 @@ public static class DatosGlobales
             if (!Directory.Exists(carpetaDatos)) { 
                 Directory.CreateDirectory(carpetaDatos);
             }
-            var opciones = new JsonSerializerOptions { WriteIndented = true };
+            JsonSerializerOptions opciones = new JsonSerializerOptions { WriteIndented = true };
 
             string jsonMiembros = JsonSerializer.Serialize(ListaPartidas, opciones);
             File.WriteAllText(archivoPartidas, jsonMiembros);
@@ -36,7 +36,7 @@ public static class DatosGlobales
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine("Error crítico al guardar: " + ex.Message);
+            MessageBox.Show("Error crítico al guardar: " + ex.Message);
         }
     }
 
@@ -69,7 +69,7 @@ public static class DatosGlobales
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine("Error al cargar: " + ex.Message);
+            MessageBox.Show("Error al cargar: " + ex.Message);
             ListaPartidas = new List<Partida>();
             ListaPuntuaciones = new List<Puntuacion>();
         }

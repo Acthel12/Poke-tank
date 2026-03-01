@@ -13,6 +13,8 @@ namespace Poke_tank
 
         public int PuntosTotales = 0 ; 
 
+        //Constructor vacio para json serializer
+        public Puntuacion() {}
 
         public Puntuacion(string nombre, List<TanqueEnemigo> derrotados)
         {

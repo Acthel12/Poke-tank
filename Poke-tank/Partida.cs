@@ -43,6 +43,7 @@ namespace Poke_tank
             "Future Shock", "The Tsar", "Apex Machine"
         };
 
+        public Partida() { } //constructor vacio para json serializer
         public Partida(Tanque tanqueUsuario)
         {
             this.fechaCreacion = DateTime.Now;
