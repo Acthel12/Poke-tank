@@ -99,8 +99,8 @@ namespace Poke_tank
         public void ReiniciarCombate()
         {
             TanqueEnemigo enemigo = enemigos[DatosGlobales.NivelSeleccionado];
-            this.tanqueUsuario.Vida = this.tanqueUsuario.VidaMaxima;
-            enemigo.Vida = enemigo.VidaMaxima;
+            this.tanqueUsuario.RestaurarStats();
+            enemigo.RestaurarStats();
         }
     }
 }

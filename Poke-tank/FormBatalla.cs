@@ -8,20 +8,32 @@ using System.Windows.Forms;
 
 namespace Poke_tank
 {
-    public enum AccionUsuario
-    {
-        Disparar,
-        Defender,
-        Reparar,
-        Huir
-    }
+
     public partial class FormBatalla : Form
     {
+        private int cooldownHumo = 0;
+        private int turnosDeHumo = 0;
         private AccionUsuario accionSeleccionada;
         private Random random = new Random();
         Partida? partidaactual;
         Tanque? Jugador;
         TanqueEnemigo? enemigoactual;
+
+        private enum AccionUsuario
+        {
+            Disparar,
+            AtaqueOrugas,
+            CortinaHumo,
+            Defender,
+            Reparar,
+            Huir
+        }
+
+        private enum OpcionAtaque
+        {
+            Orugas,
+            Normal
+        }
 
         public FormBatalla()
         {
@@ -82,13 +94,9 @@ namespace Poke_tank
             }
         }
 
-        //acción de disparar, con una probabilidad de fallo del 25%. Si acierta, inflige daño al enemigo
-        private void buttonDisparar_Click(object sender, EventArgs e)
+        private void buttonAtacar_Click(object sender, EventArgs e)
         {
-            if (Jugador == null || enemigoactual == null) return;
-
-            accionSeleccionada = AccionUsuario.Disparar;
-            GestionarTurno();
+            MenuAtaques();
         }
 
         //método para escribir en el log de combate con un color específico
@@ -113,7 +121,7 @@ namespace Poke_tank
             if (!Jugador.EstaVivo())
             {
                 MessageBox.Show($"{Jugador.Nombre} ha sido derrotado. ¡Has perdido!");
-                buttonDisparar.Enabled = false;
+                buttonAtacar.Enabled = false;
                 this.Close();
                 return false;
             }
@@ -125,24 +133,61 @@ namespace Poke_tank
 
                 MessageBox.Show($"{enemigoactual.Nombre} ha sido derrotado. ¡Has ganado la batalla!");
 
-                buttonDisparar.Enabled = false;
+                buttonAtacar.Enabled = false;
                 this.Close();
                 return false;
             }
             return true;
         }
+        //método para deshabilitar los botones de acción al finalizar el combate
+        private void ApagarBotones()
+        {
+            groupBoxAtaques.Enabled = false;
+            groupBoxComandos.Enabled = false;
+        }
+        //metodo para cambiar el groupbox de ataques a comandos al finalizar el combate
+        private void VolverAMenu()
+        {
+            groupBoxAtaques.Visible = false;
+            groupBoxAtaques.Enabled = false;
+            groupBoxComandos.Enabled = true;
+            groupBoxComandos.Visible = true;
+        }
+        //metodo para pasar al menu de ataques
+        private void MenuAtaques()
+        {
+            groupBoxComandos.Visible = false;
+            groupBoxComandos.Enabled = false;
+            groupBoxAtaques.Enabled = true;
+            groupBoxAtaques.Visible = true;
 
+            if (cooldownHumo > 0)
+            {
+                buttonHumo.Enabled = false;
+                buttonHumo.Text = $"Cortina de Humo (CD: {cooldownHumo})";
+            }
+            else
+            {
+                buttonHumo.Enabled = true;
+                buttonHumo.Text = "Cortina de Humo";
+            }
+        }
         //método para que el enemigo elija su acción y se ejecute, luego se actualiza el estado del combate
         private void TurnoEnemigo()
         {
             if (enemigoactual == null || Jugador == null) return;
-            string resultadoEnemigo = enemigoactual.elegirAccion(Jugador);
+
+            bool hayHumo = turnosDeHumo > 0;
+
+            string resultadoEnemigo = enemigoactual.elegirAccion(Jugador, hayHumo);
             EscribirLog(resultadoEnemigo, Color.Purple);
         }
 
         //defensa, en esta el jugador se prepara para bloquear el próximo ataque del enemigo
         private void buttonDefensa_Click(object sender, EventArgs e)
         {
+            ApagarBotones();
+
             accionSeleccionada = AccionUsuario.Defender;
             GestionarTurno();
         }
@@ -150,6 +195,8 @@ namespace Poke_tank
         //repara al jugador, restaurando 20 puntos de vida
         private void buttonReparar_Click(object sender, EventArgs e)
         {
+            ApagarBotones();
+
             accionSeleccionada = AccionUsuario.Reparar;
             GestionarTurno();
         }
@@ -157,6 +204,8 @@ namespace Poke_tank
         //acción de huir, con una probabilidad del 50% de éxito. Si falla, el enemigo ataca
         private void buttonHuir_Click(object sender, EventArgs e)
         {
+            ApagarBotones();
+
             accionSeleccionada = AccionUsuario.Huir;
             GestionarTurno();
         }
@@ -168,23 +217,37 @@ namespace Poke_tank
             partidaactual.ReiniciarCombate();
         }
 
-        private void Disparar()
+        private void Disparar(OpcionAtaque opcionAtaque)
         {
             if (Jugador == null || enemigoactual == null) return;
 
             string resultadoJugador;
             Color color;
             int suerte = random.Next(1, 101);
+            int probabilidadFallo = turnosDeHumo > 0 ? 75 : 25 ;
 
-            if (suerte <= 25)
+            if (suerte <= probabilidadFallo)
             {
-                resultadoJugador = $"{Jugador.Nombre} ha fallado su ataque.";
+                if (turnosDeHumo > 0)
+                    resultadoJugador = $"{Jugador.Nombre} dispara a ciegas por el humo... ¡y falla el tiro!";
+                else
+                    resultadoJugador = $"{Jugador.Nombre} ha fallado su ataque.";
+
                 color = Color.Orange;
             }
             else
             {
-                int dano = enemigoactual.RecibirAtaque(Jugador.Ataque);
-                resultadoJugador = $"{Jugador.Nombre} ha infligido {dano} de daño a {enemigoactual.Nombre}.";
+                if (opcionAtaque == OpcionAtaque.Orugas)
+                {
+                    int danoOrugas = enemigoactual.DisparoEnLasOrugas(Jugador.Ataque);
+                    resultadoJugador = $"{Jugador.Nombre} ha infligido {danoOrugas} de daño con las orugas a {enemigoactual.Nombre}.";
+                }
+                else
+                {
+                    int danoNormales = enemigoactual.RecibirAtaque(Jugador.Ataque);
+                    resultadoJugador = $"{Jugador.Nombre} ha infligido {danoNormales} de daño con el disparo normal a {enemigoactual.Nombre}.";
+                }
+
                 color = Color.Green;
             }
 
@@ -216,12 +279,24 @@ namespace Poke_tank
                 EscribirLog($"{Jugador.Nombre} ha fallado al intentar huir.", Color.Orange);
             }
         }
+        private void CortinaHumo()
+        {
+            if (Jugador == null) return;
+
+            turnosDeHumo = 3;
+            cooldownHumo = 10;
+
+            EscribirLog($"{Jugador.Nombre} ha desplegado una cortina de humo, reduciendo de gran manera la precisión de los ataques durante 3 turnos.", Color.Gray);
+        }
         private void TurnoJugador()
         {
             switch (accionSeleccionada)
             {
                 case AccionUsuario.Disparar:
-                    Disparar();
+                    Disparar(OpcionAtaque.Normal);
+                    break;
+                case AccionUsuario.AtaqueOrugas:
+                    Disparar(OpcionAtaque.Orugas);
                     break;
                 case AccionUsuario.Defender:
                     Defender();
@@ -231,6 +306,9 @@ namespace Poke_tank
                     break;
                 case AccionUsuario.Huir:
                     Huir();
+                    break;
+                case AccionUsuario.CortinaHumo:
+                    CortinaHumo();
                     break;
             }
         }
@@ -275,6 +353,46 @@ namespace Poke_tank
                     }
                 }
             }
+
+            if (ActualizarEstado())
+            {
+                if (cooldownHumo > 0) cooldownHumo--;
+                if (turnosDeHumo > 0) turnosDeHumo--;
+
+                VolverAMenu();
+            }
+        }
+
+        private void buttonDisparo_Click(object sender, EventArgs e)
+        {
+            if (Jugador == null || enemigoactual == null) return;
+
+            ApagarBotones();
+            accionSeleccionada = AccionUsuario.Disparar;
+            GestionarTurno();
+        }
+
+        private void buttonOrugas_Click(object sender, EventArgs e)
+        {
+            if (Jugador == null || enemigoactual == null) return;
+
+            ApagarBotones();
+            accionSeleccionada = AccionUsuario.AtaqueOrugas;
+            GestionarTurno();
+        }
+
+        private void buttonHumo_Click(object sender, EventArgs e)
+        {
+            if (Jugador == null || enemigoactual == null) return;
+
+            ApagarBotones();
+            accionSeleccionada = AccionUsuario.CortinaHumo;
+            GestionarTurno();
+        }
+
+        private void buttonVolver_Click(object sender, EventArgs e)
+        {
+            VolverAMenu();
         }
     }
 }

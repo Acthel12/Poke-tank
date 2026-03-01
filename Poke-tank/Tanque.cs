@@ -14,7 +14,6 @@ namespace Poke_tank
         public int Velocidad { get; set; }
         public int VelocidadBase { get; set; }
 
-        private int PenalizacionPrecision  = 0; 
         private bool estaDefendiendo = false;
 
         public Tanque(string nombre, string modelo, int vida, int ataque, int defensa, int velocidad)
@@ -70,6 +69,21 @@ namespace Poke_tank
         }
 
         //Reducir la velocidad del tanque por una batalla
+        public int DisparoEnLasOrugas(int ataqueEntrante)
+        {
+            ataqueEntrante /= 2; // El ataque en las orugas es menos efectivo que un ataque directo
+            Velocidad -= 10;
+            if (Velocidad < 0) Velocidad = 0;
+            
+            return RecibirAtaque(ataqueEntrante);
+        }
 
+        //Funcion para restaurar los stats despues de una batalla
+        public void RestaurarStats()
+        {
+            Vida = VidaMaxima;
+            Velocidad = VelocidadBase;
+            estaDefendiendo = false;
+        }
     }
 }

@@ -39,12 +39,18 @@
             buttonHuir = new Button();
             buttonReparar = new Button();
             buttonDefensa = new Button();
-            buttonDisparar = new Button();
+            buttonAtacar = new Button();
             richTextBoxCombatLog = new RichTextBox();
             label1 = new Label();
+            groupBoxAtaques = new GroupBox();
+            buttonVolver = new Button();
+            buttonHumo = new Button();
+            buttonOrugas = new Button();
+            buttonDisparo = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBoxEnemigo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxJugador).BeginInit();
             groupBoxComandos.SuspendLayout();
+            groupBoxAtaques.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBoxEnemigo
@@ -109,7 +115,7 @@
             groupBoxComandos.Controls.Add(buttonHuir);
             groupBoxComandos.Controls.Add(buttonReparar);
             groupBoxComandos.Controls.Add(buttonDefensa);
-            groupBoxComandos.Controls.Add(buttonDisparar);
+            groupBoxComandos.Controls.Add(buttonAtacar);
             groupBoxComandos.Location = new Point(53, 488);
             groupBoxComandos.Name = "groupBoxComandos";
             groupBoxComandos.Size = new Size(500, 137);
@@ -147,15 +153,15 @@
             buttonDefensa.UseVisualStyleBackColor = true;
             buttonDefensa.Click += buttonDefensa_Click;
             // 
-            // buttonDisparar
+            // buttonAtacar
             // 
-            buttonDisparar.Location = new Point(6, 22);
-            buttonDisparar.Name = "buttonDisparar";
-            buttonDisparar.Size = new Size(488, 23);
-            buttonDisparar.TabIndex = 0;
-            buttonDisparar.Text = "Disparar";
-            buttonDisparar.UseVisualStyleBackColor = true;
-            buttonDisparar.Click += buttonDisparar_Click;
+            buttonAtacar.Location = new Point(6, 22);
+            buttonAtacar.Name = "buttonAtacar";
+            buttonAtacar.Size = new Size(488, 23);
+            buttonAtacar.TabIndex = 0;
+            buttonAtacar.Text = "Atacar";
+            buttonAtacar.UseVisualStyleBackColor = true;
+            buttonAtacar.Click += buttonAtacar_Click;
             // 
             // richTextBoxCombatLog
             // 
@@ -179,13 +185,68 @@
             label1.TabIndex = 8;
             label1.Text = "¡Derrota a tu enemigo!";
             // 
+            // groupBoxAtaques
+            // 
+            groupBoxAtaques.Controls.Add(buttonVolver);
+            groupBoxAtaques.Controls.Add(buttonHumo);
+            groupBoxAtaques.Controls.Add(buttonOrugas);
+            groupBoxAtaques.Controls.Add(buttonDisparo);
+            groupBoxAtaques.Location = new Point(53, 488);
+            groupBoxAtaques.Name = "groupBoxAtaques";
+            groupBoxAtaques.Size = new Size(500, 137);
+            groupBoxAtaques.TabIndex = 9;
+            groupBoxAtaques.TabStop = false;
+            groupBoxAtaques.Text = "Ataques";
+            groupBoxAtaques.Visible = false;
+            // 
+            // buttonVolver
+            // 
+            buttonVolver.Location = new Point(6, 107);
+            buttonVolver.Name = "buttonVolver";
+            buttonVolver.Size = new Size(488, 23);
+            buttonVolver.TabIndex = 3;
+            buttonVolver.Text = "Volver";
+            buttonVolver.UseVisualStyleBackColor = true;
+            buttonVolver.Click += buttonVolver_Click;
+            // 
+            // buttonHumo
+            // 
+            buttonHumo.Location = new Point(6, 78);
+            buttonHumo.Name = "buttonHumo";
+            buttonHumo.Size = new Size(488, 23);
+            buttonHumo.TabIndex = 2;
+            buttonHumo.Text = "Cortina De Humo";
+            buttonHumo.UseVisualStyleBackColor = true;
+            buttonHumo.Click += buttonHumo_Click;
+            // 
+            // buttonOrugas
+            // 
+            buttonOrugas.Location = new Point(6, 51);
+            buttonOrugas.Name = "buttonOrugas";
+            buttonOrugas.Size = new Size(488, 23);
+            buttonOrugas.TabIndex = 1;
+            buttonOrugas.Text = "Ataque a las Orugas";
+            buttonOrugas.UseVisualStyleBackColor = true;
+            buttonOrugas.Click += buttonOrugas_Click;
+            // 
+            // buttonDisparo
+            // 
+            buttonDisparo.Location = new Point(6, 22);
+            buttonDisparo.Name = "buttonDisparo";
+            buttonDisparo.Size = new Size(488, 23);
+            buttonDisparo.TabIndex = 0;
+            buttonDisparo.Text = "Disparo";
+            buttonDisparo.UseVisualStyleBackColor = true;
+            buttonDisparo.Click += buttonDisparo_Click;
+            // 
             // FormBatalla
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.fondoNivel1;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1199, 562);
+            ClientSize = new Size(1251, 673);
+            Controls.Add(groupBoxAtaques);
             Controls.Add(label1);
             Controls.Add(richTextBoxCombatLog);
             Controls.Add(groupBoxComandos);
@@ -209,6 +270,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxEnemigo).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxJugador).EndInit();
             groupBoxComandos.ResumeLayout(false);
+            groupBoxAtaques.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -224,9 +286,14 @@
         private GroupBox groupBoxComandos;
         private Button buttonReparar;
         private Button buttonDefensa;
-        private Button buttonDisparar;
+        private Button buttonAtacar;
         private RichTextBox richTextBoxCombatLog;
         private Button buttonHuir;
         private Label label1;
+        private GroupBox groupBoxAtaques;
+        private Button buttonVolver;
+        private Button buttonHumo;
+        private Button buttonOrugas;
+        private Button buttonDisparo;
     }
 }

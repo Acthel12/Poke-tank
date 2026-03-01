@@ -10,21 +10,30 @@ namespace Poke_tank
         {
         }
 
-        public string elegirAccion(Tanque objetivo)
+        public string elegirAccion(Tanque objetivo, bool hayHumo)
         {
             Random dado = new Random();
-            int chance = dado.Next(0, 100);
+            int accion = dado.Next(0, 100);
+            int disparo = dado.Next(0, 100);
 
-            if (chance < 25)
+            int probabilidadFallo = hayHumo ? 75 : 25; 
+
+            
+            if (accion < 40)
             {
-                return "El enemigo falla su ataque.";
+                if (disparo < probabilidadFallo)
+                {
+                    if (hayHumo)
+                        return "El enemigo dispara pero falla debido al humo.";
+                    else
+                        return "El enemigo dispara pero falla.";
+                }
+                else {
+                    int dano = objetivo.RecibirAtaque(this.Ataque);
+                    return $"El enemigo dispara y te causa {dano} de daño.";
+                }
             }
-            if (chance < 70)
-            {
-                int dano = objetivo.RecibirAtaque(this.Ataque);
-                return $"El enemigo dispara y te causa {dano} de daño.";
-            }
-            else if (chance < 90)
+            else if (accion < 65)
             {
                 this.BloquearSiguienteAtaque();
                 return "El enemigo activa su blindaje reactivo.";
