@@ -12,6 +12,7 @@ namespace Poke_tank
         public int Ataque { get; set; }
         public int Defensa { get; set; }
         public int Velocidad { get; set; }
+        public int VelocidadBase { get; set; }
 
         private bool estaDefendiendo = false;
 
@@ -24,6 +25,7 @@ namespace Poke_tank
             Ataque = ataque;
             Defensa = defensa;
             Velocidad = velocidad;
+            VelocidadBase = velocidad;
         }
 
         //recibe un ataque entrante, calcula el daño recibido teniendo en cuenta la defensa y si el tanque está defendiendo. Luego actualiza la vida del tanque
@@ -64,6 +66,24 @@ namespace Poke_tank
         public bool EstaVivo()
         {
             return Vida > 0;
+        }
+
+        //Reducir la velocidad del tanque por una batalla
+        public int DisparoEnLasOrugas(int ataqueEntrante)
+        {
+            ataqueEntrante /= 2; // El ataque en las orugas es menos efectivo que un ataque directo
+            Velocidad -= 10;
+            if (Velocidad < 0) Velocidad = 0;
+            
+            return RecibirAtaque(ataqueEntrante);
+        }
+
+        //Funcion para restaurar los stats despues de una batalla
+        public void RestaurarStats()
+        {
+            Vida = VidaMaxima;
+            Velocidad = VelocidadBase;
+            estaDefendiendo = false;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Poke_tank
         private void botonIniciarPartida_Click(object sender, EventArgs e)
         {
             Mapa from1 = new Mapa();
-            Partida.iniciarPartida("Comandante Flavio Rosales", "M1A1", 140, 20, 10, 14);
+            Partida.iniciarPartida("Comandante Flavio Rosales", "M1A1", 140, 30, 10, 14);
 
             from1.ShowDialog();
         }
@@ -33,6 +33,22 @@ namespace Poke_tank
         private void botonSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void buttonCargarPartida_Click(object sender, EventArgs e)
+        {
+            Seleccionar_Partida form = new Seleccionar_Partida();
+            form.ShowDialog();
+        }
+
+        private void Menu_Principal_Load(object sender, EventArgs e)
+        {
+            DatosGlobales.CargarDatos();
+        }
+
+        private void Menu_Principal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DatosGlobales.GuardarDatos();
         }
     }
 }

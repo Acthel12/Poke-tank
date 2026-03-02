@@ -10,29 +10,134 @@ namespace Poke_tank
         {
         }
 
-        public string elegirAccion(Tanque objetivo)
+        public string elegirAccion(Tanque objetivo, bool hayHumo, AccionUsuario accionAnterior)
         {
             Random dado = new Random();
-            int chance = dado.Next(0, 100);
+            int disparo = dado.Next(0, 100);
 
-            if (chance < 25)
+            int probabilidadFallo = hayHumo ? 75 : 25;
+
+            if (this.Modelo == "T-14 Armata" && hayHumo)
             {
-                return "El enemigo falla su ataque.";
+                probabilidadFallo = 50; // El jefe tiene sensores térmicos y falla menos
             }
-            if (chance < 70)
+
+            //pesos base
+            int pesoAtacar = 40;
+            int pesoDefender = 20;
+            int pesoReparar = 20;
+            int pesoFrenarOrugas = 20;
+
+            //ajustes según el estado del tanque
+            //Supervivencia: Si la vida es baja, aumenta la probabilidad de defender o reparar
+            if (this.Vida < this.VidaMaxima * 0.5)
             {
-                int dano = objetivo.RecibirAtaque(this.Ataque);
-                return $"El enemigo dispara y te causa {dano} de daño.";
+                pesoDefender += 30;
+                pesoReparar += 60;
+                pesoAtacar -= 10;
+                pesoFrenarOrugas -= 10;
             }
-            else if (chance < 90)
+
+            //Castigo por reparar:
+            if (accionAnterior == AccionUsuario.Reparar)
             {
-                this.BloquearSiguienteAtaque();
-                return "El enemigo activa su blindaje reactivo.";
+                pesoReparar -= 20; 
+                pesoAtacar += 20;
+                pesoFrenarOrugas += 10;
+                pesoDefender -= 20;
+            }
+
+            //Ajuste por humo:
+            if (hayHumo)
+            {
+                pesoAtacar -= 20; 
+                pesoDefender += 10; 
+                pesoReparar += 40; 
+                pesoFrenarOrugas += 10;
+            }
+
+            //si la velocidad es menor al enemigo, aumenta la probabilidad de usar el ataque de orugas para reducir aún más su velocidad
+            if (this.Velocidad < objetivo.Velocidad)
+            {
+                pesoFrenarOrugas += 20;
+                pesoAtacar -= 10;
+                pesoDefender -= 10;
+                pesoReparar -= 10;
+            }
+
+            //si el usuario ataco y es mas rapido , aumenta la probabilidad de defender para anticipar el siguiente ataque
+            if (accionAnterior == AccionUsuario.Disparar && this.Velocidad > objetivo.Velocidad)
+            {
+                pesoDefender += 20;
+                pesoAtacar -= 10;
+                pesoReparar -= 10;
+                pesoFrenarOrugas -= 10;
+            }
+
+            //el jugador intenta defender , el enemigo aprovecha para reparar o usar el ataque de orugas
+            if (accionAnterior == AccionUsuario.Defender)
+            {
+                pesoReparar += 20;
+                pesoFrenarOrugas += 20;
+                pesoAtacar -= 10;
+                pesoDefender -= 30;
+            }
+
+            //seleccion basada en pesos
+            int totalPeso = pesoAtacar + pesoDefender + pesoReparar + pesoFrenarOrugas;
+            int accion = dado.Next(0, totalPeso);
+
+            if (accion < pesoAtacar)
+            {
+                return Atacar(objetivo, disparo, probabilidadFallo);
+            }
+            else if (accion < pesoAtacar + pesoFrenarOrugas)
+            {
+                return DisparoOrugas(objetivo, disparo, probabilidadFallo); 
+            }
+            else if (accion < pesoAtacar + pesoFrenarOrugas + pesoDefender)
+            {
+                return Defender();
             }
             else
             {
-                this.Reparar(20);
-                return "El enemigo realiza reparaciones de emergencia (+20 HP).";
+                return Reparar();
+            }
+
+        }
+        private string Atacar(Tanque objetivo, int dado, int probabilidadFallo)
+        {
+            if (dado >= probabilidadFallo)
+            {
+                int dano = objetivo.RecibirAtaque(this.Ataque);
+                return $"{this.Nombre} ataca a {objetivo.Nombre} causando {dano} de daño.";
+            }
+            else
+            {
+                return $"{this.Nombre} falla el ataque a {objetivo.Nombre}.";
+            }
+        }
+        private string Defender()
+        {
+            this.BloquearSiguienteAtaque();
+            return $"{this.Nombre} se prepara para defender el siguiente ataque.";
+        }
+        private string Reparar()
+        {
+            int cantidadReparacion = 20; 
+            base.Reparar(cantidadReparacion);
+            return $"{this.Nombre} repara el tanque restaurando {cantidadReparacion} de vida.";
+        }
+        private string DisparoOrugas(Tanque objetivo, int dado, int probabilidadFallo)
+        {
+            if (dado >= probabilidadFallo)
+            {
+                int dano = objetivo.DisparoEnLasOrugas(this.Ataque); 
+                return $"{this.Nombre} realiza un ataque de orugas a {objetivo.Nombre} causando {dano} de daño y reduciendo su velocidad.";
+            }
+            else
+            {
+                return $"{this.Nombre} falla el ataque de orugas a {objetivo.Nombre}.";
             }
         }
     }
