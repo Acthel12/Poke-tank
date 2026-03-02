@@ -76,19 +76,28 @@ namespace Poke_tank
             {
                 case "T-80":
                     pictureBoxEnemigo.Image = Properties.Resources.T80U;
+                    EscribirLog("==========================================", Color.LightGray);
                     EscribirLog("¡Un T-80 ha aparecido!", Color.Red);
+                    EscribirLog("==========================================", Color.LightGray);
                     break;
                 case "T-72":
                     pictureBoxEnemigo.Image = Properties.Resources.T72;
+                    EscribirLog("==========================================", Color.LightGray);
                     EscribirLog("¡Un T-72 ha aparecido!", Color.Red);
+                    EscribirLog("==========================================", Color.LightGray);
                     break;
                 case "T-90":
                     pictureBoxEnemigo.Image = Properties.Resources.T90A;
+                    EscribirLog("==========================================", Color.LightGray);
                     EscribirLog("¡Un T-90 ha aparecido!", Color.Red);
+                    EscribirLog("==========================================", Color.LightGray);
                     break;
                 case "T-14 Armata":
                     pictureBoxEnemigo.Image = Properties.Resources.T14;
                     MessageBox.Show("¡Ha aparecido El JEFE SECRETO!", "Alerta!!!");
+                    EscribirLog("==========================================", Color.LightGray);
+                    EscribirLog("¡El T-14 Armata ha aparecido!", Color.Red);
+                    EscribirLog("==========================================", Color.LightGray);
                     break;
             }
         }
@@ -366,6 +375,7 @@ namespace Poke_tank
 
                 accionAnterior = accionSeleccionada;
                 VolverAMenu();
+                EscribirLog("==========================================", Color.LightGray);
             }
         }
 
