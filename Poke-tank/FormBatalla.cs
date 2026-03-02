@@ -8,33 +8,32 @@ using System.Windows.Forms;
 
 namespace Poke_tank
 {
-
+    public enum AccionUsuario
+    {
+        Disparar,
+        AtaqueOrugas,
+        CortinaHumo,
+        Defender,
+        Reparar,
+        Huir
+    }
     public partial class FormBatalla : Form
     {
         private int cooldownHumo = 0;
         private int turnosDeHumo = 0;
         private AccionUsuario accionSeleccionada;
         private Random random = new Random();
+        private AccionUsuario accionAnterior ;
         Partida? partidaactual;
         Tanque? Jugador;
         TanqueEnemigo? enemigoactual;
-
-        private enum AccionUsuario
-        {
-            Disparar,
-            AtaqueOrugas,
-            CortinaHumo,
-            Defender,
-            Reparar,
-            Huir
-        }
 
         private enum OpcionAtaque
         {
             Orugas,
             Normal
         }
-
+        
         public FormBatalla()
         {
             InitializeComponent();
@@ -179,7 +178,7 @@ namespace Poke_tank
 
             bool hayHumo = turnosDeHumo > 0;
 
-            string resultadoEnemigo = enemigoactual.elegirAccion(Jugador, hayHumo);
+            string resultadoEnemigo = enemigoactual.elegirAccion(Jugador, hayHumo, accionAnterior);
             EscribirLog(resultadoEnemigo, Color.Purple);
         }
 
@@ -315,22 +314,25 @@ namespace Poke_tank
         }
         private void GestionarTurno()
         {
+            bool combateActivo = true;
             if (Jugador.Velocidad > enemigoactual.Velocidad)
             {
                 TurnoJugador();
-                if (ActualizarEstado())
+                combateActivo = ActualizarEstado();
+                if (combateActivo)
                 {
                     TurnoEnemigo();
-                    ActualizarEstado();
+                    combateActivo = ActualizarEstado();
                 }
             }
             else if (Jugador.Velocidad < enemigoactual.Velocidad)
             {
                 TurnoEnemigo();
-                if (ActualizarEstado())
+                combateActivo = ActualizarEstado();
+                if (combateActivo)
                 {
                     TurnoJugador();
-                    ActualizarEstado();
+                    combateActivo = ActualizarEstado();
                 }
             }
             else
@@ -338,28 +340,31 @@ namespace Poke_tank
                 if (random.Next(0, 2) == 0)
                 {
                     TurnoJugador();
-                    if (ActualizarEstado())
+                    combateActivo = ActualizarEstado();
+                    if (combateActivo)
                     {
                         TurnoEnemigo();
-                        ActualizarEstado();
+                        combateActivo = ActualizarEstado(); ;
                     }
                 }
                 else
                 {
                     TurnoEnemigo();
-                    if (ActualizarEstado())
+                    combateActivo = ActualizarEstado();
+                    if (combateActivo)
                     {
                         TurnoJugador();
-                        ActualizarEstado();
+                        combateActivo = ActualizarEstado();
                     }
                 }
             }
 
-            if (ActualizarEstado())
+            if (combateActivo)
             {
                 if (cooldownHumo > 0) cooldownHumo--;
                 if (turnosDeHumo > 0) turnosDeHumo--;
 
+                accionAnterior = accionSeleccionada;
                 VolverAMenu();
             }
         }
