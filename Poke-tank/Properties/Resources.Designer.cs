@@ -173,6 +173,16 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MASCARA_MAPA {
+            get {
+                object obj = ResourceManager.GetObject("MASCARA_MAPA", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap nivel_1 {
             get {
                 object obj = ResourceManager.GetObject("nivel 1", resourceCulture);
@@ -206,6 +216,25 @@ namespace Poke_tank.Properties {
         internal static System.Drawing.Bitmap nivel_3 {
             get {
                 object obj = ResourceManager.GetObject("nivel 3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream SONIDO_TANQUE_MOVIMIENTO {
+            get {
+                return ResourceManager.GetStream("SONIDO_TANQUE_MOVIMIENTO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SPRITE_SHEET_FLAVIO_MAPA {
+            get {
+                object obj = ResourceManager.GetObject("SPRITE SHEET FLAVIO MAPA", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
