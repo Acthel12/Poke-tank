@@ -35,7 +35,7 @@ namespace Poke_tank
 
                 // Seleccionamos los datos incluyendo la columna puntos
                 var top10 = DatosGlobales.ListaPuntuaciones
-                    .OrderByDescending(p => p.TanquesDerrotados)
+                    .OrderByDescending(p => p.PuntosTotales)
                     .Take(10)
                     .Select(p => new
                     {
