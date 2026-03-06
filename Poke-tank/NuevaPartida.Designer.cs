@@ -143,9 +143,12 @@
             Controls.Add(label1);
             Controls.Add(textBoxNombre);
             DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "NuevaPartida";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Nueva Partida";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
