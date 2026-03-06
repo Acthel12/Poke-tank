@@ -51,7 +51,8 @@ namespace Poke_tank
                     //registramos la puntuación una sola vez al final
                     Puntuacion recordFinal = new Puntuacion(
                         partida.tanqueUsuario.Nombre,
-                        partida.enemigosDerrotados
+                        partida.enemigosDerrotados,
+                        partida.Dificultad
                     );
 
                     DatosGlobales.ListaPuntuaciones.Add(recordFinal);

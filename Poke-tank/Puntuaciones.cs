@@ -42,7 +42,8 @@ namespace Poke_tank
                         Tanque = p.NombreTanque,
                         Destruidos = p.TanquesDerrotados.Count,
                         Puntos = p.PuntosTotales,
-                        Fecha = p.Fecha.ToShortDateString()
+                        Fecha = p.Fecha.ToShortDateString(),
+                        Dificultad= p.Dificultad
                     })
                     .ToList();
 

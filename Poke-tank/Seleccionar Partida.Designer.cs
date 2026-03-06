@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Seleccionar_Partida));
             dgvPartidas = new DataGridView();
             btnCargar = new Button();
             btnEliminar = new Button();
@@ -84,6 +85,7 @@
             Controls.Add(btnCargar);
             Controls.Add(dgvPartidas);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Seleccionar_Partida";
             StartPosition = FormStartPosition.CenterScreen;
