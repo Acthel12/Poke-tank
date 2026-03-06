@@ -41,10 +41,9 @@
             botonNivel1.BackColor = Color.Transparent;
             botonNivel1.BackgroundImage = Properties.Resources.nivel_11;
             botonNivel1.BackgroundImageLayout = ImageLayout.Stretch;
-            botonNivel1.Location = new Point(324, 350);
-            botonNivel1.Margin = new Padding(3, 2, 3, 2);
+            botonNivel1.Location = new Point(370, 467);
             botonNivel1.Name = "botonNivel1";
-            botonNivel1.Size = new Size(85, 39);
+            botonNivel1.Size = new Size(97, 52);
             botonNivel1.TabIndex = 0;
             botonNivel1.UseVisualStyleBackColor = false;
             botonNivel1.Click += botonNivel1_Click;
@@ -54,10 +53,9 @@
             botonNivel2.BackColor = Color.Transparent;
             botonNivel2.BackgroundImage = Properties.Resources.nivel_2;
             botonNivel2.BackgroundImageLayout = ImageLayout.Stretch;
-            botonNivel2.Location = new Point(79, 82);
-            botonNivel2.Margin = new Padding(3, 2, 3, 2);
+            botonNivel2.Location = new Point(90, 109);
             botonNivel2.Name = "botonNivel2";
-            botonNivel2.Size = new Size(85, 39);
+            botonNivel2.Size = new Size(97, 52);
             botonNivel2.TabIndex = 1;
             botonNivel2.UseVisualStyleBackColor = false;
             botonNivel2.Click += botonNivel2_Click;
@@ -67,20 +65,18 @@
             botonNivel3.BackColor = Color.Transparent;
             botonNivel3.BackgroundImage = Properties.Resources.nivel_3;
             botonNivel3.BackgroundImageLayout = ImageLayout.Stretch;
-            botonNivel3.Location = new Point(396, 52);
-            botonNivel3.Margin = new Padding(3, 2, 3, 2);
+            botonNivel3.Location = new Point(453, 69);
             botonNivel3.Name = "botonNivel3";
-            botonNivel3.Size = new Size(88, 34);
+            botonNivel3.Size = new Size(101, 45);
             botonNivel3.TabIndex = 2;
             botonNivel3.UseVisualStyleBackColor = false;
             botonNivel3.Click += botonNivel3_Click;
             // 
             // botonSorpresaFlavio
             // 
-            botonSorpresaFlavio.Location = new Point(1017, 409);
-            botonSorpresaFlavio.Margin = new Padding(3, 2, 3, 2);
+            botonSorpresaFlavio.Location = new Point(1162, 545);
             botonSorpresaFlavio.Name = "botonSorpresaFlavio";
-            botonSorpresaFlavio.Size = new Size(4, 4);
+            botonSorpresaFlavio.Size = new Size(5, 5);
             botonSorpresaFlavio.TabIndex = 3;
             botonSorpresaFlavio.UseVisualStyleBackColor = true;
             botonSorpresaFlavio.Click += botonSorpresaFlavio_Click;
@@ -91,10 +87,9 @@
             botonFinalizar.FlatStyle = FlatStyle.Flat;
             botonFinalizar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             botonFinalizar.ForeColor = Color.White;
-            botonFinalizar.Location = new Point(892, 22);
-            botonFinalizar.Margin = new Padding(3, 2, 3, 2);
+            botonFinalizar.Location = new Point(1019, 29);
             botonFinalizar.Name = "botonFinalizar";
-            botonFinalizar.Size = new Size(150, 30);
+            botonFinalizar.Size = new Size(171, 40);
             botonFinalizar.TabIndex = 4;
             botonFinalizar.Text = "Finalizar aventura";
             botonFinalizar.UseVisualStyleBackColor = false;
@@ -102,11 +97,11 @@
             // 
             // Mapa
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.MAPA_FLAVIO_S_ADVENTURES_FONDO;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1104, 505);
+            ClientSize = new Size(1262, 673);
             Controls.Add(botonFinalizar);
             Controls.Add(botonSorpresaFlavio);
             Controls.Add(botonNivel3);
@@ -115,11 +110,11 @@
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "Mapa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Flavio's Tank Adventure";
+            FormClosed += Mapa_FormClosed;
             Load += Mapa_Load;
             ResumeLayout(false);
         }

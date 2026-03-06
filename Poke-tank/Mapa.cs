@@ -55,7 +55,7 @@ namespace Poke_tank
                     );
 
                     DatosGlobales.ListaPuntuaciones.Add(recordFinal);
-                    
+
                     //Terminamos con la partida
                     DatosGlobales.ListaPartidas.Remove(partida);
 
@@ -112,7 +112,7 @@ namespace Poke_tank
             //Comprobamos el número de enemigos derrotados para determinar qué niveles están disponibles
             botonNivel1.Enabled = (partidaActual.enemigosDerrotados.Count == 0 || partidaActual.enemigosDerrotados.Count >= 3);
             botonNivel2.Enabled = (partidaActual.enemigosDerrotados.Count == 1 || partidaActual.enemigosDerrotados.Count >= 3);
-            botonNivel3.Enabled = (partidaActual.enemigosDerrotados.Count >= 2 );
+            botonNivel3.Enabled = (partidaActual.enemigosDerrotados.Count >= 2);
 
             //Comprobamos si el usuario ha derrotado a los 3 enemigos para mostrar el botón de finalizar campaña, si no se cambia por salir
             if (partidaActual.enemigosDerrotados.Count >= 3)
@@ -132,6 +132,11 @@ namespace Poke_tank
             SeleccionarMapa(form);
             form.ShowDialog();
             ActualizarMapa();
+        }
+
+        private void Mapa_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DatosGlobales.PartidaActualIndex = -1; //reiniciamos el índice de la partida actual al cerrar el mapa para evitar problemas al regresar al menús
         }
     }
 }

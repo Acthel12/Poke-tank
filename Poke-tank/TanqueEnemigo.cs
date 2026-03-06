@@ -23,17 +23,16 @@ namespace Poke_tank
             }
 
             //pesos base
-            int pesoAtacar = 40;
-            int pesoDefender = 20;
-            int pesoReparar = 20;
+            int pesoAtacar = 60;
+            int pesoDefender = 10;
+            int pesoReparar = 10;
             int pesoFrenarOrugas = 20;
 
             //ajustes según el estado del tanque
             //Supervivencia: Si la vida es baja, aumenta la probabilidad de defender o reparar
             if (this.Vida < this.VidaMaxima * 0.5)
             {
-                pesoDefender += 30;
-                pesoReparar += 60;
+                pesoReparar += 40;
                 pesoAtacar -= 10;
                 pesoFrenarOrugas -= 10;
             }
