@@ -93,9 +93,49 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bola_de_fuego_arriba {
+            get {
+                object obj = ResourceManager.GetObject("bola de fuego arriba", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap def_GIF_FONDO_MENU_PPAL_FLAVIO_ADVENTURES {
             get {
                 object obj = ResourceManager.GetObject("def GIF FONDO MENU PPAL FLAVIO ADVENTURES", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap explosion {
+            get {
+                object obj = ResourceManager.GetObject("explosion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap flavio_de_espalda_batalla {
+            get {
+                object obj = ResourceManager.GetObject("flavio de espalda batalla", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap flavio_escudo {
+            get {
+                object obj = ResourceManager.GetObject("flavio escudo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

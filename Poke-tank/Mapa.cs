@@ -52,32 +52,32 @@ namespace Poke_tank
 
             // 3. Configurar los eventos del teclado
             this.KeyDown += KeyIsDown;
-                this.KeyUp += KeyIsUp;
-                this.Paint += DrawGame;
+            this.KeyUp += KeyIsUp;
+            this.Paint += DrawGame;
 
-                // 4. Configurar e iniciar el bucle del juego (Game Loop)
-                gameTimer = new System.Windows.Forms.Timer();
-                gameTimer.Interval = 20; // Aproximadamente 50 FPS
-                gameTimer.Tick += GameLoop;
-                gameTimer.Start();
+            // 4. Configurar e iniciar el bucle del juego (Game Loop)
+            gameTimer = new System.Windows.Forms.Timer();
+            gameTimer.Interval = 20; // Aproximadamente 50 FPS
+            gameTimer.Tick += GameLoop;
+            gameTimer.Start();
         }
 
-            // --- MANEJO DE CONTROLES ---
-            private void KeyIsDown(object sender, KeyEventArgs e)
-            {
-                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W) goUp = true;
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S) goDown = true;
-                if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A) goLeft = true;
-                if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D) goRight = true;
-            }
+        // --- MANEJO DE CONTROLES ---
+        private void KeyIsDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W) goUp = true;
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S) goDown = true;
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A) goLeft = true;
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D) goRight = true;
+        }
 
-            private void KeyIsUp(object sender, KeyEventArgs e)
-            {
-                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W) goUp = false;
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S) goDown = false;
-                if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A) goLeft = false;
-                if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D) goRight = false;
-            }
+        private void KeyIsUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W) goUp = false;
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S) goDown = false;
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A) goLeft = false;
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D) goRight = false;
+        }
 
         // --- BUCLE PRINCIPAL DEL JUEGO ---
         private void GameLoop(object sender, EventArgs e)
@@ -162,7 +162,7 @@ namespace Poke_tank
                 Rectangle sourceRect = new Rectangle(column * exactFrameWidth, row * exactFrameHeight, exactFrameWidth, exactFrameHeight);
 
                 //para que no se vea aplastado
-                int dibujoAncho = 80;
+                int dibujoAncho = 50;
 
                 //Calculamos el alto proporcionalmente para que no se deforme
                 // Fórmula: (Alto Original / Ancho Original) * Ancho Nuevo
@@ -181,7 +181,7 @@ namespace Poke_tank
                 e.Graphics.DrawString($"Frame: {currentFrame}", this.Font, Brushes.White, x, y);
             }
         }
-            
+
 
         //iniciamos la partida según el nivel escogido
         private void botonNivel1_Click(object sender, EventArgs e)
@@ -221,7 +221,7 @@ namespace Poke_tank
                     );
 
                     DatosGlobales.ListaPuntuaciones.Add(recordFinal);
-                    
+
                     //Terminamos con la partida
                     DatosGlobales.ListaPartidas.Remove(partida);
 
@@ -298,6 +298,12 @@ namespace Poke_tank
             SeleccionarMapa(form);
             form.ShowDialog();
             ActualizarMapa();
+        }
+
+        private void pruebaBatalla_Click(object sender, EventArgs e)
+        {
+            Batalla_Mejorada from1 = new Batalla_Mejorada();
+            from1.ShowDialog();
         }
     }
 }

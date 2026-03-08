@@ -184,4 +184,16 @@
   <data name="MASCARA_MAPA" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MASCARA_MAPA_COMPLETO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="flavio de espalda batalla" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flavio de espalda batalla.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="flavio escudo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flavio escudo completo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bola de fuego arriba" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bola de fuego arriba.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="explosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\explosion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

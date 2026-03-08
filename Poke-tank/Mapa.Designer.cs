@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mapa));
             botonSorpresaFlavio = new Button();
             botonFinalizar = new Button();
+            pruebaBatalla = new Button();
             SuspendLayout();
             // 
             // botonSorpresaFlavio
@@ -56,6 +57,16 @@
             botonFinalizar.UseVisualStyleBackColor = false;
             botonFinalizar.Click += botonFinalizar_Click;
             // 
+            // pruebaBatalla
+            // 
+            pruebaBatalla.Location = new Point(990, 380);
+            pruebaBatalla.Name = "pruebaBatalla";
+            pruebaBatalla.Size = new Size(94, 29);
+            pruebaBatalla.TabIndex = 5;
+            pruebaBatalla.Text = "prueba";
+            pruebaBatalla.UseVisualStyleBackColor = true;
+            pruebaBatalla.Click += pruebaBatalla_Click;
+            // 
             // Mapa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -63,6 +74,7 @@
             BackgroundImage = Properties.Resources.MAPA_FLAVIO_S_ADVENTURES_FONDO;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1262, 673);
+            Controls.Add(pruebaBatalla);
             Controls.Add(botonFinalizar);
             Controls.Add(botonSorpresaFlavio);
             DoubleBuffered = true;
@@ -79,5 +91,6 @@
         #endregion
         private Button botonSorpresaFlavio;
         private Button botonFinalizar;
+        private Button pruebaBatalla;
     }
 }
