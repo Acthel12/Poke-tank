@@ -85,6 +85,9 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Flavio's Tank Adventure";
             Load += Mapa_Load;
+            Paint += DrawGame;
+            KeyDown += KeyIsDown;
+            KeyUp += KeyIsUp;
             ResumeLayout(false);
         }
 

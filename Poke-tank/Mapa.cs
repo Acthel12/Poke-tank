@@ -12,7 +12,7 @@ namespace Poke_tank
 {
     public partial class Mapa : Form
     {
-        // Variables de Posición y Velocidad
+        // Variables de Posición y Velocidad del tanque
         private int x = 100;
         private int y = 100;
         private int speed = 5;
@@ -20,7 +20,7 @@ namespace Poke_tank
         // Variables para detectar qué tecla está presionada
         private bool goUp, goDown, goLeft, goRight;
 
-        // Variables de Animación y Sprite
+        // Variables de Animación y Spritesheet
         private Bitmap spriteSheet;
         private int sourceFrameWidth = 500;
         private int sourceFrameHeight = 1000;
@@ -35,8 +35,23 @@ namespace Poke_tank
         System.Media.SoundPlayer sonidoMotor = new System.Media.SoundPlayer(Properties.Resources.SONIDO_TANQUE_MOVIMIENTO);
         bool sonidoEstaReproduciendo = false;
 
-        // El "Motor" del juego
+        // Variables para la colision para abrir nuevos forms
+        Rectangle zonaTienda = new Rectangle(737, 223, 70, 45); // Define la posición (X, Y) y el tamaño (Ancho, Alto) de la zona
+        Rectangle zonaNivel3 = new Rectangle(970, 269, 31, 21);
+        Rectangle zonaNivel2 = new Rectangle(508, 111, 31, 21);
+        Rectangle zonaNivel1 = new Rectangle(381, 566, 31, 21);
+
+        // Un seguro para saber si ya abrimos la ventana
+        bool ventanaAbierta = false;
+
+        //PROGRESO DE LOS NIVELES
+        // 1 = Estás en el primer nivel (Nieve). 
+        // 2 = Desbloqueaste el segundo nivel (Castillo).
+        int nivelProgreso = 1;
+
+        // El timer del juego, que actúa como el bucle principal para actualizar la lógica y redibujar la pantalla
         private System.Windows.Forms.Timer gameTimer;
+
         public Mapa()
         {
             InitializeComponent();
@@ -87,7 +102,7 @@ namespace Poke_tank
             int nextY = y;
             int nextFrame = currentFrame;
 
-            // 1. DETERMINAR MOVIMIENTO TENTATIVO (Tu lógica de teclas se queda igual)
+            //DETERMINAR MOVIMIENTO TENTATIVO
             if (goUp && goRight) { nextY -= speed; nextX += speed; nextFrame = 3; isMoving = true; }
             else if (goDown && goRight) { nextY += speed; nextX += speed; nextFrame = 1; isMoving = true; }
             else if (goDown && goLeft) { nextY += speed; nextX -= speed; nextFrame = 7; isMoving = true; }
@@ -132,6 +147,123 @@ namespace Poke_tank
                         isMoving = false;
                     }
                 }
+
+                // DETECCIÓN DE MÚLTIPLES ZONAS DE COLISION
+                Rectangle rectTanque = new Rectangle(x, y, drawingWidth, drawingHeight);
+
+                // NIVEL 1
+                if (rectTanque.IntersectsWith(zonaNivel1))
+                {
+                    if (nivelProgreso == 1) // Es el nivel que le toca
+                    {
+                        DialogResult resultado = AbrirFormulario(new nivel_1());
+
+                        if (resultado == DialogResult.OK) // ¡Ganó el nivel!
+                        {
+                            nivelProgreso = 2; // Desbloqueamos el Nivel 2
+                            MessageBox.Show("¡Misión Cumplida! Has desbloqueado el nivel 2!");
+                        }
+                        // Si perdió (DialogResult.Cancel), nivelProgreso sigue siendo 1 y podrá repetirlo.
+                    }
+                    
+                    // Rebote dinámico al salir del nivel para no volver a chocar al instante
+                    if (goUp) y += 5;
+                    if (goDown) y -= 5;
+                    if (goLeft) x += 5;
+                    if (goRight) x -= 5;
+                }
+
+                // NIVEL 2
+                else if (rectTanque.IntersectsWith(zonaNivel2))
+                {
+                    if (nivelProgreso < 2) // Intenta entrar sin pasar el nivel 1
+                    {
+                        // 1. DETENER EL TIEMPO: Evita el bucle infinito de mensajes
+                        gameTimer.Stop();
+
+                        // Pausar sonido para que no se quede pegado
+                        if (sonidoEstaReproduciendo) { sonidoMotor.Stop(); sonidoEstaReproduciendo = false; }
+
+                        MessageBox.Show("Debes completar el nivel anterior para jugar.");
+
+                        // 2. REBOTE DINÁMICO: Lo empujamos hacia atrás dependiendo de cómo entró
+                        if (goUp) y += 5;
+                        if (goDown) y -= 5;
+                        if (goLeft) x += 5;
+                        if (goRight) x -= 5;
+
+                        // 3. REANUDAR EL TIEMPO
+                        gameTimer.Start();
+                    }
+                    else if (nivelProgreso == 2) // Es el nivel que le toca
+                    {
+                        DialogResult resultado = AbrirFormulario(new nivel_2());
+
+                        if (resultado == DialogResult.OK)
+                        {
+                            nivelProgreso = 3; // Desbloqueamos el Nivel 3
+                            MessageBox.Show("¡Castillo Conquistado!");
+                        }
+
+                        // Rebote dinámico al salir del nivel para no volver a chocar al instante
+                        if (goUp) y += 5;
+                        if (goDown) y -= 5;
+                        if (goLeft) x += 5;
+                        if (goRight) x -= 5;
+                    }
+                }
+
+                // NIVEL 3
+                else if (rectTanque.IntersectsWith(zonaNivel3))
+                {
+                    if (nivelProgreso < 3) // Intenta entrar sin pasar el nivel 2
+                    {
+                        // 1. DETENER EL TIEMPO: Evita el bucle infinito de mensajes
+                        gameTimer.Stop();
+
+                        // Pausar sonido para que no se quede pegado
+                        if (sonidoEstaReproduciendo) { sonidoMotor.Stop(); sonidoEstaReproduciendo = false; }
+
+                        MessageBox.Show("Debes completar el nivel anterior para jugar.");
+
+                        // 2. REBOTE DINÁMICO: Lo empujamos hacia atrás dependiendo de cómo entró
+                        if (goUp) y += 5;
+                        if (goDown) y -= 5;
+                        if (goLeft) x += 5;
+                        if (goRight) x -= 5;
+
+                        // 3. REANUDAR EL TIEMPO
+                        gameTimer.Start();
+                    }
+                    else if (nivelProgreso == 3) // Es el nivel que le toca
+                    {
+                        DialogResult resultado = AbrirFormulario(new nivel_3());
+
+                        if (resultado == DialogResult.OK)
+                        {
+                            nivelProgreso = 4; // Desbloqueamos el Nivel 4
+                            MessageBox.Show("¡Castillo Conquistado!");
+                        }
+
+                        // Rebote dinámico al salir del nivel para no volver a chocar al instante
+                        if (goUp) y += 5;
+                        if (goDown) y -= 5;
+                        if (goLeft) x += 5;
+                        if (goRight) x -= 5;
+                    }
+                }
+
+                //TIENDA (Accesible siempre)
+                else if (rectTanque.IntersectsWith(zonaTienda))
+                {
+                    AbrirFormulario(new tienda());
+
+                    // Rebote dinámico al salir del nivel para no volver a chocar al instante
+                    if (goUp) y += 5;
+                    if (goDown) y -= 5;
+                    if (goLeft) x += 5;
+                    if (goRight) x -= 5;
+                }
             }
 
             // Detener sonido si el tanque deja de moverse
@@ -142,6 +274,33 @@ namespace Poke_tank
             }
 
             this.Invalidate();
+        }
+
+        //Funcion para abrir un formulario segun la zona de colision
+        private DialogResult AbrirFormulario(Form formularioDestino)
+        {
+            // Si ya hay una ventana abierta, ignoramos la colisión
+            if (ventanaAbierta) return DialogResult.Ignore;
+
+            ventanaAbierta = true;
+
+            // Pausamos el motor del juego y el sonido
+            gameTimer.Stop();
+            if (sonidoEstaReproduciendo)
+            {
+                sonidoMotor.Stop();
+                sonidoEstaReproduciendo = false;
+            }
+
+            // ShowDialog() pausa el mapa y espera a que el nivel termine.
+            // Guardamos el resultado (Ganó o Perdió) en esta variable:
+            DialogResult resultado = formularioDestino.ShowDialog();
+
+            // Cuando el jugador cierre esa ventana, reanudamos todo
+            ventanaAbierta = false;
+            gameTimer.Start();
+
+            return resultado; // Le devolvemos el resultado al GameLoop
         }
 
         // --- DIBUJADO DE GRÁFICOS ---
@@ -302,7 +461,7 @@ namespace Poke_tank
 
         private void pruebaBatalla_Click(object sender, EventArgs e)
         {
-            Batalla_Mejorada from1 = new Batalla_Mejorada();
+            nivel_1 from1 = new nivel_1();
             from1.ShowDialog();
         }
     }

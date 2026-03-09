@@ -8,20 +8,20 @@ using System.Windows.Forms;
 
 namespace Poke_tank
 {
-    public partial class Batalla_Mejorada : Form
+    public partial class nivel_2 : Form
     {
         //para saber si el juego termino
         bool juegoTerminado = false;
 
         //balas
-        List<Bala> listaBalas = new List<Bala>();
+        List<Bala_Nivel_2> listaBalas = new List<Bala_Nivel_2>();
 
         // --- IMÁGENES DE LAS BALAS ---
         Bitmap imgBalaJugador;
         Bitmap imgBalaEnemiga;
 
         //explosion
-        List<Explosion> listaExplosiones = new List<Explosion>();
+        List<Explosion_Nivel_2> listaExplosiones = new List<Explosion_Nivel_2>();
         Image imgExplosion = Properties.Resources.explosion; // Reemplaza por tu imagen real
 
         //IMÁGENES PRE-CARGADAS
@@ -52,7 +52,7 @@ namespace Poke_tank
         int tiempoDefensaEnemigo = 0;   // Cuánto tiempo le queda al escudo
         int cooldownDisparoEnemigo = 0; // Tiempo de espera entre disparos
 
-        public Batalla_Mejorada()
+        public nivel_2()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
@@ -238,7 +238,7 @@ namespace Poke_tank
                 }
             }
 
-            // Si el juego ya terminó (pantalla de victoria activa)
+            // Si el juego ya terminó
             if (juegoTerminado)
             {
                 // Al presionar Enter, guardamos el JSON y cerramos
@@ -340,13 +340,13 @@ namespace Poke_tank
                 {
                     // Centramos la explosión en el punto de impacto. 
                     // Usaremos una duración de 15 ticks (aprox 0.3 segundos si el timer va a 20ms).
-                    listaExplosiones.Add(new Explosion(b.X, b.Y, 15));
+                    listaExplosiones.Add(new Explosion_Nivel_2(b.X, b.Y, 15));
                     listaBalas.RemoveAt(i);
 
                     // Si el enemigo no tiene escudo, recibe daño
                     if (!enemigoDefendiendo)
                     {
-                        saludEnemigo -= 10;
+                        saludEnemigo -= 10; //DAÑO DE BALA DEL JUGADOR
                         if (saludEnemigo <= 0) { saludEnemigo = 0; juegoTerminado = true; }
                     }
 
@@ -356,14 +356,14 @@ namespace Poke_tank
                 //Colisión Bala Enemiga -> Jugador
                 if (b.IDDueño == 2 && b.Bounds.IntersectsWith(boundsJugador))
                 {
-                    listaExplosiones.Add(new Explosion(b.X, b.Y, 15));
+                    listaExplosiones.Add(new Explosion_Nivel_2(b.X, b.Y, 15));
                     listaBalas.RemoveAt(i);
 
                     // Si tú no tienes el escudo puesto, recibes daño
                     if (!defendiendo)
                     {
-                        saludJugador -= 10;
-                        
+                        saludJugador -= 10; //DAÑO DE BALA DEL ENEMIGO
+
                         //Derrota
                         if (saludJugador <= 0)
                         {
@@ -431,7 +431,7 @@ namespace Poke_tank
                 posicionY = posTirador.Bottom;
             }
 
-            Bala nuevaBala = new Bala
+            Bala_Nivel_2 nuevaBala = new Bala_Nivel_2
             {
                 X = posicionX,
                 Y = posicionY,
@@ -465,7 +465,6 @@ namespace Poke_tank
             string nombreJugador = "Jugador 1";
 
             // 3. Instanciamos la clase Puntuacion con la lógica que me enviaste
-            // ¡Esto calculará los PuntosTotales automáticamente por dentro!
             Puntuacion nuevaPuntuacion = new Puntuacion(nombreJugador, tanquesDerrotados);
 
             // 4. Guardamos en el sistema JSON usando tu clase estática DatosGlobales
@@ -477,7 +476,7 @@ namespace Poke_tank
         }
 
     }
-    public class Bala
+    public class Bala_Nivel_2
     {
         public float X { get; set; }
         public float Y { get; set; }
@@ -486,15 +485,15 @@ namespace Poke_tank
         public Rectangle Bounds => new Rectangle((int)X, (int)Y, 20, 20);
     }
 
-    public class Explosion
-        //explosion al impactar la bala
+    public class Explosion_Nivel_2
+    //explosion al impactar la bala
     {
         public float X { get; set; }
         public float Y { get; set; }
         public int ContadorVida { get; set; } // Cuántos "ticks" ha estado viva
         public int DuracionMaxima { get; set; } // Cuántos "ticks" durará en total
 
-        public Explosion(float x, float y, int duracionEnTicks)
+        public Explosion_Nivel_2(float x, float y, int duracionEnTicks)
         {
             X = x;
             Y = y;

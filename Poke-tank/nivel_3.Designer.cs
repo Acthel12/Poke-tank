@@ -1,6 +1,6 @@
 ﻿namespace Poke_tank
 {
-    partial class Batalla_Mejorada
+    partial class nivel_3
     {
         /// <summary>
         /// Required designer variable.
@@ -58,7 +58,7 @@
             timerAviso.Interval = 1500;
             timerAviso.Tick += timerAviso_Tick;
             // 
-            // Batalla_Mejorada
+            // nivel_3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
