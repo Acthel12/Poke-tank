@@ -56,11 +56,11 @@
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft New Tai Lue", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DodgerBlue;
-            label1.Location = new Point(297, 26);
+            label1.Location = new Point(250, 26);
             label1.Name = "label1";
-            label1.Size = new Size(374, 40);
+            label1.Size = new Size(429, 40);
             label1.TabIndex = 5;
-            label1.Text = "Ranking de puntuaciones";
+            label1.Text = "Top 10 Partidas Completadas";
             // 
             // Puntuaciones
             // 

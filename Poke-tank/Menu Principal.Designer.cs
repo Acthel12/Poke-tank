@@ -40,9 +40,10 @@
             // fondoMenuPrincipal
             // 
             fondoMenuPrincipal.Image = Properties.Resources.def_GIF_FONDO_MENU_PPAL_FLAVIO_ADVENTURES;
-            fondoMenuPrincipal.Location = new Point(0, -67);
+            fondoMenuPrincipal.Location = new Point(0, -50);
+            fondoMenuPrincipal.Margin = new Padding(3, 2, 3, 2);
             fondoMenuPrincipal.Name = "fondoMenuPrincipal";
-            fondoMenuPrincipal.Size = new Size(1296, 853);
+            fondoMenuPrincipal.Size = new Size(1134, 640);
             fondoMenuPrincipal.SizeMode = PictureBoxSizeMode.Zoom;
             fondoMenuPrincipal.TabIndex = 0;
             fondoMenuPrincipal.TabStop = false;
@@ -53,9 +54,10 @@
             botonIniciarPartida.FlatStyle = FlatStyle.Popup;
             botonIniciarPartida.Font = new Font("Microsoft New Tai Lue", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             botonIniciarPartida.ForeColor = Color.White;
-            botonIniciarPartida.Location = new Point(517, 359);
+            botonIniciarPartida.Location = new Point(452, 269);
+            botonIniciarPartida.Margin = new Padding(3, 2, 3, 2);
             botonIniciarPartida.Name = "botonIniciarPartida";
-            botonIniciarPartida.Size = new Size(239, 47);
+            botonIniciarPartida.Size = new Size(209, 35);
             botonIniciarPartida.TabIndex = 1;
             botonIniciarPartida.Text = "Iniciar nueva partida";
             botonIniciarPartida.UseVisualStyleBackColor = false;
@@ -67,9 +69,10 @@
             botonSalir.FlatStyle = FlatStyle.Popup;
             botonSalir.Font = new Font("Microsoft New Tai Lue", 12F, FontStyle.Bold);
             botonSalir.ForeColor = Color.White;
-            botonSalir.Location = new Point(517, 569);
+            botonSalir.Location = new Point(452, 427);
+            botonSalir.Margin = new Padding(3, 2, 3, 2);
             botonSalir.Name = "botonSalir";
-            botonSalir.Size = new Size(239, 47);
+            botonSalir.Size = new Size(209, 35);
             botonSalir.TabIndex = 3;
             botonSalir.Text = "Salir";
             botonSalir.UseVisualStyleBackColor = false;
@@ -81,11 +84,12 @@
             botonPuntuaciones.FlatStyle = FlatStyle.Popup;
             botonPuntuaciones.Font = new Font("Microsoft New Tai Lue", 12F, FontStyle.Bold);
             botonPuntuaciones.ForeColor = Color.White;
-            botonPuntuaciones.Location = new Point(517, 497);
+            botonPuntuaciones.Location = new Point(452, 373);
+            botonPuntuaciones.Margin = new Padding(3, 2, 3, 2);
             botonPuntuaciones.Name = "botonPuntuaciones";
-            botonPuntuaciones.Size = new Size(239, 47);
+            botonPuntuaciones.Size = new Size(209, 35);
             botonPuntuaciones.TabIndex = 4;
-            botonPuntuaciones.Text = "Ver puntuaciones";
+            botonPuntuaciones.Text = "Historial De Partidas";
             botonPuntuaciones.UseVisualStyleBackColor = false;
             botonPuntuaciones.Click += botonPuntuaciones_Click;
             // 
@@ -95,9 +99,10 @@
             buttonCargarPartida.FlatStyle = FlatStyle.Popup;
             buttonCargarPartida.Font = new Font("Microsoft New Tai Lue", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonCargarPartida.ForeColor = Color.White;
-            buttonCargarPartida.Location = new Point(517, 429);
+            buttonCargarPartida.Location = new Point(452, 322);
+            buttonCargarPartida.Margin = new Padding(3, 2, 3, 2);
             buttonCargarPartida.Name = "buttonCargarPartida";
-            buttonCargarPartida.Size = new Size(239, 47);
+            buttonCargarPartida.Size = new Size(209, 35);
             buttonCargarPartida.TabIndex = 5;
             buttonCargarPartida.Text = "Cargar partida";
             buttonCargarPartida.UseVisualStyleBackColor = false;
@@ -105,10 +110,10 @@
             // 
             // Menu_Principal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(1262, 673);
+            ClientSize = new Size(1104, 505);
             Controls.Add(buttonCargarPartida);
             Controls.Add(botonPuntuaciones);
             Controls.Add(botonSalir);
@@ -116,6 +121,7 @@
             Controls.Add(fondoMenuPrincipal);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "Menu_Principal";
             StartPosition = FormStartPosition.CenterScreen;
