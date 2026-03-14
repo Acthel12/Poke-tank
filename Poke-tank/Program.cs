@@ -11,7 +11,8 @@ namespace Poke_tank
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Menu_Principal());
+            //Application.Run(new Menu_Principal());
+            Application.Run(new MinijuegoDron());
         }
     }
 }
