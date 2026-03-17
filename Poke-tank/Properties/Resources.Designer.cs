@@ -233,6 +233,16 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MASCARA_MAPA_FINAL {
+            get {
+                object obj = ResourceManager.GetObject("MASCARA_MAPA_FINAL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap nivel_1 {
             get {
                 object obj = ResourceManager.GetObject("nivel 1", resourceCulture);

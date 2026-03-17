@@ -56,14 +56,14 @@ namespace Poke_tank
         {
             InitializeComponent();
 
-            // 1. Evitar el parpadeo (flickering) al redibujar
+            // 1. Evitar el parpadeo al redibujar
             this.DoubleBuffered = true;
             this.KeyPreview = true;
             this.ClientSize = new Size(1280, 720);
 
             // 2. Cargar imágenes
             spriteSheet = Properties.Resources.SPRITE_SHEET_FLAVIO_MAPA;
-            mascaraColisiones = new Bitmap(Properties.Resources.MASCARA_MAPA);
+            mascaraColisiones = new Bitmap(Properties.Resources.MASCARA_MAPA_FINAL);
 
             // 3. Configurar los eventos del teclado
             this.KeyDown += KeyIsDown;
@@ -94,7 +94,7 @@ namespace Poke_tank
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D) goRight = false;
         }
 
-        // --- BUCLE PRINCIPAL DEL JUEGO ---
+        //BUCLE PRINCIPAL DEL JUEGO
         private void GameLoop(object sender, EventArgs e)
         {
             bool isMoving = false;
@@ -165,12 +165,10 @@ namespace Poke_tank
                         }
                         // Si perdió (DialogResult.Cancel), nivelProgreso sigue siendo 1 y podrá repetirlo.
                     }
-                    
-                    // Rebote dinámico al salir del nivel para no volver a chocar al instante
-                    if (goUp) y += 5;
-                    if (goDown) y -= 5;
-                    if (goLeft) x += 5;
-                    if (goRight) x -= 5;
+
+                    // Te teletransporta a un punto válido del camino fuera de la zona
+                    x = 543;
+                    y = 438;
                 }
 
                 // NIVEL 2
@@ -186,11 +184,9 @@ namespace Poke_tank
 
                         MessageBox.Show("Debes completar el nivel anterior para jugar.");
 
-                        // 2. REBOTE DINÁMICO: Lo empujamos hacia atrás dependiendo de cómo entró
-                        if (goUp) y += 5;
-                        if (goDown) y -= 5;
-                        if (goLeft) x += 5;
-                        if (goRight) x -= 5;
+                        // Te teletransporta a un punto válido del camino fuera de la zona
+                        x = 543;
+                        y = 275;
 
                         // 3. REANUDAR EL TIEMPO
                         gameTimer.Start();
@@ -205,11 +201,9 @@ namespace Poke_tank
                             MessageBox.Show("¡Castillo Conquistado!");
                         }
 
-                        // Rebote dinámico al salir del nivel para no volver a chocar al instante
-                        if (goUp) y += 5;
-                        if (goDown) y -= 5;
-                        if (goLeft) x += 5;
-                        if (goRight) x -= 5;
+                        // Te teletransporta a un punto válido del camino fuera de la zona
+                        x = 543;
+                        y = 275;
                     }
                 }
 
@@ -226,11 +220,9 @@ namespace Poke_tank
 
                         MessageBox.Show("Debes completar el nivel anterior para jugar.");
 
-                        // 2. REBOTE DINÁMICO: Lo empujamos hacia atrás dependiendo de cómo entró
-                        if (goUp) y += 5;
-                        if (goDown) y -= 5;
-                        if (goLeft) x += 5;
-                        if (goRight) x -= 5;
+                        // Te teletransporta a un punto válido del camino fuera de la zona
+                        x = 867;
+                        y = 321;
 
                         // 3. REANUDAR EL TIEMPO
                         gameTimer.Start();
@@ -245,11 +237,9 @@ namespace Poke_tank
                             MessageBox.Show("¡Castillo Conquistado!");
                         }
 
-                        // Rebote dinámico al salir del nivel para no volver a chocar al instante
-                        if (goUp) y += 5;
-                        if (goDown) y -= 5;
-                        if (goLeft) x += 5;
-                        if (goRight) x -= 5;
+                        // Te teletransporta a un punto válido del camino fuera de la zona
+                        x = 867;
+                        y = 321;
                     }
                 }
 
@@ -258,11 +248,9 @@ namespace Poke_tank
                 {
                     AbrirFormulario(new tienda());
 
-                    // Rebote dinámico al salir del nivel para no volver a chocar al instante
-                    if (goUp) y += 5;
-                    if (goDown) y -= 5;
-                    if (goLeft) x += 5;
-                    if (goRight) x -= 5;
+                    // Te teletransporta a un punto válido del camino fuera de la zona
+                    x = 694;
+                    y = 275;
                 }
             }
 
@@ -309,7 +297,6 @@ namespace Poke_tank
             if (spriteSheet != null)
             {
                 // 1. DEJAMOS QUE C# CALCULE EL TAMAÑO EXACTO DE CADA FRAME
-                // Tu imagen tiene 4 columnas y 2 filas, así que dividimos el total automáticamente:
                 int exactFrameWidth = spriteSheet.Width / 4;
                 int exactFrameHeight = spriteSheet.Height / 2;
 
@@ -320,8 +307,8 @@ namespace Poke_tank
                 // 3. Recortar la imagen original con precisión milimétrica
                 Rectangle sourceRect = new Rectangle(column * exactFrameWidth, row * exactFrameHeight, exactFrameWidth, exactFrameHeight);
 
-                //para que no se vea aplastado
-                int dibujoAncho = 50;
+                //TAMANO FLAVIO
+                int dibujoAncho = 70;
 
                 //Calculamos el alto proporcionalmente para que no se deforme
                 // Fórmula: (Alto Original / Ancho Original) * Ancho Nuevo
