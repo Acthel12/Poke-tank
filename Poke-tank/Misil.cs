@@ -17,7 +17,6 @@ namespace Poke_tank
         public int Fase { get; set; }
         public int DireccionFase1 { get; set; } // 1 para derecha, -1 para izquierda
 
-        public float BaseY { get; set; }
         public float TiempoVuelo { get; set; }
 
         private static Random rnd = new Random();
@@ -32,7 +31,6 @@ namespace Poke_tank
             X = 0;
             Y= startingY;
 
-            BaseY = startingY;
             TiempoVuelo = 0;
 
             VelocidadHorizontal = 800;
@@ -45,7 +43,7 @@ namespace Poke_tank
 
         public void Actualizar(float deltatime,float anchoPantalla, float altoPantalla)
         {
-            const float constante = 500.0f; //ajustar para controlar la caída
+            const float gravedad = 200.0f; //ajustar para controlar la caída
             if (Fase == 1)
             {
                 TiempoVuelo += deltatime;
@@ -54,7 +52,7 @@ namespace Poke_tank
 
                 X += VelocidadHorizontal *  DireccionFase1 * deltatime;
 
-                Y += (float)Math.E(constante * TiempoVuelo) * VelocidadHorizontal * deltatime;
+                Y += gravedad * TiempoVuelo * deltatime;
 
 
                 if (X >= anchoPantalla - Ancho)
@@ -85,11 +83,6 @@ namespace Poke_tank
 
                 Y += 10 * deltatime;
 
-                float fuerzaSway = Ancho * 4.0f; // entre mas cerca mas fuerza
-                float velocidadCurva = 4.0f;
-
-                float esquiveX = (float)Math.Sin(TiempoVuelo * velocidadCurva) * fuerzaSway * deltatime;
-                X += esquiveX;
 
                 float intensidadSacudida = Ancho * 0.8f;
 

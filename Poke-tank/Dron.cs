@@ -19,6 +19,9 @@ namespace Poke_tank
         public float BaseY { get; set; }
         public float TiempoVuelo { get; set; }
 
+        public float TiempoAnimacion { get; set; }
+        public int FrameActual { get; set; } = 1;
+
         private static Random rnd = new Random();
 
         private float amplitudAleatoria;
@@ -27,8 +30,8 @@ namespace Poke_tank
 
         public Dron(float startingY)
         {
-            Ancho = 50;
-            Alto = 50;
+            Ancho = 150;
+            Alto = 150;
 
 
             X = 0;
@@ -52,9 +55,14 @@ namespace Poke_tank
         {
             if (Fase == 1)
             {
+                TiempoAnimacion += deltatime;
                 TiempoVuelo += deltatime;
 
-
+                if (TiempoVuelo >= 0.15f)
+                {
+                    FrameActual = FrameActual == 1 ? 2 : 1;
+                    TiempoAnimacion = 0;
+                }
 
                 X += VelocidadHorizontal *  DireccionFase1 * deltatime;
 

@@ -11,20 +11,25 @@ namespace Poke_tank
     public partial class MinijuegoDron : Form
     {
         List<Dron> listaDrones = new List<Dron>();
+        List<Misil> listaMisiles = new List<Misil>();
         System.Windows.Forms.Timer gameTimer = new System.Windows.Forms.Timer();
         int puntuacion = 0;
 
         System.Windows.Forms.Timer timerGenerador = new System.Windows.Forms.Timer();
         Random rndGenerador = new Random();
 
-        int cantidadDronesPorOla = 3;
+        int cantidadDronesPorOla = 2;
+        int cantidadMisilesPorOla = 1;
 
         int vidas = 3;
         bool juegoTerminado = false;
 
-        int dronesParaGanar = 15;
-        int dronesDerrotados = 0;
+        int derribosParaGanar = 15;
+        int derribos = 0;
         bool victoria = false;
+
+        Bitmap frameDron1;
+        Bitmap frameDron2;
 
         public MinijuegoDron()
         {
@@ -39,7 +44,8 @@ namespace Poke_tank
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
 
-
+            frameDron1 = Properties.Resources.Dron1;
+            frameDron2 = Properties.Resources.Dron2;
 
             gameTimer.Interval = 16;
             gameTimer.Tick += GameTimer_Tick;
@@ -79,6 +85,18 @@ namespace Poke_tank
                 }
             }
 
+            for (int i = listaMisiles.Count - 1; i >= 0; i--)
+            {
+                listaMisiles[i].Actualizar(dt, ancho, alto);
+
+                if (listaMisiles[i].Fase == 3)
+                {
+                    vidas -= 1; 
+
+                    listaMisiles.RemoveAt(i);
+                }
+            }
+
             if  (vidas <= 0)
             {
                 juegoTerminado = true;
@@ -91,6 +109,7 @@ namespace Poke_tank
         }
         private void TimerGenerador_Tick(object sender, EventArgs e)
         {
+            int distanciaEntreObjetosRandom = rndGenerador.Next(0, 300);
             int limiteInferior = this.ClientSize.Height - 300;
 
             for (int i = 0; i < cantidadDronesPorOla; i++)
@@ -99,9 +118,20 @@ namespace Poke_tank
 
                 Dron nuevoDron = new Dron(alturaAleatoria);
 
-                nuevoDron.X = -rndGenerador.Next(0, 300); // para que salgan uno detras de otro
+                nuevoDron.X = -distanciaEntreObjetosRandom * (i + 1); // para que salgan uno detras de otro
 
                 listaDrones.Add(nuevoDron);
+            }
+
+            for (int i = 0; i < cantidadMisilesPorOla; i++)
+            {
+                int alturaAleatoria = rndGenerador.Next(50, limiteInferior - 300);
+
+                Misil nuevoMisil = new Misil(alturaAleatoria);
+
+                nuevoMisil.X = -distanciaEntreObjetosRandom * (i + 1);
+
+                listaMisiles.Add(nuevoMisil);
             }
         }
         private void MinijuegoDron_Paint(object sender, PaintEventArgs e)
@@ -110,7 +140,7 @@ namespace Poke_tank
             e.Graphics.Clear(Color.SkyBlue);
 
             e.Graphics.DrawString("Puntos: " + puntuacion, fuente, Brushes.Black, 10, 10);
-            e.Graphics.DrawString("Drones restantes: " + dronesParaGanar, fuente, Brushes.Black, 10, 36);
+            e.Graphics.DrawString("Drones restantes: " + derribosParaGanar, fuente, Brushes.Black, 10, 36);
 
             string textoVidas = "Vidas: " + (vidas < 0 ? 0 : vidas);
             
@@ -158,7 +188,23 @@ namespace Poke_tank
 
             foreach (var dron in listaDrones)
             {
-                e.Graphics.FillEllipse(Brushes.Yellow, dron.X, dron.Y, dron.Ancho, dron.Alto);
+                //e.Graphics.FillEllipse(Brushes.Yellow, dron.X, dron.Y, dron.Ancho, dron.Alto);
+
+                Bitmap imagenADibujar = dron.FrameActual == 1? frameDron1: frameDron2;
+                
+                if (imagenADibujar != null)
+                {
+                    e.Graphics.DrawImage(imagenADibujar, dron.X, dron.Y, dron.Ancho, dron.Alto);
+                }
+                else
+                {
+                    e.Graphics.FillEllipse(Brushes.Yellow, dron.X, dron.Y, dron.Ancho, dron.Alto);
+                }
+
+            }
+            foreach (var misil in listaMisiles)
+            {
+                e.Graphics.FillRectangle(Brushes.Red, misil.X, misil.Y, misil.Ancho, misil.Alto);
             }
 
         }
@@ -174,11 +220,11 @@ namespace Poke_tank
                     if (listaDrones[i].Bounds.Contains(e.Location))
                     {
                         listaDrones.RemoveAt(i);
-                        dronesDerrotados++;
-                        dronesParaGanar--;
+                        derribos++;
+                        derribosParaGanar--;
                         puntuacion += 10;
 
-                        if (dronesParaGanar == 0)
+                        if (derribosParaGanar == 0)
                         {
                             victoria = true;
 
@@ -187,7 +233,28 @@ namespace Poke_tank
                             timerGenerador.Stop();
                         }
 
-                        break; 
+                        return; 
+                    }
+                }
+                for (int i = listaMisiles.Count - 1; i >= 0; i--)
+                {
+                    if (listaMisiles[i].Bounds.Contains(e.Location))
+                    {
+                        listaMisiles.RemoveAt(i);
+                        derribos++;
+                        derribosParaGanar--;
+                        puntuacion += 10;
+
+                        if (derribosParaGanar == 0)
+                        {
+                            victoria = true;
+
+                            this.Invalidate();
+                            gameTimer.Stop();
+                            timerGenerador.Stop();
+                        }
+
+                        return;
                     }
                 }
             }
