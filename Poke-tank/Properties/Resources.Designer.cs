@@ -193,6 +193,16 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap luna_luna_de_frente_batalla {
+            get {
+                object obj = ResourceManager.GetObject("luna luna de frente batalla", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap M1Abrams_1 {
             get {
                 object obj = ResourceManager.GetObject("M1Abrams_1", resourceCulture);
@@ -216,6 +226,16 @@ namespace Poke_tank.Properties {
         internal static System.Drawing.Bitmap MAPA_FLAVIO_S_ADVENTURES_FONDO {
             get {
                 object obj = ResourceManager.GetObject("MAPA FLAVIO\'S ADVENTURES FONDO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap marcel_de_frente_batalla {
+            get {
+                object obj = ResourceManager.GetObject("marcel de frente batalla", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

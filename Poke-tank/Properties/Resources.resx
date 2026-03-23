@@ -202,4 +202,10 @@
   <data name="MASCARA_MAPA_FINAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MASCARA_MAPA_FINAL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="luna luna de frente batalla" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>C:\Users\LOQ 15AIX9\Downloads\assets y recursos flavio tank\luna luna\luna luna de frente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marcel de frente batalla" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>C:\Users\LOQ 15AIX9\Downloads\assets y recursos flavio tank\marcel\marcel de frente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

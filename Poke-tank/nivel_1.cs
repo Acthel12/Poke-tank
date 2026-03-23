@@ -22,7 +22,7 @@ namespace Poke_tank
 
         //explosion
         List<Explosion_Nivel_1> listaExplosiones = new List<Explosion_Nivel_1>();
-        Image imgExplosion = Properties.Resources.explosion; // Reemplaza por tu imagen real
+        Image imgExplosion = Properties.Resources.explosion;
 
         //IMÁGENES PRE-CARGADAS
         Bitmap imgJugador;
@@ -62,7 +62,7 @@ namespace Poke_tank
             fondoBuffered = new Bitmap(Properties.Resources.fondoNivel1, this.ClientSize.Width, this.ClientSize.Height);
             // --- CARGAR IMÁGENES DESDE RESOURCES ---
             imgJugador = new Bitmap(Properties.Resources.flavio_de_espalda_batalla);
-            imgEnemigo = new Bitmap(Properties.Resources.enemigo_prueba);
+            imgEnemigo = new Bitmap(Properties.Resources.luna_luna_de_frente_batalla);
             imgDefensa = new Bitmap(Properties.Resources.flavio_escudo);
 
             // CARGAMOS LAS BALAS

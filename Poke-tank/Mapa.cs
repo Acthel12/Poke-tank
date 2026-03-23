@@ -143,7 +143,7 @@ namespace Poke_tank
                     }
                     else
                     {
-                        // Es negro o gris: ¡Pared detectada! No actualizamos posición.
+                        // Es negro o gris, no se mueve el personaje
                         isMoving = false;
                     }
                 }
@@ -167,6 +167,13 @@ namespace Poke_tank
                     }
 
                     // Te teletransporta a un punto válido del camino fuera de la zona
+
+                    // Forzamos a que todas las direcciones se apaguen.
+                    goUp = false;
+                    goDown = false;
+                    goLeft = false;
+                    goRight = false;
+
                     x = 543;
                     y = 438;
                 }
@@ -185,6 +192,13 @@ namespace Poke_tank
                         MessageBox.Show("Debes completar el nivel anterior para jugar.");
 
                         // Te teletransporta a un punto válido del camino fuera de la zona
+
+                        // Forzamos a que todas las direcciones se apaguen.
+                        goUp = false;
+                        goDown = false;
+                        goLeft = false;
+                        goRight = false;
+
                         x = 543;
                         y = 275;
 
@@ -202,6 +216,12 @@ namespace Poke_tank
                         }
 
                         // Te teletransporta a un punto válido del camino fuera de la zona
+                        // Forzamos a que todas las direcciones se apaguen.
+                        goUp = false;
+                        goDown = false;
+                        goLeft = false;
+                        goRight = false;
+
                         x = 543;
                         y = 275;
                     }
@@ -221,6 +241,12 @@ namespace Poke_tank
                         MessageBox.Show("Debes completar el nivel anterior para jugar.");
 
                         // Te teletransporta a un punto válido del camino fuera de la zona
+                        // Forzamos a que todas las direcciones se apaguen.
+                        goUp = false;
+                        goDown = false;
+                        goLeft = false;
+                        goRight = false;
+
                         x = 867;
                         y = 321;
 
@@ -238,6 +264,11 @@ namespace Poke_tank
                         }
 
                         // Te teletransporta a un punto válido del camino fuera de la zona
+                        // Forzamos a que todas las direcciones se apaguen.
+                        goUp = false;
+                        goDown = false;
+                        goLeft = false;
+                        goRight = false;
                         x = 867;
                         y = 321;
                     }
@@ -249,6 +280,11 @@ namespace Poke_tank
                     AbrirFormulario(new tienda());
 
                     // Te teletransporta a un punto válido del camino fuera de la zona
+                    // Forzamos a que todas las direcciones se apaguen.
+                    goUp = false;
+                    goDown = false;
+                    goLeft = false;
+                    goRight = false;
                     x = 694;
                     y = 275;
                 }
@@ -279,6 +315,12 @@ namespace Poke_tank
                 sonidoMotor.Stop();
                 sonidoEstaReproduciendo = false;
             }
+
+            // Forzamos a que todas las direcciones se apaguen.
+            goUp = false;
+            goDown = false;
+            goLeft = false;
+            goRight = false;
 
             // ShowDialog() pausa el mapa y espera a que el nivel termine.
             // Guardamos el resultado (Ganó o Perdió) en esta variable:
