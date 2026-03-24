@@ -63,6 +63,16 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bala_marcel {
+            get {
+                object obj = ResourceManager.GetObject("bala marcel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bola_amarilla_bailando {
             get {
                 object obj = ResourceManager.GetObject("bola amarilla bailando", resourceCulture);
@@ -106,6 +116,26 @@ namespace Poke_tank.Properties {
         internal static System.Drawing.Bitmap def_GIF_FONDO_MENU_PPAL_FLAVIO_ADVENTURES {
             get {
                 object obj = ResourceManager.GetObject("def GIF FONDO MENU PPAL FLAVIO ADVENTURES", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap diferencial_secuaz_marcel {
+            get {
+                object obj = ResourceManager.GetObject("diferencial secuaz marcel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dron_marcel {
+            get {
+                object obj = ResourceManager.GetObject("dron marcel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,6 +263,16 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap marcel_con_escudo {
+            get {
+                object obj = ResourceManager.GetObject("marcel con escudo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap marcel_de_frente_batalla {
             get {
                 object obj = ResourceManager.GetObject("marcel de frente batalla", resourceCulture);
@@ -256,6 +296,16 @@ namespace Poke_tank.Properties {
         internal static System.Drawing.Bitmap MASCARA_MAPA_FINAL {
             get {
                 object obj = ResourceManager.GetObject("MASCARA_MAPA_FINAL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap misil_dron_marcel {
+            get {
+                object obj = ResourceManager.GetObject("misil dron marcel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

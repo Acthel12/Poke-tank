@@ -88,10 +88,10 @@ namespace Poke_tank
             imgDefensa = new Bitmap(Properties.Resources.flavio_escudo);
 
             // --- REEMPLAZA ESTOS RECURSOS POR LOS TUYOS ---
-            imgEscudoEnemigo = new Bitmap(Properties.Resources.flavio_escudo); // Usa aquí tu imagen de escudo protector para el jefe
-            imgEnemigoApoyo = new Bitmap(Properties.Resources.marcel_de_frente_batalla); // Usa aquí tu tanque de apoyo
-            imgDron = new Bitmap(Properties.Resources.marcel_de_frente_batalla); // Usa aquí tu imagen de dron
-            imgMisil = new Bitmap(Properties.Resources.bola_de_fuego_arriba); // Usa aquí tu misil
+            imgEscudoEnemigo = new Bitmap(Properties.Resources.marcel_con_escudo); // Usa aquí tu imagen de escudo protector para el jefe
+            imgEnemigoApoyo = new Bitmap(Properties.Resources.diferencial_secuaz_marcel); // Usa aquí tu tanque de apoyo
+            imgDron = new Bitmap(Properties.Resources.dron_marcel); // Usa aquí tu imagen de dron
+            imgMisil = new Bitmap(Properties.Resources.misil_dron_marcel); // Usa aquí tu misil
             imgMisil.RotateFlip(RotateFlipType.Rotate180FlipNone);
 
             imgAnimacionFin = Properties.Resources.explosion; // Usa aquí tu GIF de explosión o animación de derrota
@@ -99,8 +99,9 @@ namespace Poke_tank
             // --- GIF PARA EL EVENTO DE FASE 3 ---
             imgEventoFase3 = Properties.Resources.explosion; // Usa aquí tu GIF para el evento sorpresa de la Fase 3
 
+            //BALAS
             imgBalaJugador = new Bitmap(Properties.Resources.bola_de_fuego_arriba);
-            imgBalaEnemiga = new Bitmap(Properties.Resources.bola_de_fuego_arriba);
+            imgBalaEnemiga = new Bitmap(Properties.Resources.bala_marcel);
             imgBalaEnemiga.RotateFlip(RotateFlipType.Rotate180FlipNone);
 
             int anchoTanque = 250;
