@@ -33,6 +33,7 @@
             aviso = new Label();
             timerAviso = new System.Windows.Forms.Timer(components);
             timerFinBatalla = new System.Windows.Forms.Timer(components);
+            timerEventoFase3 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // GameTimer
@@ -85,5 +86,6 @@
         private Label aviso;
         private System.Windows.Forms.Timer timerAviso;
         private System.Windows.Forms.Timer timerFinBatalla;
+        private System.Windows.Forms.Timer timerEventoFase3;
     }
 }

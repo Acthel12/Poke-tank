@@ -56,6 +56,12 @@ namespace Poke_tank
         Random iaRandom = new Random();
         bool enemigoTieneEscudo = true;
         int cooldownDisparoEnemigo = 0; // Tiempo de espera entre disparos
+        int cooldownBastonEnemigo = 0; // Tiempo de espera para disparar pequeñas balas
+
+        // --- OFFSETS DEL BASTÓN (PARA BALAS PEQUEÑAS DE FASE 3) ---
+        // AJUSTA ESTOS DOS VALORES PARA QUE SALGAN EXACTO EN LA PUNTA DEL BASTÓN
+        int offsetX_Baston = 50;  // Posición X (ej. un valor positivo lo mueve a la derecha)
+        int offsetY_Baston = 100; // Posición Y (hacia abajo)
 
         // --- LISTAS PARA ENEMIGOS NUEVOS ---
         List<EnemigoApoyo_Nivel_3> listaApoyos = new List<EnemigoApoyo_Nivel_3>();
@@ -67,7 +73,6 @@ namespace Poke_tank
         // --- SISTEMA EVENTO FASE 3 ---
         Image imgEventoFase3;
         PictureBox pictureBoxEventoFase3 = new PictureBox();
-        Timer timerEventoFase3 = new Timer();
         bool juegoPausadoEvento = false;
 
         public nivel_3()
@@ -248,7 +253,9 @@ namespace Poke_tank
                 Image imagenBalaActual = imgBalaEnemiga;
                 if (b.IDDueño == 1 || b.IDDueño == 5) imagenBalaActual = imgBalaJugador;
                 if (b.IDDueño == 4) imagenBalaActual = imgMisil; // Usar bala nueva para los misiles
-                g.DrawImage(imagenBalaActual, b.X, b.Y, 80, 80);
+                if (b.IDDueño == 6) imagenBalaActual = imgBalaEnemiga; // Bastón (puede ser reemplazada por otra luego)
+                
+                g.DrawImage(imagenBalaActual, b.X, b.Y, b.Ancho, b.Alto);
             }
 
             // Explosiones
@@ -350,6 +357,7 @@ namespace Poke_tank
 
             // IA Jefe (Solamente quieto disparando según la fase)
             if (saludEnemigo > 0 && cooldownDisparoEnemigo > 0) cooldownDisparoEnemigo--;
+            if (faseBatalla == 3 && saludEnemigo > 0 && cooldownBastonEnemigo > 0) cooldownBastonEnemigo--;
 
             // Re-evaluar necesidad de Disparo (sólo si vive)
             if (saludEnemigo > 0 && cooldownDisparoEnemigo <= 0)
@@ -359,6 +367,16 @@ namespace Poke_tank
                 {
                     DispararBolaDeFuego(2, boundsEnemigo);
                     cooldownDisparoEnemigo = 25;
+                }
+            }
+
+            // IA Bastón (Solo Fase 3)
+            if (faseBatalla == 3 && saludEnemigo > 0 && cooldownBastonEnemigo <= 0)
+            {
+                if (iaRandom.Next(0, 30) == 1) // Probabilidad de disparo del bastón
+                {
+                    DispararBaston(boundsEnemigo);
+                    cooldownBastonEnemigo = 15; // Más rápido que el disparo principal
                 }
             }
 
@@ -396,7 +414,10 @@ namespace Poke_tank
                 if (b.IDDueño == 1 || b.IDDueño == 5) b.Y -= 15; // Bala del jugador o misil rebotado
                 else b.Y += (b.IDDueño == 4) ? 12 : 10; // Bala enemiga (Misil es más rápido)
 
-                // Posibilidad de que la bala del jefe siga al jugador (IDDueño == 2)
+                // Movimiento lateral (solo balas con VelocidadX como las del jefe en Fase 3)
+                b.X += b.VelocidadX;
+
+                // Posibilidad de que la bala normal del jefe siga al jugador (Fase 1 y 2, o central Fase 3)
                 if (b.IDDueño == 2 && b.SigueJugador)
                 {
                     if (b.X + 40 < boundsJugador.X + boundsJugador.Width / 2) b.X += 2; // Rastreando suavemente
@@ -491,7 +512,10 @@ namespace Poke_tank
                             listaExplosiones.Add(new Explosion_Nivel_3(b.X, b.Y, 15));
                             balaEliminada = true;
 
-                            int dmg = (b.IDDueño == 4) ? 20 : 10; // Misil hace mucho daño
+                            int dmg = 10; // Bala normal
+                            if (b.IDDueño == 4) dmg = 20; // Misil hace mucho daño
+                            if (b.IDDueño == 6) dmg = 5;  // Bastón hace menos daño
+
                             saludJugador -= dmg;
                             if (saludJugador <= 0)
                             {
@@ -530,12 +554,34 @@ namespace Poke_tank
 
             bool conRastreo = (idDueño == 2 && iaRandom.Next(10) == 0); // Balas principales tienen prob de rastrear 10%
 
+            if (idDueño == 2 && faseBatalla == 3)
+            {
+                // Disparo de 3 balas en Fase 3
+                listaBalas.Add(new Bala_Nivel_3 { X = posicionX, Y = posicionY, IDDueño = 2, SigueJugador = false, VelocidadX = 0, Ancho = anchoBala, Alto = altoBala });
+                listaBalas.Add(new Bala_Nivel_3 { X = posicionX, Y = posicionY, IDDueño = 2, SigueJugador = false, VelocidadX = -3, Ancho = anchoBala, Alto = altoBala }); // Izquierda
+                listaBalas.Add(new Bala_Nivel_3 { X = posicionX, Y = posicionY, IDDueño = 2, SigueJugador = false, VelocidadX = 3, Ancho = anchoBala, Alto = altoBala }); // Derecha
+            }
+            else
+            {
+                // Bala normal predeterminada
+                listaBalas.Add(new Bala_Nivel_3 { X = posicionX, Y = posicionY, IDDueño = idDueño, SigueJugador = conRastreo, VelocidadX = 0, Ancho = anchoBala, Alto = altoBala });
+            }
+        }
+
+        private void DispararBaston(Rectangle posJefe)
+        {
+            float posX = posJefe.X + offsetX_Baston;
+            float posY = posJefe.Y + offsetY_Baston;
+
             listaBalas.Add(new Bala_Nivel_3
             {
-                X = posicionX,
-                Y = posicionY,
-                IDDueño = idDueño,
-                SigueJugador = conRastreo
+                X = posX,
+                Y = posY,
+                IDDueño = 6, // Identificador de Bala Pequeña del Bastón
+                SigueJugador = false,
+                VelocidadX = 0,
+                Ancho = 30, // Mucho más pequeñas
+                Alto = 30
             });
         }
 
@@ -603,9 +649,12 @@ namespace Poke_tank
         public float X { get; set; }
         public float Y { get; set; }
         public int IDDueño { get; set; } 
-        // 1=Jugador, 2=JefeCentral, 3=Apoyos, 4=Drones(Misiles), 5=MisilRebotado
+        // 1=Jugador, 2=JefeCentral, 3=Apoyos, 4=Drones(Misiles), 5=MisilRebotado, 6=Baston
         public bool SigueJugador { get; set; }
-        public Rectangle Bounds => new Rectangle((int)X, (int)Y, 20, 20);
+        public float VelocidadX { get; set; } // Para las balas diagonales
+        public int Ancho { get; set; } = 80;
+        public int Alto { get; set; } = 80;
+        public Rectangle Bounds => new Rectangle((int)X, (int)Y, Ancho, Alto);
     }
 
     public class Explosion_Nivel_3
