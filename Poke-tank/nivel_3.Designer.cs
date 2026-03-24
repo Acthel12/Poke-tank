@@ -32,6 +32,7 @@
             GameTimer = new System.Windows.Forms.Timer(components);
             aviso = new Label();
             timerAviso = new System.Windows.Forms.Timer(components);
+            timerFinBatalla = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // GameTimer
@@ -68,7 +69,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
             MaximizeBox = false;
-            Name = "Batalla_Mejorada";
+            Name = "nivel_3";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Batalla_Mejorada";
             Paint += Batalla_Paint;
@@ -83,5 +84,6 @@
         private System.Windows.Forms.Timer GameTimer;
         private Label aviso;
         private System.Windows.Forms.Timer timerAviso;
+        private System.Windows.Forms.Timer timerFinBatalla;
     }
 }
