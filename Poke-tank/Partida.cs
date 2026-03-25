@@ -20,8 +20,8 @@ namespace Poke_tank
         public List<TanqueEnemigo> enemigos { get; set; }
         public Puntuacion puntuacion { get; set; } //quiero que se guarde la puntuacion de la partida para mostrarla al cargar partidas
         public DateTime fechaCreacion { get; set; } //para mostrar la fecha de creación de la partida en la lista de partidas guardadas
-
         public NivelDificultad Dificultad { get; set; }
+        public int Oro { get; set; }
 
         //nombres para escoger al azar para los tanques enemigos según su modelo
 
