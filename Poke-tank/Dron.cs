@@ -20,7 +20,7 @@ namespace Poke_tank
         public float TiempoVuelo { get; set; }
 
         public float TiempoAnimacion { get; set; }
-        public int FrameActual { get; set; } = 1;
+        public int FrameActual { get; set; } = 0;
 
         private static Random rnd = new Random();
 
@@ -31,7 +31,7 @@ namespace Poke_tank
         public Dron(float startingY)
         {
             Ancho = 150;
-            Alto = 150;
+            Alto = 100;
 
 
             X = 0;
@@ -53,14 +53,14 @@ namespace Poke_tank
 
         public void Actualizar(float deltatime,float anchoPantalla, float altoPantalla)
         {
+            TiempoAnimacion += deltatime;
+            TiempoVuelo += deltatime;
+
             if (Fase == 1)
             {
-                TiempoAnimacion += deltatime;
-                TiempoVuelo += deltatime;
-
-                if (TiempoVuelo >= 0.15f)
+                if (TiempoAnimacion >= 0.15f)
                 {
-                    FrameActual = FrameActual == 1 ? 2 : 1;
+                    FrameActual = FrameActual == 0 ? 1 : 0;
                     TiempoAnimacion = 0;
                 }
 
@@ -74,9 +74,10 @@ namespace Poke_tank
                 if (X >= anchoPantalla - Ancho)
                 {
                     Fase = 2;
+                    FrameActual = 2;
 
                     Alto = 15;
-                    Ancho = 15;
+                    Ancho = 30;
 
                     int minX = (int)(anchoPantalla * 0.1f);
                     int maxX = (int)(anchoPantalla * 0.9f);
@@ -87,11 +88,15 @@ namespace Poke_tank
             }
             else if (Fase == 2)
             {
-                TiempoVuelo += deltatime;
+                if (TiempoAnimacion >= 0.15f)
+                {
+                    FrameActual = FrameActual == 2 ? 3 : 2;
+                    TiempoAnimacion = 0;
+                }
 
                 float crecimiento = VelocidadAcercamiento * deltatime;
 
-                Ancho += crecimiento;
+                Ancho += crecimiento * 2;
                 Alto += crecimiento;
 
                 X -= crecimiento / 2;

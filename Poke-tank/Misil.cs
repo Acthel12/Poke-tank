@@ -21,11 +21,13 @@ namespace Poke_tank
 
         private static Random rnd = new Random();
 
+        public int FrameActual { get; set; } = 0;
+        public float TiempoAnimacion { get; set; } 
 
         public Misil(float startingY)
         {
-            Ancho = 50;
-            Alto = 50;
+            Ancho = 150;
+            Alto = 100;
 
 
             X = 0;
@@ -43,13 +45,21 @@ namespace Poke_tank
 
         public void Actualizar(float deltatime,float anchoPantalla, float altoPantalla)
         {
+
+            TiempoAnimacion += deltatime;
+            TiempoVuelo += deltatime;
+
             const float gravedad = 200.0f; //ajustar para controlar la caída
+
+
             if (Fase == 1)
             {
-                TiempoVuelo += deltatime;
-
-
-
+                if (TiempoAnimacion >= 0.15f) // Cambia el fuego del propulsor cada 0.15 segundos
+                {
+                    FrameActual = (FrameActual == 0) ? 1 : 0;
+                    TiempoAnimacion = 0;
+                }
+                
                 X += VelocidadHorizontal *  DireccionFase1 * deltatime;
 
                 Y += gravedad * TiempoVuelo * deltatime;
@@ -58,9 +68,10 @@ namespace Poke_tank
                 if (X >= anchoPantalla - Ancho)
                 {
                     Fase = 2;
+                    FrameActual = 2;
 
                     Alto = 15;
-                    Ancho = 15;
+                    Ancho = 30;
 
                     int minX = (int)(anchoPantalla * 0.1f);
                     int maxX = (int)(anchoPantalla * 0.9f);
@@ -71,11 +82,13 @@ namespace Poke_tank
             }
             else if (Fase == 2)
             {
-                TiempoVuelo += deltatime;
-
+                
                 float crecimiento = VelocidadAcercamiento * deltatime;
 
-                Ancho += crecimiento;
+
+
+
+                Ancho += crecimiento * 2.0f; // para que mantenga la proporcion
                 Alto += crecimiento;
 
                 X -= crecimiento / 2;

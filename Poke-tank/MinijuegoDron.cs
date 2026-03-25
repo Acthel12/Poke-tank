@@ -28,8 +28,10 @@ namespace Poke_tank
         int derribos = 0;
         bool victoria = false;
 
-        Bitmap frameDron1;
-        Bitmap frameDron2;
+        Bitmap[] framesDron = new Bitmap[4];
+
+        Bitmap[] framesMisil = new Bitmap[3];
+
 
         public MinijuegoDron()
         {
@@ -44,8 +46,14 @@ namespace Poke_tank
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            frameDron1 = Properties.Resources.Dron1;
-            frameDron2 = Properties.Resources.Dron2;
+            framesDron[0] = Properties.Resources.Dron1;
+            framesDron[1] = Properties.Resources.Dron2;
+            framesDron[2] = Properties.Resources.Dron3;
+            framesDron[3] = Properties.Resources.Dron4;
+
+            framesMisil[0] = Properties.Resources.Misil1;
+            framesMisil[1] = Properties.Resources.Misil2;
+            framesMisil[2] = Properties.Resources.Misil3;
 
             gameTimer.Interval = 16;
             gameTimer.Tick += GameTimer_Tick;
@@ -188,9 +196,8 @@ namespace Poke_tank
 
             foreach (var dron in listaDrones)
             {
-                //e.Graphics.FillEllipse(Brushes.Yellow, dron.X, dron.Y, dron.Ancho, dron.Alto);
 
-                Bitmap imagenADibujar = dron.FrameActual == 1? frameDron1: frameDron2;
+                Bitmap imagenADibujar = framesDron[dron.FrameActual];
                 
                 if (imagenADibujar != null)
                 {
@@ -204,7 +211,16 @@ namespace Poke_tank
             }
             foreach (var misil in listaMisiles)
             {
-                e.Graphics.FillRectangle(Brushes.Red, misil.X, misil.Y, misil.Ancho, misil.Alto);
+                Bitmap imagenADibujar = framesMisil[misil.FrameActual];
+
+                if (imagenADibujar != null)
+                {
+                    e.Graphics.DrawImage(imagenADibujar, misil.X, misil.Y, misil.Ancho, misil.Alto);
+                }
+                else
+                {
+                    e.Graphics.FillEllipse(Brushes.Yellow, misil.X, misil.Y, misil.Ancho, misil.Alto);
+                }   
             }
 
         }
