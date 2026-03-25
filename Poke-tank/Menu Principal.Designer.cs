@@ -89,7 +89,7 @@
             botonPuntuaciones.Name = "botonPuntuaciones";
             botonPuntuaciones.Size = new Size(209, 35);
             botonPuntuaciones.TabIndex = 4;
-            botonPuntuaciones.Text = "Ver puntuaciones";
+            botonPuntuaciones.Text = "Historial De Partidas";
             botonPuntuaciones.UseVisualStyleBackColor = false;
             botonPuntuaciones.Click += botonPuntuaciones_Click;
             // 

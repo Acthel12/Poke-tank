@@ -72,6 +72,7 @@
             Name = "Mapa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Flavio's Tank Adventure";
+            FormClosed += Mapa_FormClosed;
             Load += Mapa_Load;
             Paint += DrawGame;
             KeyDown += KeyIsDown;

@@ -5,6 +5,12 @@ using System.Windows.Forms;
 
 namespace Poke_tank
 {
+    public enum NivelDificultad
+    {
+        Facil,
+        Normal,
+        Dificil
+    }
     public class Partida
     {
         private Random random = new Random();
@@ -14,6 +20,8 @@ namespace Poke_tank
         public List<TanqueEnemigo> enemigos { get; set; }
         public Puntuacion puntuacion { get; set; } //quiero que se guarde la puntuacion de la partida para mostrarla al cargar partidas
         public DateTime fechaCreacion { get; set; } //para mostrar la fecha de creación de la partida en la lista de partidas guardadas
+        public NivelDificultad Dificultad { get; set; }
+        public int Oro { get; set; }
 
         //nombres para escoger al azar para los tanques enemigos según su modelo
 
@@ -58,7 +66,7 @@ namespace Poke_tank
         }
 
         //crea una nueva partida
-        public static void iniciarPartida(string nombreJugador, string modelo, int vida, int ataque, int defensa, int velocidad)
+        public static void iniciarPartida(string nombreJugador, string modelo, int vida, int ataque, int defensa, int velocidad, NivelDificultad dificultad)
         {
             //crea tanque del jugador
             Tanque jugador = new Tanque(nombreJugador, modelo, vida, ataque, defensa, velocidad);
@@ -66,6 +74,7 @@ namespace Poke_tank
             //crea partida y agregar a datos globales
             Partida nueva = new Partida(jugador);
             nueva.CalcularPuntuacion(); //inicializa la puntuación de la partida
+            nueva.Dificultad = dificultad;
 
             DatosGlobales.ListaPartidas.Add(nueva);
             DatosGlobales.PartidaActualIndex = DatosGlobales.ListaPartidas.Count - 1;
@@ -112,7 +121,7 @@ namespace Poke_tank
         //Funcion para calcular la puntuación al finalizar la partida, basada en el número de enemigos derrotados y se muestra al usuario
         public void CalcularPuntuacion()
         {
-            this.puntuacion = new Puntuacion(this.tanqueUsuario.Nombre, this.enemigosDerrotados);
+            this.puntuacion = new Puntuacion(this.tanqueUsuario.Nombre, this.enemigosDerrotados, this.Dificultad);
         }
     }
 }

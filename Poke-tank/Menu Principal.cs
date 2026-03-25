@@ -18,9 +18,12 @@ namespace Poke_tank
         private void botonIniciarPartida_Click(object sender, EventArgs e)
         {
             Mapa from1 = new Mapa();
-            Partida.iniciarPartida("Comandante Flavio Rosales", "M1A1", 140, 30, 10, 14);
+            NuevaPartida from2 = new NuevaPartida();
 
-            from1.ShowDialog();
+            from2.ShowDialog();
+
+            if (DatosGlobales.PartidaActualIndex >= 0 ) 
+                from1.ShowDialog();
         }
         //mostrar puntuaciones con el boton
         private void botonPuntuaciones_Click(object sender, EventArgs e)

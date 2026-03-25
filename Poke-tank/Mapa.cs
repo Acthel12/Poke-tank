@@ -419,7 +419,8 @@ namespace Poke_tank
                     //registramos la puntuación una sola vez al final
                     Puntuacion recordFinal = new Puntuacion(
                         partida.tanqueUsuario.Nombre,
-                        partida.enemigosDerrotados
+                        partida.enemigosDerrotados,
+                        partida.Dificultad
                     );
 
                     DatosGlobales.ListaPuntuaciones.Add(recordFinal);
@@ -506,6 +507,11 @@ namespace Poke_tank
         {
             nivel_1 from1 = new nivel_1();
             from1.ShowDialog();
+        }
+        
+        private void Mapa_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DatosGlobales.PartidaActualIndex = -1; //reiniciamos el índice de la partida actual al cerrar el mapa para evitar problemas al regresar al menús
         }
     }
 }

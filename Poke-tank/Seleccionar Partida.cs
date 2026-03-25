@@ -68,7 +68,8 @@ namespace Poke_tank
                 Nombre_Tanque = p.tanqueUsuario.Nombre,
                 Enemigos_Derrotados = p.enemigosDerrotados.Count,
                 Fecha_Partida = p.fechaCreacion.ToString("dd/MM/yyyy HH:mm:ss"),
-                Puntuacion = p.puntuacion.PuntosTotales
+                Puntuacion = p.puntuacion.PuntosTotales,
+                Dificultad = p.Dificultad.ToString()
             }).ToList();
 
             dgvPartidas.DataSource = partidasMostrar;
