@@ -63,6 +63,26 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bala_luis {
+            get {
+                object obj = ResourceManager.GetObject("bala luis", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bala_luna_luna {
+            get {
+                object obj = ResourceManager.GetObject("bala luna luna", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bala_marcel {
             get {
                 object obj = ResourceManager.GetObject("bala marcel", resourceCulture);
@@ -223,6 +243,36 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap luis_con_escudo {
+            get {
+                object obj = ResourceManager.GetObject("luis con escudo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap luis_quimica_de_frente {
+            get {
+                object obj = ResourceManager.GetObject("luis quimica de frente", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap luna_luna_con_escudo {
+            get {
+                object obj = ResourceManager.GetObject("luna luna con escudo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap luna_luna_de_frente_batalla {
             get {
                 object obj = ResourceManager.GetObject("luna luna de frente batalla", resourceCulture);
@@ -253,6 +303,16 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MAPA_BASE_CENTRAL {
+            get {
+                object obj = ResourceManager.GetObject("MAPA BASE CENTRAL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MAPA_FLAVIO_S_ADVENTURES_FONDO {
             get {
                 object obj = ResourceManager.GetObject("MAPA FLAVIO\'S ADVENTURES FONDO", resourceCulture);
@@ -276,6 +336,16 @@ namespace Poke_tank.Properties {
         internal static System.Drawing.Bitmap marcel_de_frente_batalla {
             get {
                 object obj = ResourceManager.GetObject("marcel de frente batalla", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MASCARA_BASE {
+            get {
+                object obj = ResourceManager.GetObject("MASCARA_BASE", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

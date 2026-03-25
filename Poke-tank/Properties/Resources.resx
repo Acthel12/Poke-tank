@@ -223,4 +223,25 @@
   <data name="marcel con escudo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\marcel con escudo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="MASCARA_BASE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MASCARA_BASE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="luis quimica de frente" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\luis quimica de frente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bala luis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>C:\Users\LOQ 15AIX9\Downloads\assets y recursos flavio tank\luis quimica\bala luis.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bala luna luna" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>C:\Users\LOQ 15AIX9\Downloads\assets y recursos flavio tank\luna luna\bala luna luna.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="luis con escudo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\luis con escudo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="luna luna con escudo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\luna luna con escudo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MAPA BASE CENTRAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MAPA BASE CENTRAL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +12,12 @@ namespace Poke_tank
     {
         //para saber si el juego termino
         bool juegoTerminado = false;
+
+        // --- CONTROLES VISUALES UI ---
+        string textoInstrucciones = "";
+        bool keyA_Pressed = false, keyD_Pressed = false, keyQ_Pressed = false, keyE_Pressed = false;
+        Image imgKeyANormal, imgKeyAPressed, imgKeyDNormal, imgKeyDPressed;
+        Image imgKeyQNormal, imgKeyQPressed, imgKeyENormal, imgKeyEPressed;
 
         //balas
         List<Bala_Nivel_1> listaBalas = new List<Bala_Nivel_1>();
@@ -27,15 +33,16 @@ namespace Poke_tank
         //IMÁGENES PRE-CARGADAS
         Bitmap imgJugador;
         Bitmap imgEnemigo;
-        Bitmap imgDefensa; // La versión con escudo
+        Bitmap imgDefensa;
+        Bitmap imgEscudoEnemigo;
 
-        // Definimos los rectángulos de colisión para usarlos más fácil
+        //rectángulos de colisión
         Rectangle boundsJugador = new Rectangle(100, 400, 60, 60);
         Rectangle boundsEnemigo = new Rectangle(300, 50, 60, 60);
 
-        // Variables de movimiento y estado
+        //variables de movimiento y estado
         bool moverIzquierda, moverDerecha, defendiendo;
-        int velocidadTanque = 5;
+        int velocidadTanque = 5 + DatosGlobales.BonusVelocidadGlobal;
         int saludEnemigoMax = 100;
         int saludEnemigo = 100;
         private Bitmap fondoBuffered;
@@ -58,18 +65,29 @@ namespace Poke_tank
             this.DoubleBuffered = true;
             this.KeyPreview = true;
             // Pre-renderizamos el fondo una sola vez:
-            // Esto "dibuja" el fondo en una memoria rápida.
             fondoBuffered = new Bitmap(Properties.Resources.fondoNivel1, this.ClientSize.Width, this.ClientSize.Height);
             // --- CARGAR IMÁGENES DESDE RESOURCES ---
             imgJugador = new Bitmap(Properties.Resources.flavio_de_espalda_batalla);
             imgEnemigo = new Bitmap(Properties.Resources.luna_luna_de_frente_batalla);
             imgDefensa = new Bitmap(Properties.Resources.flavio_escudo);
+            imgEscudoEnemigo = new Bitmap(Properties.Resources.luna_luna_con_escudo);
 
             // CARGAMOS LAS BALAS
             imgBalaJugador = new Bitmap(Properties.Resources.bola_de_fuego_arriba);
 
-            imgBalaEnemiga = new Bitmap(Properties.Resources.bola_de_fuego_arriba);
-            imgBalaEnemiga.RotateFlip(RotateFlipType.Rotate180FlipNone); // Volteamos la bala enemiga hacia abajo
+            imgBalaEnemiga = new Bitmap(Properties.Resources.bala_luna_luna);
+
+            // --- CARGAR IMÁGENES DE CONTROLES (REEMPLAZA POR TUS IMÁGENES DE TECLAS) ---
+            imgKeyANormal = Properties.Resources.flavio_escudo; //Tecla A Normal
+            imgKeyAPressed = Properties.Resources.explosion;   
+            imgKeyDNormal = Properties.Resources.flavio_escudo; // Tecla D
+            imgKeyDPressed = Properties.Resources.explosion;
+            imgKeyQNormal = Properties.Resources.flavio_escudo; // Tecla Q
+            imgKeyQPressed = Properties.Resources.explosion;
+            imgKeyENormal = Properties.Resources.flavio_escudo; // Tecla E
+            imgKeyEPressed = Properties.Resources.explosion;
+
+            textoInstrucciones = "NIVEL 1: Dispara al tanque enemigo hasta destruirlo. Usa el escudo (Q) para defenderte.";
 
             //tamaño de tanques
             int anchoTanque = 250;
@@ -88,9 +106,25 @@ namespace Poke_tank
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias; // Mejor calidad
             
             //Dibujar el fondo
-            if (fondoBuffered != null) g.DrawImage(fondoBuffered, 0, 0);
+            if (fondoBuffered != null) g.DrawImageUnscaled(fondoBuffered, 0, 0);
 
-            // Dibujamos cada bala de la lista
+            // DIBUJAR UI MANUALMENTE (OPTIMIZACIÓN PARA EVITAR LAG)
+            Font fInstrucciones = new Font("Arial", 12, FontStyle.Bold);
+            g.DrawString(textoInstrucciones, fInstrucciones, Brushes.Black, 22, 22); // sombra
+            g.DrawString(textoInstrucciones, fInstrucciones, Brushes.White, 20, 20);
+
+            int pbSize = 60;
+            int margin = 10;
+            int startX = this.ClientSize.Width - (pbSize * 4) - (margin * 4) - 20; 
+            int startY = this.ClientSize.Height - pbSize - margin - 20;
+
+            g.DrawImage(keyA_Pressed ? imgKeyAPressed : imgKeyANormal, startX, startY, pbSize, pbSize);
+            g.DrawImage(keyD_Pressed ? imgKeyDPressed : imgKeyDNormal, startX + pbSize + margin, startY, pbSize, pbSize);
+            g.DrawImage(keyQ_Pressed ? imgKeyQPressed : imgKeyQNormal, startX + pbSize*2 + margin*2, startY, pbSize, pbSize);
+            g.DrawImage(keyE_Pressed ? imgKeyEPressed : imgKeyENormal, startX + pbSize*3 + margin*3, startY, pbSize, pbSize);
+
+
+            //balas
             foreach (var b in listaBalas)
             {
                 // Si el dueño es 1 (Jugador) usa la bala que mira hacia arriba.
@@ -105,33 +139,33 @@ namespace Poke_tank
 
             if (saludEnemigo > 0)
             {
-                Image imgEnemigoActual = enemigoDefendiendo ? imgDefensa : imgEnemigo;
+                Image imgEnemigoActual = enemigoDefendiendo ? imgEscudoEnemigo : imgEnemigo;
                 g.DrawImage(imgEnemigoActual, boundsEnemigo);
 
-                // Barra de vida enemiga
+                //Barra de vida enemiga
                 int anchoBarraEnemigo = 150;
                 int altoBarraEnemigo = 15;
 
-                // Posición: Centrada justo encima del tanque
+                //Posición: Centrada justo encima del tanque
                 float xBarraEnemigo = boundsEnemigo.X + (boundsEnemigo.Width / 2) - (anchoBarraEnemigo / 2);
                 float yBarraEnemigo = boundsEnemigo.Y - 15;
 
-                // 1. Fondo gris de la barra
+                //Fondo gris de la barra
                 g.FillRectangle(Brushes.Gray, xBarraEnemigo, yBarraEnemigo, anchoBarraEnemigo, altoBarraEnemigo);
 
-                // 2. Calcular porcentaje de vida
+                //Calcular porcentaje de vida
                 float porcentajeVidaEnemigo = (float)saludEnemigo / saludEnemigoMax;
                 int anchoVidaActualEnemigo = (int)(anchoBarraEnemigo * porcentajeVidaEnemigo);
 
-                // 3. Elegir color según la salud (Verde -> Amarillo -> Rojo)
+                //Elegir color según la salud (Verde -> Amarillo -> Rojo)
                 Brush colorBarraEnemigo = Brushes.Green;
                 if (porcentajeVidaEnemigo < 0.3) colorBarraEnemigo = Brushes.Red;
                 else if (porcentajeVidaEnemigo < 0.6) colorBarraEnemigo = Brushes.Yellow;
 
-                // 4. Dibujar la vida restante
+                //Dibujar la vida restante
                 g.FillRectangle(colorBarraEnemigo, xBarraEnemigo, yBarraEnemigo, anchoVidaActualEnemigo, altoBarraEnemigo);
 
-                // 5. Borde negro
+                //Borde negro
                 g.DrawRectangle(Pens.Black, xBarraEnemigo, yBarraEnemigo, anchoBarraEnemigo, altoBarraEnemigo);
             }
 
@@ -141,26 +175,26 @@ namespace Poke_tank
                 int anchoBarraJugador = 150;
                 int altoBarraJugador = 15;
 
-                // Posición: Centrada justo encima de tu tanque
+                //Centrada justo encima de tu tanque
                 float xBarraJugador = boundsJugador.X + (boundsJugador.Width / 2) - (anchoBarraJugador / 2);
                 float yBarraJugador = boundsJugador.Y - 15;
 
-                // 1. Fondo gris de la barra
+                //Fondo gris de la barra
                 g.FillRectangle(Brushes.Gray, xBarraJugador, yBarraJugador, anchoBarraJugador, altoBarraJugador);
 
-                // 2. Calcular porcentaje de vida
+                //Calcular porcentaje de vida
                 float porcentajeVidaJugador = (float)saludJugador / saludJugadorMax;
                 int anchoVidaActualJugador = (int)(anchoBarraJugador * porcentajeVidaJugador);
 
-                // 3. Elegir color según la salud (Verde -> Amarillo -> Rojo)
+                //Elegir color según la salud (Verde -> Amarillo -> Rojo)
                 Brush colorBarraJugador = Brushes.Green;
                 if (porcentajeVidaJugador < 0.3) colorBarraJugador = Brushes.Red;
                 else if (porcentajeVidaJugador < 0.6) colorBarraJugador = Brushes.Yellow;
 
-                // 4. Dibujar la vida restante
+                //Dibujar la vida restante
                 g.FillRectangle(colorBarraJugador, xBarraJugador, yBarraJugador, anchoVidaActualJugador, altoBarraJugador);
 
-                // 5. Borde negro
+                //Borde negro
                 g.DrawRectangle(Pens.Black, xBarraJugador, yBarraJugador, anchoBarraJugador, altoBarraJugador);
             }
 
@@ -173,17 +207,17 @@ namespace Poke_tank
             //pantalla de victoria
             if (juegoTerminado)
             {
-                // 1. Crear un velo oscuro semitransparente (R, G, B, Alpha)
+                //fondo
                 using (SolidBrush velo = new SolidBrush(Color.FromArgb(150, 0, 0, 0)))
                 {
                     g.FillRectangle(velo, 0, 0, this.ClientSize.Width, this.ClientSize.Height);
                 }
 
-                // 2. Configurar la fuente y el mensaje
+                //Configurar la fuente y el mensaje
                 Font fuenteTitulo = new Font("Arial", 40, FontStyle.Bold);
                 Font fuenteSub = new Font("Arial", 14, FontStyle.Regular);
 
-                // Elegimos el mensaje dependiendo de tu salud
+                //Elegimos el mensaje dependiendo de la salud
                 string mensaje = (saludJugador <= 0) ? "¡GAME OVER!" : "¡VICTORIA!";
                 string subMensaje = (saludJugador <= 0) ? "Presiona ENTER para salir" : "Presiona ENTER para continuar";
 
@@ -206,74 +240,78 @@ namespace Poke_tank
         //EVENTO KEYDOWN: Cuando presionas una tecla
         private void Batalla_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.A) moverIzquierda = true;
-            if (e.KeyCode == Keys.D) moverDerecha = true;
+            if (e.KeyCode == Keys.A) { moverIzquierda = true; keyA_Pressed = true; }
+            if (e.KeyCode == Keys.D) { moverDerecha = true; keyD_Pressed = true; }
 
-            // Activar escudo
+            //Activar escudo
             if (e.KeyCode == Keys.Q && !defendiendo)
             {
                 defendiendo = true;
-                velocidadTanque = 2; // Reducimos la velocidad mientras el escudo está activo
+                velocidadTanque = 2 + DatosGlobales.BonusVelocidadGlobal; //Reducimos la velocidad mientras el escudo está activo
+                keyQ_Pressed = true;
                 this.Invalidate();
             }
 
-            // Disparar bola de fuego (Solo si NO está defendiendo)
+            //Disparar bola de fuego (Solo si NO está defendiendo)
             if (e.KeyCode == Keys.E)
             {
+                keyE_Pressed = true;
                 if (!defendiendo)
                 {
                     DispararBolaDeFuego(1, boundsJugador); // 1 es el jugador
                 }
                 else
                 {
-                    // MOSTRAR MENSAJE EN PANTALLA
+                    //MOSTRAR MENSAJE EN PANTALLA
                     aviso.Text = "¡No puedes disparar con el escudo activo!";
                     aviso.Left = boundsJugador.X;
                     aviso.Top = boundsJugador.Y - 30; // 30 píxeles por encima del tanque
                     aviso.Visible = true;
 
-                    // Reiniciamos el timer por si el usuario presiona muchas veces
+                    //Reiniciamos el timer por si el usuario presiona muchas veces
                     timerAviso.Stop();
                     timerAviso.Start();
                 }
             }
 
-            // Si el juego ya terminó (pantalla de victoria activa)
+            //Si el juego ya terminó
             if (juegoTerminado)
             {
-                // Al presionar Enter, guardamos el JSON y cerramos
+                //Al presionar Enter, guardamos el JSON y cerramos
                 if (e.KeyCode == Keys.Enter)
                 {
                     GuardarPartidaYSalir();
                 }
-                return; // Detenemos la ejecución para que no intente moverse o disparar
+                return; //Detenemos la ejecución para que no intente moverse o disparar
             }
         }
 
         //EVENTO KEYUP: Cuando sueltas una tecla
         private void Batalla_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.A) moverIzquierda = false;
-            if (e.KeyCode == Keys.D) moverDerecha = false;
+            if (e.KeyCode == Keys.A) { moverIzquierda = false; keyA_Pressed = false; }
+            if (e.KeyCode == Keys.D) { moverDerecha = false; keyD_Pressed = false; }
+            if (e.KeyCode == Keys.E) { keyE_Pressed = false; }
 
-            // Desactivar escudo
+            //Desactivar escudo
             if (e.KeyCode == Keys.Q)
             {
                 defendiendo = false;
-                velocidadTanque = 5;
+                velocidadTanque = 5 + DatosGlobales.BonusVelocidadGlobal;
+                keyQ_Pressed = false;
                 this.Invalidate();
             }
         }
 
         private void GameTimer_Tick(object sender, EventArgs e)
         {
-            // Si el juego terminó, no procesamos nada más
+            //Si el juego terminó, no procesamos nada más
             if (juegoTerminado)
             {
                 return;
             }
 
-            // Movimiento del jugador
+            //Movimiento del jugador
             if (moverIzquierda && boundsJugador.X > 0)
             {
                 boundsJugador.X -= velocidadTanque;
@@ -283,18 +321,18 @@ namespace Poke_tank
                 boundsJugador.X += velocidadTanque;
             }
 
-            // CEREBRO DE LA IA DEL ENEMIGO
+            //CEREBRO DE LA IA DEL ENEMIGO
             if (saludEnemigo > 0)
             {
-                // A) Movimiento de patrullaje
+                //Movimiento de patrullaje
                 int velEnemigoActual = enemigoDefendiendo ? 2 : velocidadEnemigo; // Más lento si usa escudo
                 boundsEnemigo.X += direccionEnemigo * velEnemigoActual;
 
-                // Rebotar en las paredes
+                //Rebotar en las paredes
                 if (boundsEnemigo.X <= 0) direccionEnemigo = 1;
                 if (boundsEnemigo.Right >= this.ClientSize.Width) direccionEnemigo = -1;
 
-                // B) Control del Escudo
+                //Control del Escudo
                 if (enemigoDefendiendo)
                 {
                     tiempoDefensaEnemigo--;
@@ -302,7 +340,7 @@ namespace Poke_tank
                 }
                 else
                 {
-                    // 1% de probabilidad de activar el escudo en cada tick (aprox. cada 2-3 segs)
+                    //1% de probabilidad de activar el escudo en cada tick (aprox. cada 2-3 segs)
                     if (iaRandom.Next(0, 100) == 1)
                     {
                         enemigoDefendiendo = true;
@@ -310,7 +348,7 @@ namespace Poke_tank
                     }
                 }
 
-                // C) Lógica de Disparo
+                //Lógica de Disparo
                 if (cooldownDisparoEnemigo > 0) cooldownDisparoEnemigo--;
 
                 if (!enemigoDefendiendo && cooldownDisparoEnemigo <= 0)
@@ -325,12 +363,12 @@ namespace Poke_tank
                 }
             }
 
-            // Movimiento y colisión de balas
+            //Movimiento y colisión de balas
             for (int i = listaBalas.Count - 1; i >= 0; i--)
             {
                 var b = listaBalas[i];
                 
-                // Si la bala es del jugador sube, si es del enemigo baja
+                //Si la bala es del jugador sube, si es del enemigo baja
                 if (b.IDDueño == 1) b.Y -= 15;
                 else if (b.IDDueño == 2) b.Y += 10; // La bala enemiga es un poco más lenta para que puedas esquivarla
                 
@@ -338,12 +376,11 @@ namespace Poke_tank
                 //Si la bala es del jugador (ID 1) y toca al enemigo
                 if (b.IDDueño == 1 && b.Bounds.IntersectsWith(boundsEnemigo))
                 {
-                    // Centramos la explosión en el punto de impacto. 
-                    // Usaremos una duración de 15 ticks (aprox 0.3 segundos si el timer va a 20ms).
+                    //Centramos la explosión en el punto de impacto. 
                     listaExplosiones.Add(new Explosion_Nivel_1(b.X, b.Y, 15));
                     listaBalas.RemoveAt(i);
 
-                    // Si el enemigo no tiene escudo, recibe daño
+                    //Si el enemigo no tiene escudo, recibe daño
                     if (!enemigoDefendiendo)
                     {
                         saludEnemigo -= 10;
@@ -359,7 +396,7 @@ namespace Poke_tank
                     listaExplosiones.Add(new Explosion_Nivel_1(b.X, b.Y, 15));
                     listaBalas.RemoveAt(i);
 
-                    // Si tú no tienes el escudo puesto, recibes daño
+                    //Si tú no tienes el escudo puesto, recibes daño
                     if (!defendiendo)
                     {
                         saludJugador -= 10;
@@ -368,13 +405,13 @@ namespace Poke_tank
                         if (saludJugador <= 0)
                         {
                             saludJugador = 0;
-                            juegoTerminado = true; // Detiene el timer y las acciones
+                            juegoTerminado = true;
                         }
                     }
                     continue;
                 }
 
-                // Limpiar balas que salen de la pantalla
+                //Limpiar balas que salen de la pantalla
                 if (b.Y < -50 || b.Y > this.ClientSize.Height + 50)
                 {
                     listaBalas.RemoveAt(i);
@@ -384,9 +421,9 @@ namespace Poke_tank
             for (int i = listaExplosiones.Count - 1; i >= 0; i--)
             {
                 var ex = listaExplosiones[i];
-                ex.ContadorVida++; // Envejecer
+                ex.ContadorVida++;
 
-                // Si su vida termina, la eliminamos de la lista
+                //Si su vida termina, la eliminamos de la lista
                 if (ex.ContadorVida >= ex.DuracionMaxima)
                 {
                     listaExplosiones.RemoveAt(i);
@@ -398,7 +435,7 @@ namespace Poke_tank
             {
                 saludEnemigo = 0;
                 juegoTerminado = true;
-                GameTimer.Stop(); // congelar todo
+                GameTimer.Stop(); //congelar todo
             }
 
             //Refresca el dibujo
@@ -411,23 +448,22 @@ namespace Poke_tank
             if (defendiendo && idDueño == 1) return;
             if (idDueño == 2 && enemigoDefendiendo) return;
 
-            // Tamaño de la bala
+            //Tamaño de la bala
             int anchoBala = 80;
             int altoBala = 80;
 
-            // Centrado horizontal
+            //Centrado horizontal
             int posicionX = posTirador.X + (posTirador.Width / 2) - (anchoBala / 2);
             int posicionY = 0;
 
             if (idDueño == 1)
             {
-                // JUGADOR: El cañón está arriba. Restamos para salir por el techo.
+                //JUGADOR
                 posicionY = posTirador.Y - altoBala;
             }
             else if (idDueño == 2)
             {
-                // ENEMIGO: Tu imagen tiene el cañón abajo. 
-                // Usamos .Bottom para que salga exactamente por el piso del rectángulo.
+                //ENEMIGO: Usamos .Bottom para que salga exactamente por el piso del rectángulo.
                 posicionY = posTirador.Bottom;
             }
 
@@ -442,17 +478,17 @@ namespace Poke_tank
         }
         private void timerAviso_Tick(object sender, EventArgs e)
         {
-            aviso.Visible = false; // Oculta el mensaje
-            timerAviso.Stop();        // Se detiene a sí mismo
+            aviso.Visible = false;
+            timerAviso.Stop();
         }
 
         //PROVISIONAL PARA GUARDAR LA VICTORIA EN EL JSON Y REGRESAR AL MENÚ PRINCIPAL. HAY QUE REHACER LA LOGICA DE REGISTRO DE ENEMIGOS.
         private void GuardarPartidaYSalir()
         {
-            // 1. Preparamos la lista requerida por Puntuacion.cs
+            //Preparamos la lista requerida por Puntuacion.cs
             List<TanqueEnemigo> tanquesDerrotados = new List<TanqueEnemigo>();
 
-            // 2. Evaluamos el resultado de la partida
+            //Evaluamos el resultado de la partida
             if (saludEnemigo <= 0)
             {
                 // GANASTE: Agregamos el tanque a la lista para que te dé los puntos
@@ -461,23 +497,21 @@ namespace Poke_tank
                 this.DialogResult = DialogResult.OK; //para que el menu sepa que puede avanzar al siguiente nivel
             }
             
-            // Si saludJugador <= 0 (PERDISTE) la lista queda vacía (0 puntos).
+            //Si saludJugador <= 0 (PERDISTE) la lista queda vacía (0 puntos).
             if (saludJugador <= 0 || tanquesDerrotados.Count == 0)
             {
                 this.DialogResult = DialogResult.Cancel; //para que el menu sepa que no puede avanzar al siguiente nivel
             }
 
-            // 3. Nombre del jugador (puedes enlazarlo a tu sistema de login si lo tienes)
             string nombreJugador = "Flavio";
 
-            // 4. Instanciar y guardar
-            // Si la lista está vacía, PuntosTotales será automáticamente 0 gracias a tu método CalcularPuntuacion()
+            //Instanciar y guardar
             Puntuacion nuevaPuntuacion = new Puntuacion(nombreJugador, tanquesDerrotados);
 
             DatosGlobales.ListaPuntuaciones.Add(nuevaPuntuacion);
             DatosGlobales.GuardarDatos();
 
-            // 5. Volver al menú
+            //Volver al menú
             this.Close();
         }
 
@@ -487,7 +521,6 @@ namespace Poke_tank
         public float X { get; set; }
         public float Y { get; set; }
         public int IDDueño { get; set; }
-        // Usamos Rectangle (enteros) para evitar el error de RectangleF
         public Rectangle Bounds => new Rectangle((int)X, (int)Y, 20, 20);
     }
 
@@ -496,8 +529,8 @@ namespace Poke_tank
     {
         public float X { get; set; }
         public float Y { get; set; }
-        public int ContadorVida { get; set; } // Cuántos "ticks" ha estado viva
-        public int DuracionMaxima { get; set; } // Cuántos "ticks" durará en total
+        public int ContadorVida { get; set; }
+        public int DuracionMaxima { get; set; }
 
         public Explosion_Nivel_1(float x, float y, int duracionEnTicks)
         {

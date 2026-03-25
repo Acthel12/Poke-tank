@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;          
 using System.Text.Json;   
@@ -17,6 +17,9 @@ public static class DatosGlobales
     public static int NivelSeleccionado { get; set; } = 0; //controlar el nivel seleccionado
 
     public static int PartidaActualIndex { get; set; } = -1;
+
+    // --- RECOMPENSAS GLOBALES ---
+    public static int BonusVelocidadGlobal = 0;
 
     //guardar los datos en un archivo json, si no existe la carpeta, se crea, y si no existe el archivo, se crea con una lista vacia
     public static void GuardarDatos()

@@ -31,7 +31,7 @@ namespace Poke_tank
         //Variable para el mapa
         Bitmap mascaraColisiones;
 
-        // Variable para el sonido (asegúrate de agregar un .wav a tus recursos)
+        //sonido
         System.Media.SoundPlayer sonidoMotor = new System.Media.SoundPlayer(Properties.Resources.SONIDO_TANQUE_MOVIMIENTO);
         bool sonidoEstaReproduciendo = false;
 
@@ -40,13 +40,12 @@ namespace Poke_tank
         Rectangle zonaNivel3 = new Rectangle(970, 269, 31, 21);
         Rectangle zonaNivel2 = new Rectangle(508, 111, 31, 21);
         Rectangle zonaNivel1 = new Rectangle(381, 566, 31, 21);
+        Rectangle zonaBase = new Rectangle(616, 326, 32, 22); 
 
         // Un seguro para saber si ya abrimos la ventana
         bool ventanaAbierta = false;
 
         //PROGRESO DE LOS NIVELES
-        // 1 = Estás en el primer nivel (Nieve). 
-        // 2 = Desbloqueaste el segundo nivel (Castillo).
         int nivelProgreso = 1;
 
         // El timer del juego, que actúa como el bucle principal para actualizar la lógica y redibujar la pantalla
@@ -287,6 +286,21 @@ namespace Poke_tank
                     goRight = false;
                     x = 694;
                     y = 275;
+                }
+
+                //BASE (siempre accesible)
+                else if (rectTanque.IntersectsWith(zonaBase))
+                {
+                    AbrirFormulario(new Base_central());
+
+                    // Te teletransporta a un punto válido del camino fuera de la zona
+                    // Forzamos a que todas las direcciones se apaguen.
+                    goUp = false;
+                    goDown = false;
+                    goLeft = false;
+                    goRight = false;
+                    x = 696;
+                    y = 381;
                 }
             }
 

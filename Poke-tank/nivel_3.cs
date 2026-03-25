@@ -23,6 +23,7 @@ namespace Poke_tank
         Bitmap imgBalaJugador;
         Bitmap imgBalaEnemiga;
         Bitmap imgMisil; // Para los drones
+        Bitmap imgMisilRebotado; // Misil yendo hacia arriba
 
         //explosion
         List<Explosion_Nivel_3> listaExplosiones = new List<Explosion_Nivel_3>();
@@ -37,13 +38,13 @@ namespace Poke_tank
         Bitmap imgDron;
         Image imgAnimacionFin;
 
-        // Definimos los rectángulos de colisión para usarlos más fácil
+        // Definimos los rectángulos de colisión
         Rectangle boundsJugador = new Rectangle(100, 400, 60, 60);
         Rectangle boundsEnemigo = new Rectangle(300, 50, 60, 60);
 
         // Variables de movimiento y estado
         bool moverIzquierda, moverDerecha, defendiendo;
-        int velocidadTanque = 5;
+        int velocidadTanque = 5 + DatosGlobales.BonusVelocidadGlobal;
         int saludEnemigoMax = 100;
         int saludEnemigo = 100;
         private Bitmap fondoBuffered;
@@ -57,9 +58,11 @@ namespace Poke_tank
         bool enemigoTieneEscudo = true;
         int cooldownDisparoEnemigo = 0; // Tiempo de espera entre disparos
         int cooldownBastonEnemigo = 0; // Tiempo de espera para disparar pequeñas balas
+        int direccionJefeFase3 = 1; // 1 = derecha, -1 = izquierda
+        int velocidadJefeFase3 = 5;
 
-        // --- OFFSETS DEL BASTÓN (PARA BALAS PEQUEÑAS DE FASE 3) ---
-        // AJUSTA ESTOS DOS VALORES PARA QUE SALGAN EXACTO EN LA PUNTA DEL BASTÓN
+        // --- PARA BALAS PEQUEÑAS DE FASE 3 ---
+        // AJUSTAR ESTOS DOS VALORES PARA QUE SALGAN EXACTO EN LA PUNTA DEL BASTÓN
         int offsetX_Baston = 50;  // Posición X (ej. un valor positivo lo mueve a la derecha)
         int offsetY_Baston = 100; // Posición Y (hacia abajo)
 
@@ -69,6 +72,12 @@ namespace Poke_tank
 
         // --- CONTROLES DE FINALIZACIÓN ---
         PictureBox pictureBoxFin = new PictureBox();
+
+        // --- CONTROLES VISUALES UI ---
+        string textoInstrucciones = "";
+        bool keyA_Pressed = false, keyD_Pressed = false, keyQ_Pressed = false, keyE_Pressed = false;
+        Image imgKeyANormal, imgKeyAPressed, imgKeyDNormal, imgKeyDPressed;
+        Image imgKeyQNormal, imgKeyQPressed, imgKeyENormal, imgKeyEPressed;
 
         // --- SISTEMA EVENTO FASE 3 ---
         Image imgEventoFase3;
@@ -87,28 +96,41 @@ namespace Poke_tank
             imgEnemigo = new Bitmap(Properties.Resources.marcel_de_frente_batalla);
             imgDefensa = new Bitmap(Properties.Resources.flavio_escudo);
 
-            // --- REEMPLAZA ESTOS RECURSOS POR LOS TUYOS ---
-            imgEscudoEnemigo = new Bitmap(Properties.Resources.marcel_con_escudo); // Usa aquí tu imagen de escudo protector para el jefe
-            imgEnemigoApoyo = new Bitmap(Properties.Resources.diferencial_secuaz_marcel); // Usa aquí tu tanque de apoyo
-            imgDron = new Bitmap(Properties.Resources.dron_marcel); // Usa aquí tu imagen de dron
-            imgMisil = new Bitmap(Properties.Resources.misil_dron_marcel); // Usa aquí tu misil
-            imgMisil.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            //RECURSOS
+            imgEscudoEnemigo = new Bitmap(Properties.Resources.marcel_con_escudo);
+            imgEnemigoApoyo = new Bitmap(Properties.Resources.diferencial_secuaz_marcel);
+            imgDron = new Bitmap(Properties.Resources.dron_marcel);
+            imgMisil = new Bitmap(Properties.Resources.misil_dron_marcel);
+            imgMisil.RotateFlip(RotateFlipType.Rotate180FlipNone); // Misil bajando
+            
+            imgMisilRebotado = new Bitmap(Properties.Resources.misil_dron_marcel); // Misil subiendo (sin voltear)
 
-            imgAnimacionFin = Properties.Resources.explosion; // Usa aquí tu GIF de explosión o animación de derrota
+            // --- GIF PARA LA ANIMACIÓN DE FIN DE BATALLA ---
+            imgAnimacionFin = Properties.Resources.explosion; //REEMPLAZAR
 
             // --- GIF PARA EL EVENTO DE FASE 3 ---
-            imgEventoFase3 = Properties.Resources.explosion; // Usa aquí tu GIF para el evento sorpresa de la Fase 3
+            imgEventoFase3 = Properties.Resources.explosion; //REEMPLAZAR
 
             //BALAS
             imgBalaJugador = new Bitmap(Properties.Resources.bola_de_fuego_arriba);
             imgBalaEnemiga = new Bitmap(Properties.Resources.bala_marcel);
             imgBalaEnemiga.RotateFlip(RotateFlipType.Rotate180FlipNone);
 
-            int anchoTanque = 250;
+            // --- CARGAR IMÁGENES DE CONTROLES ---
+            imgKeyANormal = Properties.Resources.flavio_escudo; //Tecla A
+            imgKeyAPressed = Properties.Resources.explosion;    
+            imgKeyDNormal = Properties.Resources.flavio_escudo; // Tecla D
+            imgKeyDPressed = Properties.Resources.explosion;
+            imgKeyQNormal = Properties.Resources.flavio_escudo; // Tecla Q
+            imgKeyQPressed = Properties.Resources.explosion;
+            imgKeyENormal = Properties.Resources.flavio_escudo; // Tecla E
+            imgKeyEPressed = Properties.Resources.explosion;
+
+            int anchoTanque = 320;
             int altoTanque = 300;
             int centroX = (this.ClientSize.Width / 2) - (anchoTanque / 2);
 
-            boundsEnemigo = new Rectangle(centroX, 30, anchoTanque + 100, altoTanque);
+            boundsEnemigo = new Rectangle(centroX, 70, anchoTanque, altoTanque);
             boundsJugador = new Rectangle(centroX, this.ClientSize.Height - altoTanque - 50, anchoTanque, altoTanque);
 
             // Configurar Animación y Timer final
@@ -118,8 +140,8 @@ namespace Poke_tank
             pictureBoxFin.BackColor = Color.Transparent;
             this.Controls.Add(pictureBoxFin);
 
-            // AQUÍ DEFINES EL CONTADOR DE TIEMPO (en milisegundos) DESPUÉS DE MATAR AL JEFE
-            timerFinBatalla.Interval = 3000; // 3000 ms = 3 segundos
+            // DEFINIR EL CONTADOR DE TIEMPO (en milisegundos) DESPUÉS DE MATAR AL JEFE
+            timerFinBatalla.Interval = 3000; //3 SEG
             timerFinBatalla.Tick += TimerFinBatalla_Tick;
 
             // --- CONFIGURACIÓN DEL EVENTO DE FASE 3 ---
@@ -129,51 +151,52 @@ namespace Poke_tank
             pictureBoxEventoFase3.BackColor = Color.Transparent;
             this.Controls.Add(pictureBoxEventoFase3);
             
-            // AQUÍ PUEDES ESTABLECER EL TIEMPO EN MILISEGUNDOS PARA EL EVENTO DE FASE 3 (ej. 2 segundos)
+            //TIEMPO EN MILISEGUNDOS PARA EL EVENTO DE FASE 3
             timerEventoFase3.Interval = 2000;
             timerEventoFase3.Tick += TimerEventoFase3_Tick;
 
-            // Iniciar la Fase 1
+            //INICIO DE LA FASE 1
             IniciarFase1();
         }
 
         private void IniciarFase1()
         {
+            textoInstrucciones = "FASE 1: El jefe es invulnerable. ¡Destruye a los tanques de apoyo!";
             faseBatalla = 1;
             enemigoTieneEscudo = true;
 
-            int anchoA = 120;
-            int altoA = 120;
-            listaApoyos.Add(new EnemigoApoyo_Nivel_3(boundsEnemigo.Left - 150, 40, anchoA, altoA, 50));
-            listaApoyos.Add(new EnemigoApoyo_Nivel_3(boundsEnemigo.Right + 50, 40, anchoA, altoA, 50));
+            int anchoA = 190;
+            int altoA = 210;
+            listaApoyos.Add(new EnemigoApoyo_Nivel_3(boundsEnemigo.Left - 350, 100, anchoA, altoA, 50)); //ubicacion izq/der, altura, ancho, alto, salud
+            listaApoyos.Add(new EnemigoApoyo_Nivel_3(boundsEnemigo.Right + 190, 100, anchoA, altoA, 50));
         }
 
         private void IniciarFase2()
         {
+            textoInstrucciones = "FASE 2: ¡Devuélveles los misiles a los drones usando tu ESCUDO (Q)!";
             faseBatalla = 2;
-            int anchoDron = 100;
-            int altoDron = 80;
-            listaDrones.Add(new Dron_Nivel_3(50, 30, anchoDron, altoDron, 60, 1));
-            listaDrones.Add(new Dron_Nivel_3(this.ClientSize.Width - 150, 80, anchoDron, altoDron, 60, -1));
+            int anchoDron = 120;
+            int altoDron = 100;
+            listaDrones.Add(new Dron_Nivel_3(50, 80, anchoDron, altoDron, 60, 1));
+            listaDrones.Add(new Dron_Nivel_3(this.ClientSize.Width - 150, 90, anchoDron, altoDron, 60, -1)); //ubicación horizontal, altura, tamaño, salud, dirección inicial
         }
 
         private void IniciarFase3()
         {
+            textoInstrucciones = "FASE 3: ¡El jefe es vulnerable! ¡Acaba con él!";
             faseBatalla = 3;
             enemigoTieneEscudo = false;
-            saludEnemigoMax = 200; // Puedes ajustar la salud del jefe final
+            saludEnemigoMax = 200;
             saludEnemigo = 200;
 
-            // Probabilidad del evento (por defecto 10%). Cambia el 10 al porcentaje que desees. 
-            // Pon 100 si quieres que siempre pase para probarlo.
+            //Probabilidad del evento (por defecto 10%)
             if (iaRandom.Next(0, 100) < 10) 
             {
-                // Iniciar Evento
+                //Iniciar el evento
                 juegoPausadoEvento = true;
                 GameTimer.Stop();
 
-                // AQUÍ MODIFICAS LA UBICACIÓN Y TAMAÑO DEL PICTUREBOX DEL EVENTO
-                // Por defecto lo puse centrado en la pantalla (puedes cambiar Width, Height, Left y Top)
+                //GIF (cambiar Width, Height, Left y Top luego)
                 pictureBoxEventoFase3.Width = 300;
                 pictureBoxEventoFase3.Height = 300;
                 pictureBoxEventoFase3.Left = (this.ClientSize.Width / 2) - 150;
@@ -187,29 +210,45 @@ namespace Poke_tank
         private void Batalla_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias; //Mejor calidad
 
-            if (fondoBuffered != null) g.DrawImage(fondoBuffered, 0, 0);
+            //Dibujar el fondo
+            if (fondoBuffered != null) g.DrawImageUnscaled(fondoBuffered, 0, 0);
 
-            // Dibujar Enemigos de Apoyo
+            // DIBUJAR UI MANUALMENTE (OPTIMIZACIÓN PARA EVITAR LAG)
+            Font fInstrucciones = new Font("Arial", 12, FontStyle.Bold);
+            g.DrawString(textoInstrucciones, fInstrucciones, Brushes.Black, 22, 22);
+            g.DrawString(textoInstrucciones, fInstrucciones, Brushes.White, 20, 20);
+
+            int pbSize = 60;
+            int margin = 10;
+            int startX = this.ClientSize.Width - (pbSize * 4) - (margin * 4) - 20; 
+            int startY = this.ClientSize.Height - pbSize - margin - 20;
+
+            g.DrawImage(keyA_Pressed ? imgKeyAPressed : imgKeyANormal, startX, startY, pbSize, pbSize);
+            g.DrawImage(keyD_Pressed ? imgKeyDPressed : imgKeyDNormal, startX + pbSize + margin, startY, pbSize, pbSize);
+            g.DrawImage(keyQ_Pressed ? imgKeyQPressed : imgKeyQNormal, startX + pbSize*2 + margin*2, startY, pbSize, pbSize);
+            g.DrawImage(keyE_Pressed ? imgKeyEPressed : imgKeyENormal, startX + pbSize*3 + margin*3, startY, pbSize, pbSize);
+
+            //apoyos
             foreach (var apoyo in listaApoyos)
             {
                 g.DrawImage(imgEnemigoApoyo, apoyo.Bounds);
             }
 
-            // Dibujar Drones
+            //drones
             foreach (var dron in listaDrones)
             {
                 g.DrawImage(imgDron, dron.Bounds);
             }
 
-            // Dibujamos el jefe (solo si no fue destruido en fase 3)
+            //Jefe (solo si no fue destruido en fase 3)
             if (saludEnemigo > 0)
             {
                 Image imgEnemigoActual = enemigoTieneEscudo ? imgEscudoEnemigo : imgEnemigo;
                 g.DrawImage(imgEnemigoActual, boundsEnemigo);
 
-                // Solo mostrar barra de vida del jefe en la Fase 3
+                //barra de vida del jefe en la Fase 3
                 if (faseBatalla == 3)
                 {
                     int anchoBarraEnemigo = 150;
@@ -231,7 +270,7 @@ namespace Poke_tank
             Image imgCuerpo = defendiendo ? imgDefensa : imgJugador;
             g.DrawImage(imgCuerpo, boundsJugador);
 
-            // Barra de vida del jugador
+            //Barra de vida del jugador
             if (saludJugador > 0)
             {
                 int anchoBarraJugador = 150;
@@ -248,18 +287,19 @@ namespace Poke_tank
                 g.DrawRectangle(Pens.Black, xBarraJugador, yBarraJugador, anchoBarraJugador, altoBarraJugador);
             }
 
-            // Balas
+            //Balas
             foreach (var b in listaBalas)
             {
                 Image imagenBalaActual = imgBalaEnemiga;
-                if (b.IDDueño == 1 || b.IDDueño == 5) imagenBalaActual = imgBalaJugador;
-                if (b.IDDueño == 4) imagenBalaActual = imgMisil; // Usar bala nueva para los misiles
+                if (b.IDDueño == 1) imagenBalaActual = imgBalaJugador;
+                if (b.IDDueño == 4) imagenBalaActual = imgMisil; // Misil bajando
+                if (b.IDDueño == 5) imagenBalaActual = imgMisilRebotado; // Misil subiendo tras el bloqueo
                 if (b.IDDueño == 6) imagenBalaActual = imgBalaEnemiga; // Bastón (puede ser reemplazada por otra luego)
                 
                 g.DrawImage(imagenBalaActual, b.X, b.Y, b.Ancho, b.Alto);
             }
 
-            // Explosiones
+            //Explosiones
             foreach (var ex in listaExplosiones)
             {
                 g.DrawImage(imgExplosion, ex.X - 20, ex.Y - 20, 60, 60);
@@ -275,7 +315,7 @@ namespace Poke_tank
                 Font fuenteTitulo = new Font("Arial", 40, FontStyle.Bold);
                 Font fuenteSub = new Font("Arial", 14, FontStyle.Regular);
 
-                // Mensaje dependiendo de salud
+                //Msj victoria o derrota
                 string mensaje = (saludJugador <= 0) ? "¡GAME OVER!" : "¡VICTORIA!";
                 string subMensaje = (saludJugador <= 0) ? "Presiona ENTER para salir" : "Presiona ENTER para continuar";
 
@@ -294,23 +334,25 @@ namespace Poke_tank
 
         private void Batalla_KeyDown(object sender, KeyEventArgs e)
         {
-            if (juegoPausadoEvento) return; // Bloquear controles si hay evento
+            if (juegoPausadoEvento) return; //Bloquear controles si hay evento, pausando el juego
 
-            if (e.KeyCode == Keys.A) moverIzquierda = true;
-            if (e.KeyCode == Keys.D) moverDerecha = true;
+            if (e.KeyCode == Keys.A) { moverIzquierda = true; keyA_Pressed = true; }
+            if (e.KeyCode == Keys.D) { moverDerecha = true; keyD_Pressed = true; }
 
             if (e.KeyCode == Keys.Q && !defendiendo)
             {
                 defendiendo = true;
-                velocidadTanque = 2;
+                velocidadTanque = 2 + DatosGlobales.BonusVelocidadGlobal;
+                keyQ_Pressed = true;
                 this.Invalidate();
             }
 
             if (e.KeyCode == Keys.E)
             {
+                keyE_Pressed = true;
                 if (!defendiendo)
                 {
-                    DispararBolaDeFuego(1, boundsJugador); // 1 = jugador
+                    DispararBolaDeFuego(1, boundsJugador); //1 = jugador
                 }
                 else
                 {
@@ -331,15 +373,17 @@ namespace Poke_tank
 
         private void Batalla_KeyUp(object sender, KeyEventArgs e)
         {
-            if (juegoPausadoEvento) return; // Bloquear controles si hay evento
+            if (juegoPausadoEvento) return; //Bloquear controles si hay evento
 
-            if (e.KeyCode == Keys.A) moverIzquierda = false;
-            if (e.KeyCode == Keys.D) moverDerecha = false;
+            if (e.KeyCode == Keys.A) { moverIzquierda = false; keyA_Pressed = false; }
+            if (e.KeyCode == Keys.D) { moverDerecha = false; keyD_Pressed = false; }
+            if (e.KeyCode == Keys.E) { keyE_Pressed = false; }
 
             if (e.KeyCode == Keys.Q)
             {
                 defendiendo = false;
-                velocidadTanque = 5;
+                velocidadTanque = 5 + DatosGlobales.BonusVelocidadGlobal;
+                keyQ_Pressed = false;
                 this.Invalidate();
             }
         }
@@ -348,19 +392,26 @@ namespace Poke_tank
         {
             if (juegoTerminado) return;
 
-            // Movimiento Jugador
+            //Movimiento Jugador
             if (moverIzquierda && boundsJugador.X > 0) boundsJugador.X -= velocidadTanque;
             if (moverDerecha && (boundsJugador.X + boundsJugador.Width) < this.ClientSize.Width) boundsJugador.X += velocidadTanque;
 
-            // Transiciones de Fases
+            //Transiciones de Fases
             if (faseBatalla == 1 && listaApoyos.Count == 0) IniciarFase2();
             if (faseBatalla == 2 && listaDrones.Count == 0) IniciarFase3();
 
-            // IA Jefe (Solamente quieto disparando según la fase)
+            //IA jefe (movimiento en fase 3 y disparos)
+            if (faseBatalla == 3 && saludEnemigo > 0 && !juegoPausadoEvento)
+            {
+                boundsEnemigo.X += direccionJefeFase3 * velocidadJefeFase3;
+                if (boundsEnemigo.X <= 0) direccionJefeFase3 = 1;
+                if (boundsEnemigo.Right >= this.ClientSize.Width) direccionJefeFase3 = -1;
+            }
+
             if (saludEnemigo > 0 && cooldownDisparoEnemigo > 0) cooldownDisparoEnemigo--;
             if (faseBatalla == 3 && saludEnemigo > 0 && cooldownBastonEnemigo > 0) cooldownBastonEnemigo--;
 
-            // Re-evaluar necesidad de Disparo (sólo si vive)
+            //disparos del jefe (tiene más probabilidad de disparar si está alineado con el jugador)
             if (saludEnemigo > 0 && cooldownDisparoEnemigo <= 0)
             {
                 bool alineado = Math.Abs(boundsEnemigo.X - boundsJugador.X) < 40;
@@ -371,17 +422,17 @@ namespace Poke_tank
                 }
             }
 
-            // IA Bastón (Solo Fase 3)
+            //IA disparo bastón en la fase 3
             if (faseBatalla == 3 && saludEnemigo > 0 && cooldownBastonEnemigo <= 0)
             {
-                if (iaRandom.Next(0, 30) == 1) // Probabilidad de disparo del bastón
+                if (iaRandom.Next(0, 30) == 1) //Probabilidad de disparo del bastón
                 {
                     DispararBaston(boundsEnemigo);
-                    cooldownBastonEnemigo = 15; // Más rápido que el disparo principal
+                    cooldownBastonEnemigo = 15;
                 }
             }
 
-            // IA Apoyos
+            //IA apoyos
             for (int i = listaApoyos.Count - 1; i >= 0; i--)
             {
                 var apoyo = listaApoyos[i];
@@ -393,7 +444,7 @@ namespace Poke_tank
                 }
             }
 
-            // IA Drones
+            //IA drones
             for (int i = listaDrones.Count - 1; i >= 0; i--)
             {
                 var dron = listaDrones[i];
@@ -406,19 +457,19 @@ namespace Poke_tank
                 }
             }
 
-            // Actualizar Balas
+            //Actualizar balas
             for (int i = listaBalas.Count - 1; i >= 0; i--)
             {
                 var b = listaBalas[i];
 
-                // Mover bala
-                if (b.IDDueño == 1 || b.IDDueño == 5) b.Y -= 15; // Bala del jugador o misil rebotado
-                else b.Y += (b.IDDueño == 4) ? 12 : 10; // Bala enemiga (Misil es más rápido)
+                //Mover bala
+                if (b.IDDueño == 1 || b.IDDueño == 5) b.Y -= 15; //Bala del jugador o misil rebotado
+                else b.Y += (b.IDDueño == 4) ? 12 : 10; //Bala enemiga
 
-                // Movimiento lateral (solo balas con VelocidadX como las del jefe en Fase 3)
+                //Movimiento lateral (solo balas con VelocidadX como las del jefe en Fase 3)
                 b.X += b.VelocidadX;
 
-                // Posibilidad de que la bala normal del jefe siga al jugador (Fase 1 y 2, o central Fase 3)
+                //Posibilidad de que la bala normal del jefe siga al jugador (fase 1 y 2, o central Fase 3)
                 if (b.IDDueño == 2 && b.SigueJugador)
                 {
                     if (b.X + 40 < boundsJugador.X + boundsJugador.Width / 2) b.X += 2; // Rastreando suavemente
@@ -427,10 +478,10 @@ namespace Poke_tank
 
                 bool balaEliminada = false;
 
-                // Colisiones Bala Jugador / Bala Rebote -> Enemigos
+                //Colisiones Bala Jugador / Bala Rebote -> Enemigos
                 if (b.IDDueño == 1 || b.IDDueño == 5)
                 {
-                    // Choca con un apoyo (Solo si fase 1)
+                    //Choca con un apoyo (Solo si fase 1)
                     if (faseBatalla == 1)
                     {
                         for (int k = listaApoyos.Count - 1; k >= 0; k--)
@@ -458,19 +509,23 @@ namespace Poke_tank
                             if (b.Bounds.IntersectsWith(listaDrones[k].Bounds))
                             {
                                 listaExplosiones.Add(new Explosion_Nivel_3(b.X, b.Y, 15));
-                                listaDrones[k].Salud -= 15; // Rebote y bala normal quitan vida
-                                if (listaDrones[k].Salud <= 0)
-                                {
-                                    listaExplosiones.Add(new Explosion_Nivel_3(listaDrones[k].Bounds.X, listaDrones[k].Bounds.Y, 30));
-                                    listaDrones.RemoveAt(k);
-                                }
                                 balaEliminada = true;
+                                
+                                if (b.IDDueño == 5) // Solo toman daño del misil rebotado
+                                {
+                                    listaDrones[k].Salud -= 15; 
+                                    if (listaDrones[k].Salud <= 0)
+                                    {
+                                        listaExplosiones.Add(new Explosion_Nivel_3(listaDrones[k].Bounds.X, listaDrones[k].Bounds.Y, 30));
+                                        listaDrones.RemoveAt(k);
+                                    }
+                                }
                                 break;
                             }
                         }
                     }
 
-                    // Choca con jefe (Solo vulnerable en fase 3)
+                    //Choca con jefe (solo en fase 3)
                     if (!balaEliminada && b.Bounds.IntersectsWith(boundsEnemigo))
                     {
                         listaExplosiones.Add(new Explosion_Nivel_3(b.X, b.Y, 15));
@@ -553,18 +608,18 @@ namespace Poke_tank
             int posicionX = posTirador.X + (posTirador.Width / 2) - (anchoBala / 2);
             int posicionY = (idDueño == 1) ? posTirador.Y - altoBala : posTirador.Bottom;
 
-            bool conRastreo = (idDueño == 2 && iaRandom.Next(10) == 0); // Balas principales tienen prob de rastrear 10%
+            bool conRastreo = (idDueño == 2 && iaRandom.Next(10) == 0); //Balas principales tienen prob de rastrear 10%
 
             if (idDueño == 2 && faseBatalla == 3)
             {
-                // Disparo de 3 balas en Fase 3
+                //Disparo de 3 balas en fase 3
                 listaBalas.Add(new Bala_Nivel_3 { X = posicionX, Y = posicionY, IDDueño = 2, SigueJugador = false, VelocidadX = 0, Ancho = anchoBala, Alto = altoBala });
                 listaBalas.Add(new Bala_Nivel_3 { X = posicionX, Y = posicionY, IDDueño = 2, SigueJugador = false, VelocidadX = -3, Ancho = anchoBala, Alto = altoBala }); // Izquierda
                 listaBalas.Add(new Bala_Nivel_3 { X = posicionX, Y = posicionY, IDDueño = 2, SigueJugador = false, VelocidadX = 3, Ancho = anchoBala, Alto = altoBala }); // Derecha
             }
             else
             {
-                // Bala normal predeterminada
+                //Bala normal predeterminada
                 listaBalas.Add(new Bala_Nivel_3 { X = posicionX, Y = posicionY, IDDueño = idDueño, SigueJugador = conRastreo, VelocidadX = 0, Ancho = anchoBala, Alto = altoBala });
             }
         }
@@ -578,10 +633,10 @@ namespace Poke_tank
             {
                 X = posX,
                 Y = posY,
-                IDDueño = 6, // Identificador de Bala Pequeña del Bastón
+                IDDueño = 6, //Identificador de bala bastón
                 SigueJugador = false,
                 VelocidadX = 0,
-                Ancho = 30, // Mucho más pequeñas
+                Ancho = 30, //Mucho más pequeñas
                 Alto = 30
             });
         }
@@ -597,10 +652,10 @@ namespace Poke_tank
             timerEventoFase3.Stop();
             pictureBoxEventoFase3.Visible = false;
             
-            // Bajar la vida del enemigo principal a la mitad
+            //bajar la vida del enemigo principal a la mitad
             saludEnemigo = saludEnemigoMax / 2;
             
-            // Reanudar la partida
+            //reanudar la partida
             juegoPausadoEvento = false;
             GameTimer.Start();
         }
@@ -608,16 +663,16 @@ namespace Poke_tank
         private void TerminarBatallaJefe()
         {
             saludEnemigo = 0;
-            GameTimer.Stop(); // Congelar TODO
+            GameTimer.Stop(); //congelar TODO
 
-            // Aparece la animación sobre donde estaba el enemigo
+            //aparece la animación sobre donde estaba el enemigo
             pictureBoxFin.Width = boundsEnemigo.Width + 50;
             pictureBoxFin.Height = boundsEnemigo.Height + 50;
             pictureBoxFin.Left = boundsEnemigo.X - 25;
             pictureBoxFin.Top = boundsEnemigo.Y - 25;
             pictureBoxFin.Visible = true;
 
-            // Inicia el contador antes de salir
+            //inicia el contador antes de salir
             timerFinBatalla.Start();
         }
 
@@ -650,9 +705,9 @@ namespace Poke_tank
         public float X { get; set; }
         public float Y { get; set; }
         public int IDDueño { get; set; } 
-        // 1=Jugador, 2=JefeCentral, 3=Apoyos, 4=Drones(Misiles), 5=MisilRebotado, 6=Baston
+        //1=Jugador, 2=JefeCentral, 3=Apoyos, 4=Drones(Misiles), 5=MisilRebotado, 6=Baston
         public bool SigueJugador { get; set; }
-        public float VelocidadX { get; set; } // Para las balas diagonales
+        public float VelocidadX { get; set; } //Para las balas diagonales
         public int Ancho { get; set; } = 80;
         public int Alto { get; set; } = 80;
         public Rectangle Bounds => new Rectangle((int)X, (int)Y, Ancho, Alto);
