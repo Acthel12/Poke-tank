@@ -41,7 +41,7 @@ namespace Poke_tank
             TiempoVuelo = 0;
 
             VelocidadHorizontal = 400;
-            VelocidadAcercamiento = 200;
+            VelocidadAcercamiento = 100;
 
             Fase = 1;
             DireccionFase1 = 1;
