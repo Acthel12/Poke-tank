@@ -28,7 +28,9 @@ namespace Poke_tank
         //mostrar puntuaciones con el boton
         private void botonPuntuaciones_Click(object sender, EventArgs e)
         {
-            Puntuaciones from2 = new Puntuaciones();
+            //Puntuaciones from2 = new Puntuaciones();
+
+            nivel_3 from2 = new nivel_3();
 
             from2.ShowDialog();
         }

@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="MAPA FLAVIO'S ADVENTURES FONDO" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MAPA FLAVIO'S ADVENTURES FONDO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\MAPA FLAVIO ADVENTURES.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="T14" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\T14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -171,6 +171,75 @@
   </data>
   <data name="fondoNivel2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fondoNivel2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SPRITE SHEET FLAVIO MAPA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SPRITE_SHEET_FLAVIO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SONIDO_TANQUE_MOVIMIENTO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SONIDO_TANQUE_MOVIMIENTO.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MASCARA_MAPA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MASCARA_MAPA_COMPLETO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="flavio de espalda batalla" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flavio de espalda batalla.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="flavio escudo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flavio escudo completo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bola de fuego arriba" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bola de fuego arriba.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="explosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\explosion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemigo prueba" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemigo prueba.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MASCARA_MAPA_FINAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MASCARA_MAPA_FINAL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="luna luna de frente batalla" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>C:\Users\LOQ 15AIX9\Downloads\assets y recursos flavio tank\luna luna\luna luna de frente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marcel de frente batalla" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>C:\Users\LOQ 15AIX9\Downloads\assets y recursos flavio tank\marcel\marcel de frente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dron marcel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dron marcel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="diferencial secuaz marcel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>C:\Users\LOQ 15AIX9\Downloads\assets y recursos flavio tank\marcel\diferencial secuaz marcel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bala marcel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bala marcel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="misil dron marcel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\misil dron marcel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marcel con escudo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marcel con escudo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MASCARA_BASE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MASCARA_BASE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="luis quimica de frente" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\luis quimica de frente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bala luis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>C:\Users\LOQ 15AIX9\Downloads\assets y recursos flavio tank\luis quimica\bala luis.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bala luna luna" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>C:\Users\LOQ 15AIX9\Downloads\assets y recursos flavio tank\luna luna\bala luna luna.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="luis con escudo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\luis con escudo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="luna luna con escudo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\luna luna con escudo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MAPA BASE CENTRAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MAPA BASE CENTRAL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SeleccionarPartida" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wmremove-transformed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

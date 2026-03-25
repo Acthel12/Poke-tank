@@ -1,6 +1,6 @@
 ﻿namespace Poke_tank
 {
-    partial class tienda
+    partial class Base_central
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "tienda";
+            SuspendLayout();
+            // 
+            // Base_central
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1430, 895);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "Base_central";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Base_central";
+            ResumeLayout(false);
         }
 
         #endregion
