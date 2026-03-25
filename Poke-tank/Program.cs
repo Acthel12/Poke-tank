@@ -14,6 +14,7 @@ namespace Poke_tank
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Application.Run(new Menu_Principal());
+            Application.Run(new MinijuegoDron());
 
             //para probar 
             Partida.iniciarPartida("Waza", "M1A1", 140, 30, 10, 14, NivelDificultad.Facil);
