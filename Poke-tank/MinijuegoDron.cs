@@ -32,6 +32,7 @@ namespace Poke_tank
 
         Bitmap[] framesMisil = new Bitmap[3];
 
+        Bitmap imgFondo;
 
         public MinijuegoDron()
         {
@@ -40,11 +41,13 @@ namespace Poke_tank
             this.DoubleBuffered = true;
             this.ClientSize = new Size(1280, 720);
             this.Cursor = Cursors.Cross;
-            this.Text = "ATAQUE DE DRONES!!!";
+            this.Text = "DEFENDED LA BASE!!!";
 
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            imgFondo = Properties.Resources.fondo;
 
             framesDron[0] = Properties.Resources.Dron1;
             framesDron[1] = Properties.Resources.Dron2;
@@ -145,7 +148,14 @@ namespace Poke_tank
         private void MinijuegoDron_Paint(object sender, PaintEventArgs e)
         {
             Font fuente = new Font("Arial", 16, FontStyle.Bold);
-            e.Graphics.Clear(Color.SkyBlue);
+            if (imgFondo != null) 
+            {
+                e.Graphics.DrawImage(imgFondo, 0, 0, this.ClientSize.Width, this.ClientSize.Height);
+            }
+            else
+            {
+                e.Graphics.Clear(Color.SkyBlue);
+            }
 
             e.Graphics.DrawString("Puntos: " + puntuacion, fuente, Brushes.Black, 10, 10);
             e.Graphics.DrawString("Drones restantes: " + derribosParaGanar, fuente, Brushes.Black, 10, 36);
