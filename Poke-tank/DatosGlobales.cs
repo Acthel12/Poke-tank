@@ -7,7 +7,7 @@ namespace Poke_tank;
 
 public static class DatosGlobales
 {
-    private static string carpetaBase = AppDomain.CurrentDomain.BaseDirectory;
+   
     private static string carpetaDatos = Path.Combine(carpetaBase, "Partidas");
     private static string archivoPartidas = Path.Combine(carpetaDatos, "partidas.json");
     private static string archivoPuntuaciones = Path.Combine(carpetaDatos, "puntuaciones.json");
