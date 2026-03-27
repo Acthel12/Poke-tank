@@ -203,16 +203,6 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap enemigo_prueba {
-            get {
-                object obj = ResourceManager.GetObject("enemigo prueba", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap explosion {
             get {
                 object obj = ResourceManager.GetObject("explosion", resourceCulture);
@@ -233,9 +223,9 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap flavio_escudo {
+        internal static System.Drawing.Bitmap flavio_escudo_completo {
             get {
-                object obj = ResourceManager.GetObject("flavio escudo", resourceCulture);
+                object obj = ResourceManager.GetObject("flavio escudo completo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -256,6 +246,16 @@ namespace Poke_tank.Properties {
         internal static System.Drawing.Bitmap fondo {
             get {
                 object obj = ResourceManager.GetObject("fondo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fondoMisil {
+            get {
+                object obj = ResourceManager.GetObject("fondoMisil", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -287,6 +287,26 @@ namespace Poke_tank.Properties {
             get {
                 object obj = ResourceManager.GetObject("fondoNivel3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gifFondoMenuPrincipal {
+            get {
+                object obj = ResourceManager.GetObject("gifFondoMenuPrincipal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] LOGO_FLAVIO_ADVENTURES_SIN_FONDO {
+            get {
+                object obj = ResourceManager.GetObject("LOGO FLAVIO ADVENTURES SIN FONDO", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -333,26 +353,6 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap M1Abrams_1 {
-            get {
-                object obj = ResourceManager.GetObject("M1Abrams_1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap M1Abrams_2 {
-            get {
-                object obj = ResourceManager.GetObject("M1Abrams_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap MAPA_BASE_CENTRAL {
             get {
                 object obj = ResourceManager.GetObject("MAPA BASE CENTRAL", resourceCulture);
@@ -363,9 +363,9 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MAPA_FLAVIO_S_ADVENTURES_FONDO {
+        internal static System.Drawing.Bitmap MAPA_FLAVIO_ADVENTURES {
             get {
-                object obj = ResourceManager.GetObject("MAPA FLAVIO\'S ADVENTURES FONDO", resourceCulture);
+                object obj = ResourceManager.GetObject("MAPA FLAVIO ADVENTURES", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -403,9 +403,9 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MASCARA_MAPA {
+        internal static System.Drawing.Bitmap MASCARA_MAPA_FINAL {
             get {
-                object obj = ResourceManager.GetObject("MASCARA_MAPA", resourceCulture);
+                object obj = ResourceManager.GetObject("MASCARA_MAPA_FINAL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -413,9 +413,9 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MASCARA_MAPA_FINAL {
+        internal static System.Drawing.Bitmap Misi2 {
             get {
-                object obj = ResourceManager.GetObject("MASCARA_MAPA_FINAL", resourceCulture);
+                object obj = ResourceManager.GetObject("Misi2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -443,16 +443,6 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Misil2 {
-            get {
-                object obj = ResourceManager.GetObject("Misil2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Misil3 {
             get {
                 object obj = ResourceManager.GetObject("Misil3", resourceCulture);
@@ -466,16 +456,6 @@ namespace Poke_tank.Properties {
         internal static System.Drawing.Bitmap nivel_1 {
             get {
                 object obj = ResourceManager.GetObject("nivel 1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap nivel_11 {
-            get {
-                object obj = ResourceManager.GetObject("nivel 11", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -501,16 +481,6 @@ namespace Poke_tank.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SeleccionarPartida {
-            get {
-                object obj = ResourceManager.GetObject("SeleccionarPartida", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream SONIDO_TANQUE_MOVIMIENTO {
@@ -522,9 +492,9 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SPRITE_SHEET_FLAVIO_MAPA {
+        internal static System.Drawing.Bitmap SPRITE_SHEET_FLAVIO {
             get {
-                object obj = ResourceManager.GetObject("SPRITE SHEET FLAVIO MAPA", resourceCulture);
+                object obj = ResourceManager.GetObject("SPRITE_SHEET_FLAVIO", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -532,39 +502,9 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap T14 {
+        internal static System.Drawing.Bitmap wmremove_transformed {
             get {
-                object obj = ResourceManager.GetObject("T14", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap T72 {
-            get {
-                object obj = ResourceManager.GetObject("T72", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap T80U {
-            get {
-                object obj = ResourceManager.GetObject("T80U", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap T90A {
-            get {
-                object obj = ResourceManager.GetObject("T90A", resourceCulture);
+                object obj = ResourceManager.GetObject("wmremove-transformed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
