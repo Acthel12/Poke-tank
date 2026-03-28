@@ -61,7 +61,7 @@ namespace Poke_tank
             this.ClientSize = new Size(1280, 720);
 
             // 2. Cargar imágenes
-            spriteSheet = Properties.Resources.SPRITE_SHEET_FLAVIO_MAPA;
+            spriteSheet = Properties.Resources.SPRITE_SHEET_FLAVIO;
             mascaraColisiones = new Bitmap(Properties.Resources.MASCARA_MAPA_FINAL);
 
             // 3. Configurar los eventos del teclado
@@ -276,7 +276,7 @@ namespace Poke_tank
                 //TIENDA (Accesible siempre)
                 else if (rectTanque.IntersectsWith(zonaTienda))
                 {
-                    AbrirFormulario(new tienda());
+                    AbrirFormulario(new Tienda());
 
                     // Te teletransporta a un punto válido del camino fuera de la zona
                     // Forzamos a que todas las direcciones se apaguen.

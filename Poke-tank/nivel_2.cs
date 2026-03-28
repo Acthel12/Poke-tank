@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
 namespace Poke_tank
 {
     public partial class nivel_2 : Form
@@ -69,7 +61,7 @@ namespace Poke_tank
             // --- CARGAR IMÁGENES DESDE RESOURCES ---
             imgJugador = new Bitmap(Properties.Resources.flavio_de_espalda_batalla);
             imgEnemigo = new Bitmap(Properties.Resources.luis_quimica_de_frente);
-            imgDefensa = new Bitmap(Properties.Resources.flavio_escudo);
+            imgDefensa = new Bitmap(Properties.Resources.flavio_escudo_completo);
             imgEscudoEnemigo = new Bitmap(Properties.Resources.luis_con_escudo);
 
             // CARGAMOS LAS BALAS
@@ -79,13 +71,13 @@ namespace Poke_tank
             imgBalaEnemiga.RotateFlip(RotateFlipType.Rotate180FlipNone); // Volteada la bala enemiga hacia abajo
 
             // --- CARGAR IMÁGENES DE CONTROLES (REEMPLAZA POR TUS IMÁGENES DE TECLAS) ---
-            imgKeyANormal = Properties.Resources.flavio_escudo; //Tecla A Normal
+            imgKeyANormal = Properties.Resources.flavio_escudo_completo; //Tecla A Normal
             imgKeyAPressed = Properties.Resources.explosion;   
-            imgKeyDNormal = Properties.Resources.flavio_escudo; // Tecla D
+            imgKeyDNormal = Properties.Resources.flavio_escudo_completo; // Tecla D
             imgKeyDPressed = Properties.Resources.explosion;
-            imgKeyQNormal = Properties.Resources.flavio_escudo; // Tecla Q
+            imgKeyQNormal = Properties.Resources.flavio_escudo_completo; // Tecla Q
             imgKeyQPressed = Properties.Resources.explosion;
-            imgKeyENormal = Properties.Resources.flavio_escudo; // Tecla E
+            imgKeyENormal = Properties.Resources.flavio_escudo_completo; // Tecla E
             imgKeyEPressed = Properties.Resources.explosion;
 
             //instruccion
@@ -499,11 +491,11 @@ namespace Poke_tank
             //Definimos el nombre del jugador 
             string nombreJugador = "Jugador 1";
 
-            Puntuacion nuevaPuntuacion = new Puntuacion(nombreJugador, tanquesDerrotados);
+            //Puntuacion nuevaPuntuacion = new Puntuacion(nombreJugador, tanquesDerrotados);
 
             //guardado en json
-            DatosGlobales.ListaPuntuaciones.Add(nuevaPuntuacion);
-            DatosGlobales.GuardarDatos();
+            //DatosGlobales.ListaPuntuaciones.Add(nuevaPuntuacion);
+            //DatosGlobales.GuardarDatos();
 
             this.Close();
         }

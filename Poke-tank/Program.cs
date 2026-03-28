@@ -20,6 +20,8 @@ namespace Poke_tank
             Partida.iniciarPartida("Waza", "M1A1", 140, 30, 10, 14, NivelDificultad.Facil);
             Application.Run(new Tienda());
             Application.Run(new Buscaminas());
+
+            Application.Run(new Menu_Principal());
             //
         }
     }

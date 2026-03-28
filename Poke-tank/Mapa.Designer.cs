@@ -60,7 +60,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.MAPA_FLAVIO_S_ADVENTURES_FONDO;
+            BackgroundImage = Properties.Resources.MAPA_FLAVIO_ADVENTURES;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1262, 673);
             Controls.Add(botonFinalizar);

@@ -203,6 +203,16 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap enemigo_prueba {
+            get {
+                object obj = ResourceManager.GetObject("enemigo prueba", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap explosion {
             get {
                 object obj = ResourceManager.GetObject("explosion", resourceCulture);
@@ -353,6 +363,26 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap M1Abrams_1 {
+            get {
+                object obj = ResourceManager.GetObject("M1Abrams_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap M1Abrams_2 {
+            get {
+                object obj = ResourceManager.GetObject("M1Abrams_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MAPA_BASE_CENTRAL {
             get {
                 object obj = ResourceManager.GetObject("MAPA BASE CENTRAL", resourceCulture);
@@ -413,16 +443,6 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Misi2 {
-            get {
-                object obj = ResourceManager.GetObject("Misi2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap misil_dron_marcel {
             get {
                 object obj = ResourceManager.GetObject("misil dron marcel", resourceCulture);
@@ -436,6 +456,16 @@ namespace Poke_tank.Properties {
         internal static System.Drawing.Bitmap Misil1 {
             get {
                 object obj = ResourceManager.GetObject("Misil1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Misil2 {
+            get {
+                object obj = ResourceManager.GetObject("Misil2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -495,6 +525,46 @@ namespace Poke_tank.Properties {
         internal static System.Drawing.Bitmap SPRITE_SHEET_FLAVIO {
             get {
                 object obj = ResourceManager.GetObject("SPRITE_SHEET_FLAVIO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap T14 {
+            get {
+                object obj = ResourceManager.GetObject("T14", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap T72 {
+            get {
+                object obj = ResourceManager.GetObject("T72", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap T80U {
+            get {
+                object obj = ResourceManager.GetObject("T80U", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap T90A {
+            get {
+                object obj = ResourceManager.GetObject("T90A", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

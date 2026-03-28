@@ -93,8 +93,8 @@ namespace Poke_tank
             fondoBuffered = new Bitmap(Properties.Resources.fondoNivel1, this.ClientSize.Width, this.ClientSize.Height);
 
             imgJugador = new Bitmap(Properties.Resources.flavio_de_espalda_batalla);
-            imgEnemigo = new Bitmap(Properties.Resources.marcel_de_frente_batalla);
-            imgDefensa = new Bitmap(Properties.Resources.flavio_escudo);
+            imgEnemigo = new Bitmap(Properties.Resources.marcel_de_frente);
+            imgDefensa = new Bitmap(Properties.Resources.flavio_escudo_completo);
 
             //RECURSOS
             imgEscudoEnemigo = new Bitmap(Properties.Resources.marcel_con_escudo);
@@ -117,13 +117,13 @@ namespace Poke_tank
             imgBalaEnemiga.RotateFlip(RotateFlipType.Rotate180FlipNone);
 
             // --- CARGAR IMÁGENES DE CONTROLES ---
-            imgKeyANormal = Properties.Resources.flavio_escudo; //Tecla A
+            imgKeyANormal = Properties.Resources.flavio_escudo_completo; //Tecla A
             imgKeyAPressed = Properties.Resources.explosion;    
-            imgKeyDNormal = Properties.Resources.flavio_escudo; // Tecla D
+            imgKeyDNormal = Properties.Resources.flavio_escudo_completo; // Tecla D
             imgKeyDPressed = Properties.Resources.explosion;
-            imgKeyQNormal = Properties.Resources.flavio_escudo; // Tecla Q
+            imgKeyQNormal = Properties.Resources.flavio_escudo_completo; // Tecla Q
             imgKeyQPressed = Properties.Resources.explosion;
-            imgKeyENormal = Properties.Resources.flavio_escudo; // Tecla E
+            imgKeyENormal = Properties.Resources.flavio_escudo_completo; // Tecla E
             imgKeyEPressed = Properties.Resources.explosion;
 
             int anchoTanque = 320;
@@ -690,10 +690,10 @@ namespace Poke_tank
             tanquesDerrotados.Add(enemigoActual);
 
             string nombreJugador = "Jugador 1";
-            Puntuacion nuevaPuntuacion = new Puntuacion(nombreJugador, tanquesDerrotados);
+            //Puntuacion nuevaPuntuacion = new Puntuacion(nombreJugador, tanquesDerrotados);
 
-            DatosGlobales.ListaPuntuaciones.Add(nuevaPuntuacion);
-            DatosGlobales.GuardarDatos();
+            //DatosGlobales.ListaPuntuaciones.Add(nuevaPuntuacion);
+            //DatosGlobales.GuardarDatos();
 
             this.Close();
         }
