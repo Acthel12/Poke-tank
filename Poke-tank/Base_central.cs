@@ -135,11 +135,11 @@ namespace Poke_tank
 
                 if (rectTanque.IntersectsWith(zonaArriba))
                 {
-                    EvaluarInteraccion("Minijuego Dron", typeof(nivel_1)); //minijuego dron (simarca)
+                    EvaluarInteraccion("Minijuego Dron", typeof(MinijuegoDron)); //minijuego dron (simarca)
                 }
                 else if (rectTanque.IntersectsWith(zonaDerecha))
                 {
-                    EvaluarInteraccion("Minijuego Buscaminas", typeof(nivel_2)); //minijuego minas (decanato)
+                    EvaluarInteraccion("Minijuego Buscaminas", typeof(Buscaminas)); //minijuego minas (decanato)
                 }
                 else if (rectTanque.IntersectsWith(zonaIzquierda))
                 {
