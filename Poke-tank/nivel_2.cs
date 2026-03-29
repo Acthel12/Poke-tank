@@ -480,13 +480,13 @@ namespace Poke_tank
         private void GuardarVictoriaYSalir()
         {
             //Preparamos la lista de tanques derrotados requerida por tu clase Puntuacion
-            List<TanqueEnemigo> tanquesDerrotados = new List<TanqueEnemigo>();
+            //List<TanqueEnemigo> tanquesDerrotados = new List<TanqueEnemigo>();
 
             //instancia del enemigo derrotado
-            TanqueEnemigo enemigoActual = new TanqueEnemigo("Enemigo Derrotado", "T-72", 0, 0, 0,0);
-            enemigoActual.Modelo = "T-72"; // Puedes cambiar esto después según el nivel
+            //TanqueEnemigo enemigoActual = new TanqueEnemigo("Enemigo Derrotado", "T-72", 0, 0, 0,0);
+            //enemigoActual.Modelo = "T-72"; // Puedes cambiar esto después según el nivel
 
-            tanquesDerrotados.Add(enemigoActual);
+            //tanquesDerrotados.Add(enemigoActual);
 
             //Definimos el nombre del jugador 
             string nombreJugador = "Jugador 1";

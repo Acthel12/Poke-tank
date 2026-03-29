@@ -132,7 +132,7 @@ namespace Poke_tank
                 }
                 b.BackColor = Color.DarkRed;
 
-                partida.tanqueUsuario.Defensa -= 50;
+                //partida.tanqueUsuario.Defensa -= 50;
                 DatosGlobales.GuardarDatos();
                 MessageBox.Show("¡BOOM! Activaste al flavio sorpresa. Perdiste, vuelve a intentarlo.", "ERROR DE LOGÍSTICA");
                 this.Close();

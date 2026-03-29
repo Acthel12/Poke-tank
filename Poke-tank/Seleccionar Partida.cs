@@ -65,8 +65,8 @@ namespace Poke_tank
             //Usamos una funcion LINQ para Filtrar los datos para la DataGriewView
             var partidasMostrar = partidas.Select(p => new
             {
-                Nombre_Tanque = p.tanqueUsuario.Nombre,
-                Enemigos_Derrotados = p.enemigosDerrotados.Count,
+                Nombre_Tanque = p.NombreJugador,
+                Enemigos_Derrotados = p.EnemigosDerrotados,
                 Fecha_Partida = p.fechaCreacion.ToString("dd/MM/yyyy HH:mm:ss"),
                 Puntuacion = p.puntuacion.PuntosTotales,
                 Dificultad = p.Dificultad.ToString()

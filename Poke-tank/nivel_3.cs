@@ -684,10 +684,10 @@ namespace Poke_tank
 
         private void GuardarVictoriaYSalir()
         {
-            List<TanqueEnemigo> tanquesDerrotados = new List<TanqueEnemigo>();
-            TanqueEnemigo enemigoActual = new TanqueEnemigo("Enemigo Derrotado", "T-72", 0, 0, 0, 0);
-            enemigoActual.Modelo = "T-72";
-            tanquesDerrotados.Add(enemigoActual);
+            //List<TanqueEnemigo> tanquesDerrotados = new List<TanqueEnemigo>();
+            //TanqueEnemigo enemigoActual = new TanqueEnemigo("Enemigo Derrotado", "T-72", 0, 0, 0, 0);
+            //enemigoActual.Modelo = "T-72";
+            //tanquesDerrotados.Add(enemigoActual);
 
             string nombreJugador = "Jugador 1";
             //Puntuacion nuevaPuntuacion = new Puntuacion(nombreJugador, tanquesDerrotados);

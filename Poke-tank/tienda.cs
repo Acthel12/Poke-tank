@@ -144,7 +144,7 @@ namespace Poke_tank
             if (partida.Oro >= item.Precio)
             {
                 partida.Oro -= item.Precio;
-                if (item.Categoria == "Escudos" || item.Categoria == "Potenciadores") partida.tanqueUsuario.Defensa += item.ValorEfecto;
+                //if (item.Categoria == "Escudos" || item.Categoria == "Potenciadores") partida.tanqueUsuario.Defensa += item.ValorEfecto;
                 //else if (item.Categoria == "Misiles") partida.tanqueUsuario.DanoMisil += item.ValorEfecto;
                 //else if (item.Categoria == "Balas") partida.tanqueUsuario.DanoBala += item.ValorEfecto;
                 DatosGlobales.GuardarDatos();

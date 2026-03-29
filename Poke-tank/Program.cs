@@ -13,16 +13,12 @@ namespace Poke_tank
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            //Application.Run(new Menu_Principal());
-            //Application.Run(new MinijuegoDron());
 
             //para probar 
-            Partida.iniciarPartida("Waza", "M1A1", 140, 30, 10, 14, NivelDificultad.Facil);
-            Application.Run(new Tienda());
-            //Application.Run(new Buscaminas());
+            //Application.Run(new Tienda());
 
             Application.Run(new Menu_Principal());
-            //
+            
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Poke_tank
     public class Puntuacion
     {
         public string NombreTanque { get; set; } = string.Empty;
-        public List<TanqueEnemigo> TanquesDerrotados { get; set; }
+        public int TanquesDerrotados { get; set; }
         public DateTime Fecha { get; set; }
         public NivelDificultad Dificultad { get; set; }
         public int PuntosTotales { get; set; } 
@@ -16,7 +16,7 @@ namespace Poke_tank
         //Constructor vacio para json serializer
         public Puntuacion() {}
 
-        public Puntuacion(string nombre, List<TanqueEnemigo> derrotados,NivelDificultad dificultad)
+        public Puntuacion(string nombre, int derrotados,NivelDificultad dificultad)
         {
             NombreTanque = nombre;
             TanquesDerrotados = derrotados;
@@ -28,16 +28,7 @@ namespace Poke_tank
         
         private int CalcularPuntuacion(NivelDificultad dificultad)
         {
-            int cantidadT72 = TanquesDerrotados.Count(t => t.Modelo == "T-72");
-            int cantidadT80 = TanquesDerrotados.Count(t => t.Modelo == "T-80");
-            int cantidadT90 = TanquesDerrotados.Count(t => t.Modelo == "T-90");
-            int cantidadT14 = TanquesDerrotados.Count(t => t.Modelo == "T-14 Armata");
-
-            int puntosT72 = cantidadT72 * 25;
-            int puntosT80 = cantidadT80 * 50;
-            int puntosT90 = cantidadT90 * 100;
-            int puntosT14 = cantidadT14 * 200;
-
+            
             int multiplicadorDificultad = dificultad switch
             {
                 NivelDificultad.Facil => 1,
@@ -46,7 +37,7 @@ namespace Poke_tank
                 _ => 1
             };
 
-            return (puntosT72 + puntosT80 + puntosT90 + puntosT14) * multiplicadorDificultad;
+            return (TanquesDerrotados * 100 * multiplicadorDificultad);
         }
     }
 }
