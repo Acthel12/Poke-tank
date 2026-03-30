@@ -8,6 +8,7 @@ namespace Poke_tank
 {
     public partial class Buscaminas : Form
     {
+        
         private int filas = 10, columnas = 10, minas = 15;
         private Button[,] botones;
         private bool[,] tieneMina;
@@ -15,6 +16,9 @@ namespace Poke_tank
         private int[,] minasAdyacentes;
         private int celdasRestantes;
         private Image fotoMina;
+        private int banderasColocadas = 0;
+        private Label lblContadorBanderas;
+
 
         public Buscaminas()
         {
@@ -86,6 +90,17 @@ namespace Poke_tank
                 }
             }
 
+            lblContadorBanderas = new Label
+            {
+                Text = $"Banderas: 0 / {minas}",
+                ForeColor = Color.Yellow,
+                Location = new Point(10, 40), // Debajo del título principal
+                Size = new Size(380, 20),
+                Font = new Font("Impact", 10),
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+            this.Controls.Add(lblContadorBanderas); 
+
             Label lblInfo = new Label
             {
                 Text = ">>> BUSCA LAS MINAS (O AL FLAVIO) <<<",
@@ -119,25 +134,27 @@ namespace Poke_tank
             
             if (revelado[r, c]) return;
 
-            
+
             if (e.Button == MouseButtons.Right)
             {
-                
                 if (b.Text == "🚩")
                 {
                     b.Text = "";
-                    b.Image = null; 
+                    banderasColocadas--;
                 }
-                else
+                else if (banderasColocadas < minas)
                 {
-                    
                     b.Text = "🚩";
                     b.ForeColor = Color.Yellow;
+                    banderasColocadas++;
                 }
-                return; 
+
+                
+                lblContadorBanderas.Text = $"Banderas: {banderasColocadas} / {minas}";
+                return;
             }
 
-            
+
             if (e.Button == MouseButtons.Left)
             {
                 
