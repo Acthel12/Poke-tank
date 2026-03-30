@@ -80,7 +80,7 @@ namespace Poke_tank
                     b.ForeColor = Color.Gold;
                     b.Font = new Font("Impact", 12);
                     b.Tag = new Point(i, j);
-                    b.Click += ClicCelda;
+                    b.MouseDown += ClicCelda;
                     botones[i, j] = b;
                     this.Controls.Add(b);
                 }
@@ -110,43 +110,69 @@ namespace Poke_tank
             return cuenta;
         }
 
-        private void ClicCelda(object sender, EventArgs e)
+        private void ClicCelda(object sender, MouseEventArgs e)
         {
             Button b = (Button)sender;
             Point p = (Point)b.Tag;
             int r = p.X, c = p.Y;
 
+            
             if (revelado[r, c]) return;
-            var partida = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
 
-            if (tieneMina[r, c])
+            
+            if (e.Button == MouseButtons.Right)
             {
-                if (fotoMina != null)
+                
+                if (b.Text == "🚩")
                 {
-                    b.Image = fotoMina;
                     b.Text = "";
+                    b.Image = null; 
                 }
                 else
                 {
-                    b.Text = "💣";
+                    
+                    b.Text = "🚩";
+                    b.ForeColor = Color.Yellow;
                 }
-                b.BackColor = Color.DarkRed;
-
-                //partida.tanqueUsuario.Defensa -= 50;
-                DatosGlobales.GuardarDatos();
-                MessageBox.Show("¡BOOM! Activaste al flavio sorpresa. Perdiste, vuelve a intentarlo.", "ERROR DE LOGÍSTICA");
-                this.Close();
+                return; 
             }
-            else
+
+            
+            if (e.Button == MouseButtons.Left)
             {
-                Revelar(r, c);
-                if (celdasRestantes == 0)
+                
+                if (b.Text == "🚩") return;
+
+                var partida = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
+
+                if (tieneMina[r, c])
                 {
-                    int premio = 200;
-                    partida.Oro += premio;
+                    if (fotoMina != null)
+                    {
+                        b.Image = fotoMina;
+                        b.Text = "";
+                    }
+                    else
+                    {
+                        b.Text = "💣";
+                    }
+                    b.BackColor = Color.DarkRed;
+
                     DatosGlobales.GuardarDatos();
-                    MessageBox.Show($"¡Campo despejado! Ganaste {premio} G.", "VICTORIA");
+                    MessageBox.Show("¡BOOM! Activaste al flavio sorpresa. Perdiste, vuelve a intentarlo.", "ERROR DE LOGÍSTICA");
                     this.Close();
+                }
+                else
+                {
+                    Revelar(r, c);
+                    if (celdasRestantes == 0)
+                    {
+                        int premio = 200;
+                        partida.Oro += premio;
+                        DatosGlobales.GuardarDatos();
+                        MessageBox.Show($"¡Campo despejado! Ganaste {premio} G.", "VICTORIA");
+                        this.Close();
+                    }
                 }
             }
         }
