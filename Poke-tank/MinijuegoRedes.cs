@@ -10,6 +10,7 @@ namespace Poke_tank
         // Usamos el nombre completo para evitar errores de ambigüedad (CS0104)
         private System.Windows.Forms.Timer juegoTimer;
         private int puntuacion = 0;
+        private int vidas = 2;
         private int tiempoRestante = 40;
         private Random rnd = new Random();
         private int ultimoIndicePregunta = -1;
@@ -96,7 +97,18 @@ namespace Poke_tank
                 BackColor = Color.FromArgb(10, 10, 80),
                 BorderStyle = BorderStyle.FixedSingle
             };
-
+           
+            Label lblVidas = new Label
+            {
+                Name = "lblVidas",
+                Text = "Intentos: 2",
+                ForeColor = Color.White,
+                Location = new Point(50, 220),
+                Font = new Font("Arial", 12, FontStyle.Bold),
+                AutoSize = true
+            };
+             this.Controls.Add(lblVidas);
+            
             lblPregunta = new Label
             {
                 Text = "PREPARANDO COMPILADOR...",
@@ -206,8 +218,26 @@ namespace Poke_tank
             }
             else
             {
-                btn.BackColor = Color.DarkRed;
-                FinDelJuego(true);
+                // --- RESPUESTA INCORRECTA ---
+                vidas--;
+                btn.BackColor = Color.Red;
+
+                // Actualizar visual de vidas si tienes el Label
+                if (this.Controls.ContainsKey("lblVidas"))
+                    this.Controls["lblVidas"].Text = $"Intentos: {vidas}";
+
+                if (vidas > 0)
+                {
+                    MessageBox.Show($"¡ERROR! Esa no era la respuesta.\nTe queda {vidas} intento. Cambiando pregunta...", "FALLO");
+
+                    // CAMBIO AUTOMÁTICO DE PREGUNTA AL FALLAR
+                    SiguientePregunta();
+                }
+                else
+                {
+                    // Se acabaron las vidas
+                    FinDelJuego(true);
+                }
             }
         }
 
@@ -233,5 +263,6 @@ namespace Poke_tank
             }
             this.Close();
         }
+        
     }
 }
