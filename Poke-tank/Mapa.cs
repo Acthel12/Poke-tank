@@ -40,7 +40,7 @@ namespace Poke_tank
         Rectangle zonaNivel3 = new Rectangle(970, 269, 31, 21);
         Rectangle zonaNivel2 = new Rectangle(508, 111, 31, 21);
         Rectangle zonaNivel1 = new Rectangle(381, 566, 31, 21);
-        Rectangle zonaBase = new Rectangle(616, 326, 32, 22); 
+        Rectangle zonaBase = new Rectangle(616, 326, 32, 22);
 
         // Un seguro para saber si ya abrimos la ventana
         bool ventanaAbierta = false;
@@ -385,7 +385,7 @@ namespace Poke_tank
         }
 
 
-       
+
         //botón de easter egg flavionística
         private void botonSorpresaFlavio_Click(object sender, EventArgs e)
         {
@@ -400,28 +400,21 @@ namespace Poke_tank
             {
                 Partida partida = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
 
-                if (partida.EnemigosDerrotados > 0)
-                {
-                    //registramos la puntuación una sola vez al final
-                    Puntuacion recordFinal = new Puntuacion(
-                        partida.NombreJugador,
-                        partida.EnemigosDerrotados,
-                        partida.Dificultad
-                    );
+                //registramos la puntuación una sola vez al final
+                Puntuacion recordFinal = new Puntuacion(
+                    partida.NombreJugador,
+                    partida.EnemigosDerrotados,
+                    partida.Dificultad
+                );
 
-                    DatosGlobales.ListaPuntuaciones.Add(recordFinal);
+                DatosGlobales.ListaPuntuaciones.Add(recordFinal);
 
-                    //Terminamos con la partida
-                    DatosGlobales.ListaPartidas.Remove(partida);
+                //Terminamos con la partida
+                DatosGlobales.ListaPartidas.Remove(partida);
 
-                    DatosGlobales.GuardarDatos();
+                DatosGlobales.GuardarDatos();
 
-                    MessageBox.Show($"Campaña finalizada. ¡Puntaje total: {recordFinal.PuntosTotales} puntos registrados!");
-                }
-                else
-                {
-                    MessageBox.Show("Campaña finalizada sin victorias. No se registró puntuación.");
-                }
+                MessageBox.Show($"Campaña finalizada. ¡Puntaje total: {recordFinal.PuntosTotales} puntos registrados!");
             }
 
             this.Close(); //para regresar al menú
@@ -442,19 +435,6 @@ namespace Poke_tank
             }
         }
 
-        //método para seleccionar el fondo del mapa automáticamente según el nivel escogido
-        private void SeleccionarMapa(Form form)
-        {
-            form.BackgroundImage = DatosGlobales.NivelSeleccionado switch
-            {
-                0 => Properties.Resources.fondoNivel1,
-
-                1 => Properties.Resources.fondoNivel2,
-
-                2 => Properties.Resources.fondoNivel3,
-            };
-        }
-
         //al cargar el mapa, se habilitan o deshabilitan los botones de los niveles según el progreso del usuario en la campaña
         private void Mapa_Load(object sender, EventArgs e)
         {
@@ -463,11 +443,6 @@ namespace Poke_tank
         private void ActualizarMapa()
         {
             Partida partidaActual = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
-
-            //Comprobamos el número de enemigos derrotados para determinar qué niveles están disponibles
-            //botonNivel1.Enabled = (partidaActual.enemigosDerrotados.Count == 0 || partidaActual.enemigosDerrotados.Count >= 3);
-            //botonNivel2.Enabled = (partidaActual.enemigosDerrotados.Count == 1 || partidaActual.enemigosDerrotados.Count >= 3);
-            //botonNivel3.Enabled = (partidaActual.enemigosDerrotados.Count >= 2 );
 
             //Comprobamos si el usuario ha derrotado a los 3 enemigos para mostrar el botón de finalizar campaña, si no se cambia por salir
             if (partidaActual.EnemigosDerrotados >= 3)
@@ -479,16 +454,22 @@ namespace Poke_tank
                 botonFinalizar.Text = "Salir";
             }
         }
-        
+
         private void pruebaBatalla_Click(object sender, EventArgs e)
         {
             nivel_1 from1 = new nivel_1();
             from1.ShowDialog();
         }
-        
+
         private void Mapa_FormClosed(object sender, FormClosedEventArgs e)
         {
             DatosGlobales.PartidaActualIndex = -1; //reiniciamos el índice de la partida actual al cerrar el mapa para evitar problemas al regresar al menús
+        }
+
+        //eliminar despues 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FinalizarAventura();
         }
     }
 }

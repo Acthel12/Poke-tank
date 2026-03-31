@@ -263,6 +263,16 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FondoMenuPrincipal {
+            get {
+                object obj = ResourceManager.GetObject("FondoMenuPrincipal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fondoMisil {
             get {
                 object obj = ResourceManager.GetObject("fondoMisil", resourceCulture);
