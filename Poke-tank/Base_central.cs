@@ -143,7 +143,8 @@ namespace Poke_tank
                 }
                 else if (rectTanque.IntersectsWith(zonaIzquierda))
                 {
-                    EvaluarInteraccion("Minijuego Responde Redes", typeof(nivel_3)); //minijuego whack-a-mole (direccion de comunicacion)
+                    // Aquí usamos el nombre de tu nuevo formulario profesional
+                    EvaluarInteraccion("Minijuego Responde Redes", typeof(MinijuegoRedes));
                 }
                 else if (rectTanque.IntersectsWith(zonaCentro))
                 {
