@@ -32,6 +32,7 @@ namespace Poke_tank
 
             this.TanqueUsuario = tanqueUsuario;
 
+            this.NombreJugador = nombreJugador;
         }
 
         //crea una nueva partida
