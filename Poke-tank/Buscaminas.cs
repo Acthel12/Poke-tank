@@ -8,6 +8,7 @@ namespace Poke_tank
 {
     public partial class Buscaminas : Form
     {
+        
         private int filas = 10, columnas = 10, minas = 15;
         private Button[,] botones;
         private bool[,] tieneMina;
@@ -15,6 +16,9 @@ namespace Poke_tank
         private int[,] minasAdyacentes;
         private int celdasRestantes;
         private Image fotoMina;
+        private int banderasColocadas = 0;
+        private Label lblContadorBanderas;
+
 
         public Buscaminas()
         {
@@ -80,11 +84,22 @@ namespace Poke_tank
                     b.ForeColor = Color.Gold;
                     b.Font = new Font("Impact", 12);
                     b.Tag = new Point(i, j);
-                    b.Click += ClicCelda;
+                    b.MouseDown += ClicCelda;
                     botones[i, j] = b;
                     this.Controls.Add(b);
                 }
             }
+
+            lblContadorBanderas = new Label
+            {
+                Text = $"Banderas: 0 / {minas}",
+                ForeColor = Color.Yellow,
+                Location = new Point(10, 40), // Debajo del título principal
+                Size = new Size(380, 20),
+                Font = new Font("Impact", 10),
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+            this.Controls.Add(lblContadorBanderas); 
 
             Label lblInfo = new Label
             {
@@ -110,43 +125,71 @@ namespace Poke_tank
             return cuenta;
         }
 
-        private void ClicCelda(object sender, EventArgs e)
+        private void ClicCelda(object sender, MouseEventArgs e)
         {
             Button b = (Button)sender;
             Point p = (Point)b.Tag;
             int r = p.X, c = p.Y;
 
+            
             if (revelado[r, c]) return;
-            var partida = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
 
-            if (tieneMina[r, c])
+
+            if (e.Button == MouseButtons.Right)
             {
-                if (fotoMina != null)
+                if (b.Text == "🚩")
                 {
-                    b.Image = fotoMina;
                     b.Text = "";
+                    banderasColocadas--;
+                }
+                else if (banderasColocadas < minas)
+                {
+                    b.Text = "🚩";
+                    b.ForeColor = Color.Yellow;
+                    banderasColocadas++;
+                }
+
+                
+                lblContadorBanderas.Text = $"Banderas: {banderasColocadas} / {minas}";
+                return;
+            }
+
+
+            if (e.Button == MouseButtons.Left)
+            {
+                
+                if (b.Text == "🚩") return;
+
+                var partida = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
+
+                if (tieneMina[r, c])
+                {
+                    if (fotoMina != null)
+                    {
+                        b.Image = fotoMina;
+                        b.Text = "";
+                    }
+                    else
+                    {
+                        b.Text = "💣";
+                    }
+                    b.BackColor = Color.DarkRed;
+
+                    DatosGlobales.GuardarDatos();
+                    MessageBox.Show("¡BOOM! Activaste al flavio sorpresa. Perdiste, vuelve a intentarlo.", "ERROR DE LOGÍSTICA");
+                    this.Close();
                 }
                 else
                 {
-                    b.Text = "💣";
-                }
-                b.BackColor = Color.DarkRed;
-
-                partida.tanqueUsuario.Defensa -= 50;
-                DatosGlobales.GuardarDatos();
-                MessageBox.Show("¡BOOM! Activaste al flavio sorpresa. Perdiste, vuelve a intentarlo.", "ERROR DE LOGÍSTICA");
-                this.Close();
-            }
-            else
-            {
-                Revelar(r, c);
-                if (celdasRestantes == 0)
-                {
-                    int premio = 200;
-                    partida.Oro += premio;
-                    DatosGlobales.GuardarDatos();
-                    MessageBox.Show($"¡Campo despejado! Ganaste {premio} G.", "VICTORIA");
-                    this.Close();
+                    Revelar(r, c);
+                    if (celdasRestantes == 0)
+                    {
+                        int premio = 200;
+                        partida.Oro += premio;
+                        DatosGlobales.GuardarDatos();
+                        MessageBox.Show($"¡Campo despejado! Ganaste {premio} G.", "VICTORIA");
+                        this.Close();
+                    }
                 }
             }
         }

@@ -15,64 +15,34 @@ namespace Poke_tank
     {
         private Random random = new Random();
 
-        public Tanque tanqueUsuario { get; set; }
-        public List<TanqueEnemigo> enemigosDerrotados { get; set; }
-        public List<TanqueEnemigo> enemigos { get; set; }
+        public String NombreJugador { get; set; }
+        public Tanque TanqueUsuario { get; set; }
         public Puntuacion puntuacion { get; set; } //quiero que se guarde la puntuacion de la partida para mostrarla al cargar partidas
         public DateTime fechaCreacion { get; set; } //para mostrar la fecha de creación de la partida en la lista de partidas guardadas
         public NivelDificultad Dificultad { get; set; }
+        public int EnemigosDerrotados { get; set; }
         public int Oro { get; set; }
 
-        //nombres para escoger al azar para los tanques enemigos según su modelo
-
-        private static readonly string[] nombresT80 = {
-            "Doomhammer", "Hellfire Engine", "Oblivion", "Widowmaker",
-            "Chaos Bringer", "Soul Reaper", "Cataclysm", "Iron Guardian",
-            "Titan's Wall", "Aegis Prime", "Immortal Shell", "Void Walker",
-            "Last Bastion", "Phantom Wrath", "Silent Death", "Storm Chaser",
-            "Shadow Tread", "Vanguard Alpha"
-        };
-
-        private static readonly string[] nombresT72 = {
-            "Iron Workhorse", "Steel Grunt", "Rust Walker", "Grim Vanguard",
-            "Bone Crusher", "Old Guard", "Endless March", "Soviet Anvil",
-            "Rough Rider", "Scrap Titan"
-        };
-
-        private static readonly string[] nombresT90 = {
-            "Crimson Gaze", "Shtora's Curse", "Red Reaper", "Vladimir's Wrath",
-            "Hell's Iris", "Apex Predator", "Night Hunter", "Demon Core",
-            "Tech Terror", "Blood Omen"
-        };
-
-        private static readonly string[] nombresT14 = {
-            "Armata Prime", "Ghost Turret", "Digital Demon", "Cyber Dreadnought",
-            "System Overlord", "Titan Protocol", "Neon Vanguard", "Void Specter",
-            "Future Shock", "The Tsar", "Apex Machine"
-        };
+        
 
         public Partida() { } //constructor vacio para json serializer
-        public Partida(Tanque tanqueUsuario)
+        public Partida(Tanque tanqueUsuario, String nombreJugador)
         {
             this.fechaCreacion = DateTime.Now;
 
-            this.tanqueUsuario = tanqueUsuario;
+            this.TanqueUsuario = tanqueUsuario;
 
-            this.enemigosDerrotados = new List<TanqueEnemigo>();
-
-            this.enemigos = new List<TanqueEnemigo>();
-
-            GenerarEnemigos();
+            this.NombreJugador = nombreJugador;
         }
 
         //crea una nueva partida
-        public static void iniciarPartida(string nombreJugador, string modelo, int vida, int ataque, int defensa, int velocidad, NivelDificultad dificultad)
+        public static void iniciarPartida(string nombreJugador,int vida, int ataque, NivelDificultad dificultad)
         {
             //crea tanque del jugador
-            Tanque jugador = new Tanque(nombreJugador, modelo, vida, ataque, defensa, velocidad);
+            Tanque jugador = new Tanque(vida, ataque);
 
             //crea partida y agregar a datos globales
-            Partida nueva = new Partida(jugador);
+            Partida nueva = new Partida(jugador, nombreJugador);
             nueva.CalcularPuntuacion(); //inicializa la puntuación de la partida
             nueva.Dificultad = dificultad;
 
@@ -80,48 +50,10 @@ namespace Poke_tank
             DatosGlobales.PartidaActualIndex = DatosGlobales.ListaPartidas.Count - 1;
         }
 
-        //genera los enemigos para la partida según el nivel seleccionado
-        private void GenerarEnemigos()
-        {
-
-            AgregarEnemigo(nombresT72, "T-72", 80, 20, 5, 10);
-            AgregarEnemigo(nombresT80, "T-80", 100, 25, 10, 15);
-            if (random.Next(1, 101) <= 25)
-            {
-                AgregarEnemigo(nombresT14, "T-14 Armata", 150, 35, 15, 25);
-            }
-            else
-            {
-                AgregarEnemigo(nombresT90, "T-90", 120, 30, 8, 12);
-            }
-        }
-
-        //método para agregar un enemigo a la lista, escogiendo un nombre al azar de la lista correspondiente al modelo
-        private void AgregarEnemigo(string[] listaNombres, string modelo, int vida, int ataque, int defensa, int exp)
-        {
-            string nombreAlAzar = listaNombres[random.Next(listaNombres.Length)];
-            enemigos.Add(new TanqueEnemigo(nombreAlAzar, modelo, vida, ataque, defensa, exp));
-        }
-
-        //se registra la derrota de un enemigo en la lista, agregándolo a la lista de enemigos derrotados y restaurando la vida del usuario
-        public void DerrotarEnemigo(TanqueEnemigo enemigo, Tanque usuario)
-        {
-            enemigosDerrotados.Add(enemigo);
-            usuario.RestaurarStats();
-            enemigo.RestaurarStats();
-        }
-
-        //Funcion para restaurar la vida del usuario al máximo y la del enemigo actual al ´máximo, para reiniciar el combate
-        public void ReiniciarCombate()
-        {
-            TanqueEnemigo enemigo = enemigos[DatosGlobales.NivelSeleccionado];
-            this.tanqueUsuario.RestaurarStats();
-            enemigo.RestaurarStats();
-        }
         //Funcion para calcular la puntuación al finalizar la partida, basada en el número de enemigos derrotados y se muestra al usuario
         public void CalcularPuntuacion()
         {
-            this.puntuacion = new Puntuacion(this.tanqueUsuario.Nombre, this.enemigosDerrotados, this.Dificultad);
+            this.puntuacion = new Puntuacion(this.NombreJugador, this.EnemigosDerrotados ,this.Dificultad);
         }
     }
 }

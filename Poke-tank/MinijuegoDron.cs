@@ -229,7 +229,7 @@ namespace Poke_tank
                 }
                 else
                 {
-                    e.Graphics.FillEllipse(Brushes.Yellow, misil.X, misil.Y, misil.Ancho, misil.Alto);
+                    e.Graphics.FillEllipse(Brushes.Red, misil.X, misil.Y, misil.Ancho, misil.Alto);
                 }   
             }
 

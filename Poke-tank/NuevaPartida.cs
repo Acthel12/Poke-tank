@@ -44,13 +44,13 @@ namespace Poke_tank
             switch (chechboxSeleccionada)
             {
                 case 1:
-                    Partida.iniciarPartida(nombre, "M1A1", 140, 30, 10, 14, NivelDificultad.Facil);
+                    Partida.iniciarPartida(nombre, 140, 30, NivelDificultad.Facil);
                     return true;
                 case 2:
-                    Partida.iniciarPartida(nombre, "M1A1", 120, 25, 8, 12, NivelDificultad.Normal);
+                    Partida.iniciarPartida(nombre, 120, 25, NivelDificultad.Normal);
                     return true;
                 case 3:
-                    Partida.iniciarPartida(nombre, "M1A1", 100, 20, 6, 10, NivelDificultad.Dificil);
+                    Partida.iniciarPartida(nombre, 100, 20, NivelDificultad.Dificil);
                     return true;
                 default:
                     MessageBox.Show("Seleccione una dificultad válida.");

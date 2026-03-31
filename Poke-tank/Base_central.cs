@@ -48,7 +48,7 @@ namespace Poke_tank
             this.KeyPreview = true;
             this.ClientSize = new Size(1280, 720); // Mismo tamaño que el mapa
 
-            spriteSheet = Properties.Resources.SPRITE_SHEET_FLAVIO_MAPA;
+            spriteSheet = Properties.Resources.SPRITE_SHEET_FLAVIO;
             MASCARA_BASE = new Bitmap(Properties.Resources.MASCARA_MAPA_FINAL); // Puedes reemplazar x MASCARA_BASE_CENTRAL
 
             // Inicializar al personaje en la parte inferior central
@@ -135,15 +135,16 @@ namespace Poke_tank
 
                 if (rectTanque.IntersectsWith(zonaArriba))
                 {
-                    EvaluarInteraccion("Minijuego Dron", typeof(nivel_1)); //minijuego dron (simarca)
+                    EvaluarInteraccion("Minijuego Dron", typeof(MinijuegoDron)); //minijuego dron (simarca)
                 }
                 else if (rectTanque.IntersectsWith(zonaDerecha))
                 {
-                    EvaluarInteraccion("Minijuego Buscaminas", typeof(nivel_2)); //minijuego minas (decanato)
+                    EvaluarInteraccion("Minijuego Buscaminas", typeof(Buscaminas)); //minijuego minas (decanato)
                 }
                 else if (rectTanque.IntersectsWith(zonaIzquierda))
                 {
-                    EvaluarInteraccion("Minijuego Responde Redes", typeof(nivel_3)); //minijuego whack-a-mole (direccion de comunicacion)
+                    // Aquí usamos el nombre de tu nuevo formulario profesional
+                    EvaluarInteraccion("Minijuego Responde Redes", typeof(MinijuegoRedes));
                 }
                 else if (rectTanque.IntersectsWith(zonaCentro))
                 {

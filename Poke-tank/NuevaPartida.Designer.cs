@@ -1,4 +1,6 @@
-﻿namespace Poke_tank
+﻿using System.Security.Cryptography.Xml;
+
+namespace Poke_tank
 {
     partial class NuevaPartida
     {
@@ -134,7 +136,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.SeleccionarPartida;
+            BackgroundImage = Properties.Resources.wmremove_transformed;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(914, 600);
             Controls.Add(label2);

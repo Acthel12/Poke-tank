@@ -20,19 +20,17 @@ namespace Poke_tank
             Mapa from1 = new Mapa();
             NuevaPartida from2 = new NuevaPartida();
 
-            from2.ShowDialog();
+            AbrirForm(from2);
 
             if (DatosGlobales.PartidaActualIndex >= 0 ) 
-                from1.ShowDialog();
+                AbrirForm(from1);
         }
         //mostrar puntuaciones con el boton
         private void botonPuntuaciones_Click(object sender, EventArgs e)
         {
-            //Puntuaciones from2 = new Puntuaciones();
+            Puntuaciones from2 = new Puntuaciones();
 
-            nivel_3 from2 = new nivel_3();
-
-            from2.ShowDialog();
+            AbrirForm(from2);
         }
         //salir del juego con el boton
         private void botonSalir_Click(object sender, EventArgs e)
@@ -43,7 +41,7 @@ namespace Poke_tank
         private void buttonCargarPartida_Click(object sender, EventArgs e)
         {
             Seleccionar_Partida form = new Seleccionar_Partida();
-            form.ShowDialog();
+            AbrirForm(form);
         }
 
         private void Menu_Principal_Load(object sender, EventArgs e)
@@ -54,6 +52,18 @@ namespace Poke_tank
         private void Menu_Principal_FormClosed(object sender, FormClosedEventArgs e)
         {
             DatosGlobales.GuardarDatos();
+        }
+
+        //Pausa el gif al abrir un Form y lo reanuda al cerrarlo
+        private void AbrirForm(Form formulario)
+        {
+            Image gifAnimado = fondoMenuPrincipal.Image;
+
+            fondoMenuPrincipal.Image = Properties.Resources.FondoMenuPrincipal;
+
+            formulario.ShowDialog();
+
+            fondoMenuPrincipal.Image = gifAnimado;
         }
     }
 }

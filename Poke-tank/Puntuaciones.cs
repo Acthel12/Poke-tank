@@ -39,8 +39,8 @@ namespace Poke_tank
                     .Take(10)
                     .Select(p => new
                     {
-                        Tanque = p.NombreTanque,
-                        Destruidos = p.TanquesDerrotados.Count,
+                        Nombre_Jugador = p.NombreJugador,
+                        Destruidos = p.TanquesDerrotados,
                         Puntos = p.PuntosTotales,
                         Fecha = p.Fecha.ToShortDateString(),
                         Dificultad= p.Dificultad

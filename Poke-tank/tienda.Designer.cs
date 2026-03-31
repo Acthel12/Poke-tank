@@ -1,6 +1,6 @@
 ﻿namespace Poke_tank
 {
-    partial class tienda
+    partial class Tienda
     {
         /// <summary>
         /// Required designer variable.
