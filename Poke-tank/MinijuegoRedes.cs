@@ -10,8 +10,9 @@ namespace Poke_tank
         // Usamos el nombre completo para evitar errores de ambigüedad (CS0104)
         private System.Windows.Forms.Timer juegoTimer;
         private int puntuacion = 0;
-        private int tiempoRestante = 20;
+        private int tiempoRestante = 40;
         private Random rnd = new Random();
+        private int ultimoIndicePregunta = -1;
 
         // Controles de Interfaz Estilo Millonario
         private Label lblPregunta;
@@ -24,15 +25,48 @@ namespace Poke_tank
 
         // BANCO DE PREGUNTAS DE PROGRAMACIÓN BÁSICA
         private string[,] bancoPreguntas = {
-            { "¿Qué tipo de dato almacena números enteros?", "int", "string", "bool", "float" },
-            { "¿Estructura que repite código mientras se cumpla una condición?", "While / For", "If / Else", "Variable", "Clase" },
-            { "¿Cuáles son los únicos valores de un tipo 'bool'?", "True / False", "0 al 9", "Cualquier texto", "Números decimales" },
-            { "¿Qué símbolo se usa para comparar si dos valores son IGUALES?", "==", "=", "!=", "++" },
-            { "¿Cómo se llama el 'molde' o plantilla para crear objetos?", "Clase", "Método", "Atributo", "Array" },
-            { "¿Qué estructura permite tomar decisiones (Si... entonces)?", "If / Else", "For Each", "Constant", "String" },
-            { "¿Cuál es el índice del primer elemento en un Array estándar?", "0", "1", "-1", "No tiene" },
-            { "¿Qué símbolo se usa para finalizar una línea en C#?", ";", ":", ".", "," }
-        };
+    // --- Fundamentos y Tipos ---
+    { "¿Qué tipo de dato almacena números enteros?", "int", "string", "bool", "float" },
+    { "¿Qué tipo de dato almacena texto?", "string", "int", "char", "bool" },
+    { "¿Cuáles son los únicos valores de un tipo 'bool'?", "True / False", "0 al 9", "Texto", "Decimales" },
+    { "¿Qué tipo de dato se usa para un solo carácter?", "char", "string", "byte", "long" },
+    { "¿Qué tipo de dato tiene más precisión decimal?", "double", "float", "int", "short" },
+    { "¿Qué palabra define una constante que no cambia?", "const", "static", "void", "public" },
+
+    // --- Estructuras de Control ---
+    { "¿Estructura que repite código mientras se cumpla una condición?", "While / For", "If / Else", "Variable", "Clase" },
+    { "¿Qué estructura permite tomar decisiones (Si... entonces)?", "If / Else", "For Each", "Constant", "String" },
+    { "¿Qué sentencia se usa para salir de un bucle inmediatamente?", "break", "exit", "stop", "return" },
+    { "¿Qué estructura es mejor para múltiples opciones fijas?", "switch", "if", "while", "for" },
+    { "¿Qué operador se usa para el 'resto' de una división?", "%", "/", "#", "&" },
+    { "¿Qué símbolo significa 'DIFERENTE DE' en una comparación?", "!=", "==", "<>", "not" },
+
+    // --- Arreglos y Colecciones ---
+    { "¿Cuál es el índice del primer elemento en un Array?", "0", "1", "-1", "10" },
+    { "¿Qué propiedad devuelve el tamaño de un Array?", "Length", "Count", "Size", "Total" },
+    { "¿Cómo se accede al tercer elemento de un array 'A'?", "A[2]", "A[3]", "A(2)", "A{3}" },
+
+    // --- Programación Orientada a Objetos (POO) ---
+    { "¿Cómo se llama el 'molde' para crear objetos?", "Clase", "Método", "Atributo", "Array" },
+    { "¿Qué palabra clave se usa para crear un objeto nuevo?", "new", "create", "make", "instance" },
+    { "¿Cómo se llama el método que se ejecuta al crear un objeto?", "Constructor", "Main", "Init", "Setter" },
+    { "¿Qué concepto de POO oculta los datos internos?", "Encapsulamiento", "Herencia", "Polimorfismo", "Clase" },
+    { "¿Qué concepto permite a una clase heredar de otra?", "Herencia", "Abstracción", "Interfaz", "Static" },
+    { "¿Qué palabra clave se refiere a la instancia actual?", "this", "self", "base", "me" },
+
+    // --- Sintaxis y Errores ---
+    { "¿Qué símbolo finaliza una línea en C#?", ";", ":", ".", "," },
+    { "¿Cómo se inicia un comentario de una sola línea?", "//", "/*", "--", "##" },
+    { "¿Qué significa 'IDE' en programación?", "Entorno de Desarrollo", "Interfaz de Datos", "Error de Identidad", "Elemento Interno" },
+    { "¿Cómo se llama el error al ejecutar el programa?", "Excepción", "Sintaxis", "Compilación", "Lógico" },
+    { "¿Qué bloque se usa para capturar errores?", "try / catch", "if / else", "error / fix", "check / get" },
+
+    // --- C# Específico ---
+    { "¿Qué método es el punto de entrada de una app C#?", "Main", "Start", "Init", "Run" },
+    { "¿Qué palabra indica que un método no devuelve nada?", "void", "null", "empty", "static" },
+    { "¿En qué lenguaje estamos programando este tanque?", "C#", "Python", "Java", "C++" },
+    { "¿Qué namespace contiene las herramientas de consola?", "System", "System.IO", "System.Net", "System.Web" }
+};
 
         public MinijuegoRedes()
         {
@@ -119,13 +153,21 @@ namespace Poke_tank
 
         private void SiguientePregunta()
         {
-            int index = rnd.Next(bancoPreguntas.GetLength(0));
-            lblPregunta.Text = bancoPreguntas[index, 0];
-            respuestaCorrectaActual = bancoPreguntas[index, 1];
+            int nuevoIndice;
+
+            do
+            {
+                nuevoIndice = rnd.Next(bancoPreguntas.GetLength(0));
+            } while (nuevoIndice == ultimoIndicePregunta);
+
+            ultimoIndicePregunta = nuevoIndice; 
+
+            lblPregunta.Text = bancoPreguntas[nuevoIndice, 0];
+            respuestaCorrectaActual = bancoPreguntas[nuevoIndice, 1];
 
             // Mezclar opciones para que la correcta no sea siempre la misma
             List<string> opciones = new List<string>();
-            for (int i = 1; i < 5; i++) opciones.Add(bancoPreguntas[index, i]);
+            for (int i = 1; i < 5; i++) opciones.Add(bancoPreguntas[nuevoIndice, i]);
 
             // Algoritmo de barajado
             for (int i = opciones.Count - 1; i > 0; i--)
@@ -174,8 +216,14 @@ namespace Poke_tank
             juegoTimer.Stop();
             int premioFinal = puntuacion / 10;
 
-            if (fallo) MessageBox.Show($"¡ERROR DE SINTAXIS!\nTu premio acumulado es de {premioFinal} Oro.", "CONCURSO TERMINADO");
-            else MessageBox.Show($"¡TIEMPO AGOTADO!\nGanaste {premioFinal} Oro.", "FIN DEL TIEMPO");
+            if (fallo)
+            {
+                MessageBox.Show($"¡ERROR DE SINTAXIS!\nGanaste {premioFinal} Oro.", "FIN");
+            }
+            else
+            {
+                MessageBox.Show($"¡TIEMPO AGOTADO!\nGanaste {premioFinal} Oro.", "FIN");
+            }
 
             if (DatosGlobales.PartidaActualIndex != -1)
             {
