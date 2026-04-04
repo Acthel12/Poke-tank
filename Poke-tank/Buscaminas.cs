@@ -24,31 +24,17 @@ namespace Poke_tank
         {
 
             this.Text = "POKE-TANK: DESACTIVACIÓN DE MINAS";
-            this.Size = new Size(420, 510);
+            this.Icon = Properties.Resources.LOGO_FLAVIO_ADVENTURES_SIN_FONDO;
+            this.ClientSize = new Size(1280, 720);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.BackColor = Color.FromArgb(25, 30, 25);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.BackgroundImage = Properties.Resources.fondoMina;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
 
-            CargarFotoPersonalizada();
             IniciarTablero();
         }
 
-        private void CargarFotoPersonalizada()
-        {
-            try
-            {
-                // Ahora busca específicamente flaviomina.png
-                string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "flaviomina.png");
-                if (File.Exists(ruta))
-                {
-                    Image imgOriginal = Image.FromFile(ruta);
-                    fotoMina = new Bitmap(imgOriginal, new Size(35, 35));
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Aviso: No se cargó la foto: " + ex.Message);
-            }
-        }
 
         private void IniciarTablero()
         {
@@ -71,13 +57,20 @@ namespace Poke_tank
                 for (int j = 0; j < columnas; j++)
                     if (!tieneMina[i, j]) minasAdyacentes[i, j] = ContarMinas(i, j);
 
+            int tamanoBoton = 40;
+            int anchoTablero = columnas * tamanoBoton;
+            int altoTablero = filas * tamanoBoton;
+
+            int inicioX = (this.ClientSize.Width - anchoTablero) / 2;
+            int inicioY = (this.ClientSize.Height - altoTablero) / 2;
+
             for (int i = 0; i < filas; i++)
             {
                 for (int j = 0; j < columnas; j++)
                 {
                     Button b = new Button();
-                    b.Size = new Size(40, 40);
-                    b.Location = new Point(j * 40 + 10, i * 40 + 60);
+                    b.Size = new Size(tamanoBoton, tamanoBoton);
+                    b.Location = new Point(inicioX + (j * tamanoBoton), inicioY + (i * tamanoBoton));
                     b.FlatStyle = FlatStyle.Flat;
                     b.FlatAppearance.BorderColor = Color.FromArgb(100, 100, 100);
                     b.BackColor = Color.FromArgb(60, 65, 60);
@@ -93,9 +86,9 @@ namespace Poke_tank
             lblContadorBanderas = new Label
             {
                 Text = $"Banderas: 0 / {minas}",
-                ForeColor = Color.Yellow,
-                Location = new Point(10, 40), // Debajo del título principal
-                Size = new Size(380, 20),
+                ForeColor = Color.Black,
+                BackColor = Color.Transparent,
+                Location = new Point(inicioX, inicioY - 50), 
                 Font = new Font("Impact", 10),
                 TextAlign = ContentAlignment.MiddleCenter
             };
@@ -103,10 +96,11 @@ namespace Poke_tank
 
             Label lblInfo = new Label
             {
-                Text = ">>> BUSCA LAS MINAS (O AL FLAVIO) <<<",
-                ForeColor = Color.LimeGreen,
-                Location = new Point(10, 10),
-                Size = new Size(380, 40),
+                Text = "Despeja el campo minado",
+                ForeColor = Color.Black,
+                BackColor = Color.Transparent,
+                Location = new Point(inicioX, inicioY - 100),
+                Size = new Size(anchoTablero, 40),
                 Font = new Font("Stencil", 12),
                 TextAlign = ContentAlignment.MiddleCenter
             };
@@ -176,7 +170,7 @@ namespace Poke_tank
                     b.BackColor = Color.DarkRed;
 
                     DatosGlobales.GuardarDatos();
-                    MessageBox.Show("¡BOOM! Activaste al flavio sorpresa. Perdiste, vuelve a intentarlo.", "ERROR DE LOGÍSTICA");
+                    MessageBox.Show("¡BOOM! Activaste al flavio sorpresa. Perdiste, vuelve a intentarlo.", "Alerta");
                     this.Close();
                 }
                 else

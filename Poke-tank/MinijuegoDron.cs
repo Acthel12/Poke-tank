@@ -55,6 +55,7 @@ namespace Poke_tank
             InitializeComponent();
 
             this.DoubleBuffered = true;
+            this.Icon = Properties.Resources.LOGO_FLAVIO_ADVENTURES_SIN_FONDO;
             this.ClientSize = new Size(1280, 720);
             this.Cursor = Cursors.Cross;
             this.Text = "DEFENDED LA BASE!!!";

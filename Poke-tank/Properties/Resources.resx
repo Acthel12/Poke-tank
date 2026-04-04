@@ -232,9 +232,6 @@
   <data name="gifFondoMenuPrincipal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gifFondoMenuPrincipal.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LOGO FLAVIO ADVENTURES SIN FONDO" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LOGO FLAVIO ADVENTURES SIN FONDO.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="luna luna de frente" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\luna luna de frente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -297,5 +294,11 @@
   </data>
   <data name="BaseTorreta" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BaseTorreta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondoMina" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondoMina.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LOGO FLAVIO ADVENTURES SIN FONDO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LOGO FLAVIO ADVENTURES SIN FONDO.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
