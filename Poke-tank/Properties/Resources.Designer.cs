@@ -93,6 +93,16 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BaseTorreta {
+            get {
+                object obj = ResourceManager.GetObject("BaseTorreta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bola_amarilla_bailando {
             get {
                 object obj = ResourceManager.GetObject("bola amarilla bailando", resourceCulture);
@@ -147,6 +157,15 @@ namespace Poke_tank.Properties {
             get {
                 object obj = ResourceManager.GetObject("diferencial secuaz marcel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream dron {
+            get {
+                return ResourceManager.GetStream("dron", resourceCulture);
             }
         }
         
@@ -217,6 +236,24 @@ namespace Poke_tank.Properties {
             get {
                 object obj = ResourceManager.GetObject("explosion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream explosion_1 {
+            get {
+                return ResourceManager.GetStream("explosion_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream explosion_2 {
+            get {
+                return ResourceManager.GetStream("explosion_2", resourceCulture);
             }
         }
         
@@ -317,6 +354,15 @@ namespace Poke_tank.Properties {
             get {
                 object obj = ResourceManager.GetObject("gifFondoMenuPrincipal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream laser {
+            get {
+                return ResourceManager.GetStream("laser", resourceCulture);
             }
         }
         
@@ -451,6 +497,15 @@ namespace Poke_tank.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream misil {
+            get {
+                return ResourceManager.GetStream("misil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap misil_dron_marcel {
@@ -575,6 +630,16 @@ namespace Poke_tank.Properties {
         internal static System.Drawing.Bitmap T90A {
             get {
                 object obj = ResourceManager.GetObject("T90A", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Torreta {
+            get {
+                object obj = ResourceManager.GetObject("Torreta", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
