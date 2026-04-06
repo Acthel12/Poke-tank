@@ -497,6 +497,8 @@ namespace Poke_tank
             //DatosGlobales.ListaPuntuaciones.Add(nuevaPuntuacion);
             //DatosGlobales.GuardarDatos();
 
+            this.DialogResult = DialogResult.OK;
+
             this.Close();
         }
 
