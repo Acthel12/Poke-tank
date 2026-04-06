@@ -121,7 +121,7 @@ namespace Poke_tank
 
             // Labels de Estado (Oro y Reloj)
             lblPuntos = new Label { Text = "Premio: 0 G", ForeColor = Color.Gold, Location = new Point(50, 180), Font = new Font("Impact", 20), AutoSize = true };
-            lblTiempo = new Label { Text = "20", ForeColor = Color.OrangeRed, Location = new Point(780, 180), Font = new Font("Impact", 26), AutoSize = true };
+            lblTiempo = new Label { Text = "40", ForeColor = Color.OrangeRed, Location = new Point(780, 180), Font = new Font("Impact", 26), AutoSize = true };
 
             // Botones de Opciones (2x2)
             int btnAncho = 350, btnAlto = 80;
