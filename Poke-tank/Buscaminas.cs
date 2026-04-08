@@ -1,8 +1,9 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using NAudio.Wave;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Poke_tank
 {
@@ -169,8 +170,9 @@ namespace Poke_tank
                     }
                     b.BackColor = Color.DarkRed;
 
+                    ReproducirExplosion();
                     DatosGlobales.GuardarDatos();
-                    MessageBox.Show("¡BOOM! Activaste al flavio sorpresa. Perdiste, vuelve a intentarlo.", "Alerta");
+                    MessageBox.Show("¡BOOM! Activaste la mina. Perdiste, vuelve a intentarlo.", "Alerta");
                     this.Close();
                 }
                 else
@@ -210,6 +212,25 @@ namespace Poke_tank
                 for (int i = -1; i <= 1; i++)
                     for (int j = -1; j <= 1; j++) Revelar(r + i, c + j);
             }
+        }
+        private void ReproducirExplosion()
+        {
+            // Usamos Task.Run para que no congele el juego ni un milisegundo al cargar
+            Task.Run(() => {
+                var lector = new WaveFileReader(Properties.Resources.explosion_1);
+                var reproductor = new WaveOutEvent();
+
+                reproductor.Volume = 1f;
+
+                reproductor.Init(lector);
+                reproductor.Play();
+
+                reproductor.PlaybackStopped += (sender, args) =>
+                {
+                    lector.Dispose();
+                    reproductor.Dispose();
+                };
+            });
         }
     }
 }
