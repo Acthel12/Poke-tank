@@ -492,9 +492,7 @@ namespace Poke_tank
             if (saludEnemigo <= 0)
             {
                 tanquesDerrotados += 1;
-                // GANASTE: Agregamos el tanque a la lista para que te dé los puntos
-                //TanqueEnemigo enemigoActual = new TanqueEnemigo("Enemigo Derrotado", "T-72", 0, 0, 0, 0);
-                //tanquesDerrotados.Add(enemigoActual);
+                DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex].EnemigosDerrotados += 1;
                 this.DialogResult = DialogResult.OK; //para que el menu sepa que puede avanzar al siguiente nivel
             }
             
@@ -510,7 +508,7 @@ namespace Poke_tank
             //Puntuacion nuevaPuntuacion = new Puntuacion(nombreJugador, tanquesDerrotados);
 
             //DatosGlobales.ListaPuntuaciones.Add(nuevaPuntuacion);
-            //DatosGlobales.GuardarDatos();
+            DatosGlobales.GuardarDatos();
 
             //Volver al menú
             this.Close();

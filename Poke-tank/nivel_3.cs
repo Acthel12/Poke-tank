@@ -689,11 +689,12 @@ namespace Poke_tank
             //enemigoActual.Modelo = "T-72";
             //tanquesDerrotados.Add(enemigoActual);
 
-            string nombreJugador = "Jugador 1";
+            DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex].EnemigosDerrotados += 1;
+
             //Puntuacion nuevaPuntuacion = new Puntuacion(nombreJugador, tanquesDerrotados);
 
             //DatosGlobales.ListaPuntuaciones.Add(nuevaPuntuacion);
-            //DatosGlobales.GuardarDatos();
+            DatosGlobales.GuardarDatos();
             this.DialogResult = DialogResult.OK;
 
             this.Close();

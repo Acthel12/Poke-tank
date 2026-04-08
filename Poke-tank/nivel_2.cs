@@ -486,7 +486,8 @@ namespace Poke_tank
             //TanqueEnemigo enemigoActual = new TanqueEnemigo("Enemigo Derrotado", "T-72", 0, 0, 0,0);
             //enemigoActual.Modelo = "T-72"; // Puedes cambiar esto después según el nivel
 
-            //tanquesDerrotados.Add(enemigoActual);
+            DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex].EnemigosDerrotados += 1;
+
 
             //Definimos el nombre del jugador 
             string nombreJugador = "Jugador 1";
@@ -495,7 +496,7 @@ namespace Poke_tank
 
             //guardado en json
             //DatosGlobales.ListaPuntuaciones.Add(nuevaPuntuacion);
-            //DatosGlobales.GuardarDatos();
+            DatosGlobales.GuardarDatos();
 
             this.DialogResult = DialogResult.OK;
 
