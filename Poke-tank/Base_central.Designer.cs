@@ -34,7 +34,9 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1430, 895);
+            BackgroundImage = Properties.Resources.MAPA_BASE_CENTRAL_COMPLETO;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1262, 673);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "Base_central";

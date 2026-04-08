@@ -175,9 +175,6 @@
   <data name="marcel con escudo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\marcel con escudo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MASCARA_BASE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MASCARA_BASE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="luis quimica de frente" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\luis quimica de frente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -271,6 +268,96 @@
   <data name="FondoMenuPrincipal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FondoMenuPrincipal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ana_arrecha" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ana_arrecha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ana_asustada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ana_asustada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="botonA_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\botonA_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="botonA_presionado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\botonA_presionado.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="botonD_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\botonD_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="botonD_presionado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\botonD_presionado.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="botonE_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\botonE_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="botonE_presionado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\botonE_presionado.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="botonQ_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\botonQ_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="botonQ_presionado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\botonQ_presionado.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="caraballo_secreto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\caraballo_secreto.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Escritorio_comunicacion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Escritorio_comunicacion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo_marcel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo_marcel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imagen_ana" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imagen ana.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imagen joa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imagen joa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imagen_soraya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imagen soraya.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="joa_arrecha" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\joa_arrecha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marcel_muere" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marcel_muere.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MASCARA MAPA BASE CENTRAL COMPLETO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MASCARA MAPA BASE CENTRAL COMPLETO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MASCARA_MAPA_COMPLETO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MASCARA_MAPA_COMPLETO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="persona1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\persona 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="persona2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\persona 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="persona3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\persona 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="persona4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\persona 4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="soraya_arrecha" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\soraya_arrecha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="soraya_asustada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\soraya_asustada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MAPA BASE CENTRAL COMPLETO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MAPA BASE CENTRAL COMPLETO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo_comunicacion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo_comunicacion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mazo_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mazo_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mazo_golpe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mazo_golpe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="explosion_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\explosion_1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -303,5 +390,26 @@
   </data>
   <data name="dron" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dron.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Vida1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Vida1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Vida2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Vida2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="exclamacion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\exclamacion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Vida3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Vida3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ataque1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ataque1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ataque2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ataque2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ataque3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ataque3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

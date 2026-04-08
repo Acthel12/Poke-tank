@@ -57,7 +57,7 @@ namespace Poke_tank
             this.DoubleBuffered = true;
             this.KeyPreview = true;
             // Pre-renderizamos el fondo una sola vez:
-            fondoBuffered = new Bitmap(Properties.Resources.fondoNivel1, this.ClientSize.Width, this.ClientSize.Height);
+            fondoBuffered = new Bitmap(Properties.Resources.fondoNivel3, this.ClientSize.Width, this.ClientSize.Height);
             // --- CARGAR IMÁGENES DESDE RESOURCES ---
             imgJugador = new Bitmap(Properties.Resources.flavio_de_espalda_batalla);
             imgEnemigo = new Bitmap(Properties.Resources.luis_quimica_de_frente);
@@ -70,15 +70,15 @@ namespace Poke_tank
             imgBalaEnemiga = new Bitmap(Properties.Resources.bala_luis);
             imgBalaEnemiga.RotateFlip(RotateFlipType.Rotate180FlipNone); // Volteada la bala enemiga hacia abajo
 
-            // --- CARGAR IMÁGENES DE CONTROLES (REEMPLAZA POR TUS IMÁGENES DE TECLAS) ---
-            imgKeyANormal = Properties.Resources.flavio_escudo_completo; //Tecla A Normal
-            imgKeyAPressed = Properties.Resources.explosion;   
-            imgKeyDNormal = Properties.Resources.flavio_escudo_completo; // Tecla D
-            imgKeyDPressed = Properties.Resources.explosion;
-            imgKeyQNormal = Properties.Resources.flavio_escudo_completo; // Tecla Q
-            imgKeyQPressed = Properties.Resources.explosion;
-            imgKeyENormal = Properties.Resources.flavio_escudo_completo; // Tecla E
-            imgKeyEPressed = Properties.Resources.explosion;
+            //CARGAR IMÁGENES DE CONTROLES
+            imgKeyANormal = Properties.Resources.botonA_normal; //Tecla A Normal
+            imgKeyAPressed = Properties.Resources.botonA_presionado;
+            imgKeyDNormal = Properties.Resources.botonD_normal; // Tecla D
+            imgKeyDPressed = Properties.Resources.botonD_presionado;
+            imgKeyQNormal = Properties.Resources.botonQ_normal; // Tecla Q
+            imgKeyQPressed = Properties.Resources.botonQ_presionado;
+            imgKeyENormal = Properties.Resources.botonE_normal; // Tecla E
+            imgKeyEPressed = Properties.Resources.botonE_presionado;
 
             //instruccion
             textoInstrucciones = "NIVEL 2: Dispara al tanque enemigo hasta destruirlo. Usa el escudo (Q) para defenderte.";
@@ -486,7 +486,8 @@ namespace Poke_tank
             //TanqueEnemigo enemigoActual = new TanqueEnemigo("Enemigo Derrotado", "T-72", 0, 0, 0,0);
             //enemigoActual.Modelo = "T-72"; // Puedes cambiar esto después según el nivel
 
-            //tanquesDerrotados.Add(enemigoActual);
+            DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex].EnemigosDerrotados += 1;
+
 
             //Definimos el nombre del jugador 
             string nombreJugador = "Jugador 1";
@@ -495,7 +496,7 @@ namespace Poke_tank
 
             //guardado en json
             //DatosGlobales.ListaPuntuaciones.Add(nuevaPuntuacion);
-            //DatosGlobales.GuardarDatos();
+            DatosGlobales.GuardarDatos();
 
             this.DialogResult = DialogResult.OK;
 

@@ -90,7 +90,7 @@ namespace Poke_tank
             this.DoubleBuffered = true;
             this.KeyPreview = true;
 
-            fondoBuffered = new Bitmap(Properties.Resources.fondoNivel1, this.ClientSize.Width, this.ClientSize.Height);
+            fondoBuffered = new Bitmap(Properties.Resources.fondo_marcel, this.ClientSize.Width, this.ClientSize.Height);
 
             imgJugador = new Bitmap(Properties.Resources.flavio_de_espalda_batalla);
             imgEnemigo = new Bitmap(Properties.Resources.marcel_de_frente);
@@ -106,25 +106,25 @@ namespace Poke_tank
             imgMisilRebotado = new Bitmap(Properties.Resources.misil_dron_marcel); // Misil subiendo (sin voltear)
 
             // --- GIF PARA LA ANIMACIÓN DE FIN DE BATALLA ---
-            imgAnimacionFin = Properties.Resources.explosion; //REEMPLAZAR
+            imgAnimacionFin = Properties.Resources.marcel_muere; //REEMPLAZAR
 
             // --- GIF PARA EL EVENTO DE FASE 3 ---
-            imgEventoFase3 = Properties.Resources.explosion; //REEMPLAZAR
+            imgEventoFase3 = Properties.Resources.caraballo_secreto; //REEMPLAZAR
 
             //BALAS
             imgBalaJugador = new Bitmap(Properties.Resources.bola_de_fuego_arriba);
             imgBalaEnemiga = new Bitmap(Properties.Resources.bala_marcel);
             imgBalaEnemiga.RotateFlip(RotateFlipType.Rotate180FlipNone);
 
-            // --- CARGAR IMÁGENES DE CONTROLES ---
-            imgKeyANormal = Properties.Resources.flavio_escudo_completo; //Tecla A
-            imgKeyAPressed = Properties.Resources.explosion;    
-            imgKeyDNormal = Properties.Resources.flavio_escudo_completo; // Tecla D
-            imgKeyDPressed = Properties.Resources.explosion;
-            imgKeyQNormal = Properties.Resources.flavio_escudo_completo; // Tecla Q
-            imgKeyQPressed = Properties.Resources.explosion;
-            imgKeyENormal = Properties.Resources.flavio_escudo_completo; // Tecla E
-            imgKeyEPressed = Properties.Resources.explosion;
+            //CARGAR IMÁGENES DE CONTROLES
+            imgKeyANormal = Properties.Resources.botonA_normal; //Tecla A Normal
+            imgKeyAPressed = Properties.Resources.botonA_presionado;
+            imgKeyDNormal = Properties.Resources.botonD_normal; // Tecla D
+            imgKeyDPressed = Properties.Resources.botonD_presionado;
+            imgKeyQNormal = Properties.Resources.botonQ_normal; // Tecla Q
+            imgKeyQPressed = Properties.Resources.botonQ_presionado;
+            imgKeyENormal = Properties.Resources.botonE_normal; // Tecla E
+            imgKeyEPressed = Properties.Resources.botonE_presionado;
 
             int anchoTanque = 320;
             int altoTanque = 300;
@@ -141,7 +141,7 @@ namespace Poke_tank
             this.Controls.Add(pictureBoxFin);
 
             // DEFINIR EL CONTADOR DE TIEMPO (en milisegundos) DESPUÉS DE MATAR AL JEFE
-            timerFinBatalla.Interval = 3000; //3 SEG
+            timerFinBatalla.Interval = 8000; //8 SEG
             timerFinBatalla.Tick += TimerFinBatalla_Tick;
 
             // --- CONFIGURACIÓN DEL EVENTO DE FASE 3 ---
@@ -152,7 +152,7 @@ namespace Poke_tank
             this.Controls.Add(pictureBoxEventoFase3);
             
             //TIEMPO EN MILISEGUNDOS PARA EL EVENTO DE FASE 3
-            timerEventoFase3.Interval = 2000;
+            timerEventoFase3.Interval = 8000;
             timerEventoFase3.Tick += TimerEventoFase3_Tick;
 
             //INICIO DE LA FASE 1
@@ -190,7 +190,7 @@ namespace Poke_tank
             saludEnemigo = 200;
 
             //Probabilidad del evento (por defecto 10%)
-            if (iaRandom.Next(0, 100) < 10) 
+            if (iaRandom.Next(0, 100) < 10)
             {
                 //Iniciar el evento
                 juegoPausadoEvento = true;
@@ -448,7 +448,7 @@ namespace Poke_tank
             for (int i = listaDrones.Count - 1; i >= 0; i--)
             {
                 var dron = listaDrones[i];
-                dron.ActualizarPosicion(4, this.ClientSize.Width); // 4 = Velocidad del Dron
+                dron.ActualizarPosicion(2, this.ClientSize.Width); // 2 = Velocidad del Dron
                 if (dron.CooldownDisparo > 0) dron.CooldownDisparo--;
                 else if (iaRandom.Next(0, 100) == 1)
                 {
@@ -689,11 +689,12 @@ namespace Poke_tank
             //enemigoActual.Modelo = "T-72";
             //tanquesDerrotados.Add(enemigoActual);
 
-            string nombreJugador = "Jugador 1";
+            DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex].EnemigosDerrotados += 1;
+
             //Puntuacion nuevaPuntuacion = new Puntuacion(nombreJugador, tanquesDerrotados);
 
             //DatosGlobales.ListaPuntuaciones.Add(nuevaPuntuacion);
-            //DatosGlobales.GuardarDatos();
+            DatosGlobales.GuardarDatos();
             this.DialogResult = DialogResult.OK;
 
             this.Close();
