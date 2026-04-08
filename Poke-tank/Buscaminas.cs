@@ -73,9 +73,12 @@ namespace Poke_tank
                     b.Size = new Size(tamanoBoton, tamanoBoton);
                     b.Location = new Point(inicioX + (j * tamanoBoton), inicioY + (i * tamanoBoton));
                     b.FlatStyle = FlatStyle.Flat;
-                    b.FlatAppearance.BorderColor = Color.FromArgb(100, 100, 100);
-                    b.BackColor = Color.FromArgb(60, 65, 60);
-                    b.ForeColor = Color.Gold;
+                    // borde tipo tierra
+                    b.FlatAppearance.BorderColor = Color.FromArgb(160, 120, 80);
+                    // tono arena claro
+                    b.BackColor = Color.FromArgb(237, 201, 175);
+                    // texto en negro para máxima legibilidad
+                    b.ForeColor = Color.Black;
                     b.Font = new Font("Impact", 12);
                     b.Tag = new Point(i, j);
                     b.MouseDown += ClicCelda;
@@ -84,16 +87,20 @@ namespace Poke_tank
                 }
             }
 
-            lblContadorBanderas = new Label
-            {
-                Text = $"Banderas: 0 / {minas}",
-                ForeColor = Color.Black,
-                BackColor = Color.Transparent,
-                Location = new Point(inicioX, inicioY - 50), 
-                Font = new Font("Impact", 10),
-                TextAlign = ContentAlignment.MiddleCenter
-            };
-            this.Controls.Add(lblContadorBanderas); 
+            lblContadorBanderas = new Label();
+            lblContadorBanderas.Text = $"Banderas: 0 / {minas}";
+            lblContadorBanderas.ForeColor = Color.Black;
+            // fondo semi-opaco para asegurar legibilidad sobre la imagen
+            lblContadorBanderas.BackColor = Color.FromArgb(200, 237, 201, 175);
+            lblContadorBanderas.Location = new Point(inicioX, inicioY - 50);
+            // Hacemos un ancho fijo para evitar que se recorte y centramos el texto
+            lblContadorBanderas.AutoSize = false;
+            lblContadorBanderas.Size = new Size(180, 28);
+            lblContadorBanderas.Font = new Font("Impact", 10);
+            lblContadorBanderas.TextAlign = ContentAlignment.MiddleCenter;
+            lblContadorBanderas.BorderStyle = BorderStyle.FixedSingle;
+            this.Controls.Add(lblContadorBanderas);
+            lblContadorBanderas.BringToFront();
 
             Label lblInfo = new Label
             {
@@ -140,7 +147,8 @@ namespace Poke_tank
                 else if (banderasColocadas < minas)
                 {
                     b.Text = "🚩";
-                    b.ForeColor = Color.Yellow;
+                    // bandera en naranja para destacar sobre la arena
+                    b.ForeColor = Color.Orange;
                     banderasColocadas++;
                 }
 
@@ -167,8 +175,10 @@ namespace Poke_tank
                     else
                     {
                         b.Text = "💣";
+                        b.ForeColor = Color.Black; // asegurar legibilidad del símbolo
                     }
-                    b.BackColor = Color.DarkRed;
+                    // color de explosión sobre arena (polvo/fuego)
+                    b.BackColor = Color.DarkOrange;
 
                     ReproducirExplosion();
                     DatosGlobales.GuardarDatos();
@@ -195,15 +205,15 @@ namespace Poke_tank
             if (r < 0 || r >= filas || c < 0 || c >= columnas || revelado[r, c]) return;
 
             revelado[r, c] = true;
-            botones[r, c].BackColor = Color.FromArgb(20, 20, 20);
+            // color de celda revelada tipo arena compacta
+            botones[r, c].BackColor = Color.FromArgb(210, 180, 140);
 
             int n = minasAdyacentes[r, c];
             if (n > 0)
             {
                 botones[r, c].Text = n.ToString();
-                if (n == 1) botones[r, c].ForeColor = Color.DeepSkyBlue;
-                else if (n == 2) botones[r, c].ForeColor = Color.SpringGreen;
-                else if (n == 3) botones[r, c].ForeColor = Color.Red;
+                // texto negro para máxima legibilidad
+                botones[r, c].ForeColor = Color.Black;
             }
             celdasRestantes--;
 
