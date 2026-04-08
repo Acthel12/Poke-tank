@@ -1,6 +1,6 @@
 ﻿namespace Poke_tank
 {
-    partial class Base_central
+    partial class MinijuegoQuiz
     {
         /// <summary>
         /// Required designer variable.
@@ -28,21 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SuspendLayout();
-            // 
-            // Base_central
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.MAPA_BASE_CENTRAL_COMPLETO;
-            BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1262, 673);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
-            Name = "Base_central";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Base_central";
-            ResumeLayout(false);
+            this.SuspendLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 600); // Tamaño ajustado para la lógica
+            this.Name = "MinijuegoRedes";
+            this.Text = "MinijuegoRedes";
+            this.ResumeLayout(false);
         }
 
         #endregion

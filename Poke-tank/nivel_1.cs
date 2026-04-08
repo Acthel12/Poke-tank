@@ -77,15 +77,15 @@ namespace Poke_tank
 
             imgBalaEnemiga = new Bitmap(Properties.Resources.bala_luna_luna);
 
-            // --- CARGAR IMÁGENES DE CONTROLES (REEMPLAZA POR TUS IMÁGENES DE TECLAS) ---
-            imgKeyANormal = Properties.Resources.flavio_escudo_completo; //Tecla A Normal
-            imgKeyAPressed = Properties.Resources.explosion;   
-            imgKeyDNormal = Properties.Resources.flavio_escudo_completo; // Tecla D
-            imgKeyDPressed = Properties.Resources.explosion;
-            imgKeyQNormal = Properties.Resources.flavio_escudo_completo; // Tecla Q
-            imgKeyQPressed = Properties.Resources.explosion;
-            imgKeyENormal = Properties.Resources.flavio_escudo_completo; // Tecla E
-            imgKeyEPressed = Properties.Resources.explosion;
+            //CARGAR IMÁGENES DE CONTROLES
+            imgKeyANormal = Properties.Resources.botonA_normal; //Tecla A Normal
+            imgKeyAPressed = Properties.Resources.botonA_presionado;   
+            imgKeyDNormal = Properties.Resources.botonD_normal; // Tecla D
+            imgKeyDPressed = Properties.Resources.botonD_presionado;
+            imgKeyQNormal = Properties.Resources.botonQ_normal; // Tecla Q
+            imgKeyQPressed = Properties.Resources.botonQ_presionado;
+            imgKeyENormal = Properties.Resources.botonE_normal; // Tecla E
+            imgKeyEPressed = Properties.Resources.botonE_presionado;
 
             textoInstrucciones = "NIVEL 1: Dispara al tanque enemigo hasta destruirlo. Usa el escudo (Q) para defenderte.";
 
