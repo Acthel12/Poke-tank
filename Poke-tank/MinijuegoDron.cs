@@ -28,6 +28,7 @@ namespace Poke_tank
         int cantidadMisilesPorOla = 1;
 
         int vidas = 3;
+        int premio = 200;
         bool juegoTerminado = false;
 
         int derribosParaGanar = 15;
@@ -50,9 +51,61 @@ namespace Poke_tank
         WaveFileReader lectorDrones;
         bool dronesSonando = false;
 
+        // Configura parámetros del minijuego según la dificultad seleccionada.
+        public void ConfigurarDificultad(NivelDificultad dificultad)
+        {
+            switch (dificultad)
+            {
+                case NivelDificultad.Facil:
+                    cantidadDronesPorOla = 1;
+                    cantidadMisilesPorOla = 0;
+                    vidas = 5;
+                    premio = 100;
+                    derribosParaGanar = 10;
+                    break;
+                case NivelDificultad.Normal:
+                    cantidadDronesPorOla = 2;
+                    cantidadMisilesPorOla = 1;
+                    premio = 200;
+                    vidas = 3;
+                    derribosParaGanar = 15;
+                    break;
+                case NivelDificultad.Dificil:
+                    cantidadDronesPorOla = 3;
+                    cantidadMisilesPorOla = 2;
+                    premio = 300;
+                    vidas = 2;
+                    derribosParaGanar = 20;
+                    break;
+            }
+
+            // Reiniciar contadores y estado relacionados por si se configura antes de iniciar
+            puntuacion = 0;
+            derribos = 0;
+            juegoTerminado = false;
+            victoria = false;
+
+            // Limpiamos listas para empezar limpio con la nueva dificultad
+            listaDrones.Clear();
+            listaMisiles.Clear();
+            listaExplosiones.Clear();
+            listaLasers.Clear();
+
+            // Forzar repintado
+            this.Invalidate();
+        }
+
+        // Configura la partida usando una instancia de Partida (usa su dificultad)
+        public void ConfigurarSegunPartida(Partida partida)
+        {
+            if (partida == null) return;
+            ConfigurarDificultad(partida.Dificultad);
+        }
+
         public MinijuegoDron()
         {
             InitializeComponent();
+            ConfigurarSegunPartida(DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex]); // Configuramos según la partida actual
 
             this.DoubleBuffered = true;
             this.Icon = Properties.Resources.LOGO_FLAVIO_ADVENTURES_SIN_FONDO;
@@ -539,12 +592,12 @@ namespace Poke_tank
             });
         }
         private void Ganaste() { 
-            MessageBox.Show("¡Felicidades, has ganado el minijuego de drones! \n Has ganado : 200$", "Victoria", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"¡Felicidades, has ganado el minijuego de drones! \n Has ganado : {premio}$", "Victoria", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
             if (DatosGlobales.ListaPartidas.Count > 0 && DatosGlobales.PartidaActualIndex >= 0)
             { 
                 Partida partida = DatosGlobales.ListaPartidas[DatosGlobales.PartidaActualIndex];
-                partida.Oro += 200;
+                partida.Oro += premio;
             }
 
         }
@@ -564,5 +617,7 @@ namespace Poke_tank
                 this.Close();
             }
         }
+
+
     }
 }
