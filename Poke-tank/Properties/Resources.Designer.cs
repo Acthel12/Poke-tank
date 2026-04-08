@@ -63,6 +63,36 @@ namespace Poke_tank.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Ataque1 {
+            get {
+                object obj = ResourceManager.GetObject("Ataque1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ataque2 {
+            get {
+                object obj = ResourceManager.GetObject("Ataque2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ataque3 {
+            get {
+                object obj = ResourceManager.GetObject("Ataque3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bala_luis {
             get {
                 object obj = ResourceManager.GetObject("bala luis", resourceCulture);
@@ -235,6 +265,16 @@ namespace Poke_tank.Properties {
         internal static System.Drawing.Bitmap estadisticas {
             get {
                 object obj = ResourceManager.GetObject("estadisticas", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap exclamacion {
+            get {
+                object obj = ResourceManager.GetObject("exclamacion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -670,6 +710,36 @@ namespace Poke_tank.Properties {
         internal static System.Drawing.Bitmap Torreta {
             get {
                 object obj = ResourceManager.GetObject("Torreta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Vida1 {
+            get {
+                object obj = ResourceManager.GetObject("Vida1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Vida2 {
+            get {
+                object obj = ResourceManager.GetObject("Vida2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Vida3 {
+            get {
+                object obj = ResourceManager.GetObject("Vida3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
