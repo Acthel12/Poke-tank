@@ -31,15 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mapa));
             botonSorpresaFlavio = new Button();
             botonFinalizar = new Button();
-            button1 = new Button();
+            buttonEstadisticas = new Button();
             SuspendLayout();
             // 
             // botonSorpresaFlavio
             // 
-            botonSorpresaFlavio.Location = new Point(1031, 449);
-            botonSorpresaFlavio.Margin = new Padding(3, 2, 3, 2);
+            botonSorpresaFlavio.Location = new Point(1181, 585);
             botonSorpresaFlavio.Name = "botonSorpresaFlavio";
-            botonSorpresaFlavio.Size = new Size(4, 4);
+            botonSorpresaFlavio.Size = new Size(5, 5);
             botonSorpresaFlavio.TabIndex = 3;
             botonSorpresaFlavio.UseVisualStyleBackColor = true;
             botonSorpresaFlavio.Click += botonSorpresaFlavio_Click;
@@ -50,44 +49,41 @@
             botonFinalizar.FlatStyle = FlatStyle.Flat;
             botonFinalizar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             botonFinalizar.ForeColor = Color.White;
-            botonFinalizar.Location = new Point(892, 22);
-            botonFinalizar.Margin = new Padding(3, 2, 3, 2);
+            botonFinalizar.Location = new Point(1019, 29);
             botonFinalizar.Name = "botonFinalizar";
-            botonFinalizar.Size = new Size(150, 30);
+            botonFinalizar.Size = new Size(171, 40);
             botonFinalizar.TabIndex = 4;
             botonFinalizar.Text = "Finalizar aventura";
             botonFinalizar.UseVisualStyleBackColor = false;
             botonFinalizar.Click += botonFinalizar_Click;
             // 
-            // button1
+            // buttonEstadisticas
             // 
-            button1.BackColor = Color.Firebrick;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(552, 22);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(150, 30);
-            button1.TabIndex = 5;
-            button1.Text = "Prueba puntuacion";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            buttonEstadisticas.BackColor = Color.FromArgb(128, 128, 255);
+            buttonEstadisticas.FlatStyle = FlatStyle.Flat;
+            buttonEstadisticas.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            buttonEstadisticas.ForeColor = Color.White;
+            buttonEstadisticas.Location = new Point(786, 29);
+            buttonEstadisticas.Name = "buttonEstadisticas";
+            buttonEstadisticas.Size = new Size(171, 40);
+            buttonEstadisticas.TabIndex = 5;
+            buttonEstadisticas.Text = "Estadisticas";
+            buttonEstadisticas.UseVisualStyleBackColor = false;
+            buttonEstadisticas.Click += buttonEstadisticas_Click;
             // 
             // Mapa
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.MAPA_FLAVIO_ADVENTURES;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1104, 505);
-            Controls.Add(button1);
+            ClientSize = new Size(1262, 673);
+            Controls.Add(buttonEstadisticas);
             Controls.Add(botonFinalizar);
             Controls.Add(botonSorpresaFlavio);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "Mapa";
             StartPosition = FormStartPosition.CenterScreen;
@@ -103,6 +99,6 @@
         #endregion
         private Button botonSorpresaFlavio;
         private Button botonFinalizar;
-        private Button button1;
+        private Button buttonEstadisticas;
     }
 }

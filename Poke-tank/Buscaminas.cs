@@ -1,8 +1,9 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using NAudio.Wave;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Poke_tank
 {
@@ -24,31 +25,17 @@ namespace Poke_tank
         {
 
             this.Text = "POKE-TANK: DESACTIVACIÓN DE MINAS";
-            this.Size = new Size(420, 510);
+            this.Icon = Properties.Resources.LOGO_FLAVIO_ADVENTURES_SIN_FONDO;
+            this.ClientSize = new Size(1280, 720);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.BackColor = Color.FromArgb(25, 30, 25);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.BackgroundImage = Properties.Resources.fondoMina;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
 
-            CargarFotoPersonalizada();
             IniciarTablero();
         }
 
-        private void CargarFotoPersonalizada()
-        {
-            try
-            {
-                // Ahora busca específicamente flaviomina.png
-                string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "flaviomina.png");
-                if (File.Exists(ruta))
-                {
-                    Image imgOriginal = Image.FromFile(ruta);
-                    fotoMina = new Bitmap(imgOriginal, new Size(35, 35));
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Aviso: No se cargó la foto: " + ex.Message);
-            }
-        }
 
         private void IniciarTablero()
         {
@@ -71,17 +58,27 @@ namespace Poke_tank
                 for (int j = 0; j < columnas; j++)
                     if (!tieneMina[i, j]) minasAdyacentes[i, j] = ContarMinas(i, j);
 
+            int tamanoBoton = 40;
+            int anchoTablero = columnas * tamanoBoton;
+            int altoTablero = filas * tamanoBoton;
+
+            int inicioX = (this.ClientSize.Width - anchoTablero) / 2;
+            int inicioY = (this.ClientSize.Height - altoTablero) / 2;
+
             for (int i = 0; i < filas; i++)
             {
                 for (int j = 0; j < columnas; j++)
                 {
                     Button b = new Button();
-                    b.Size = new Size(40, 40);
-                    b.Location = new Point(j * 40 + 10, i * 40 + 60);
+                    b.Size = new Size(tamanoBoton, tamanoBoton);
+                    b.Location = new Point(inicioX + (j * tamanoBoton), inicioY + (i * tamanoBoton));
                     b.FlatStyle = FlatStyle.Flat;
-                    b.FlatAppearance.BorderColor = Color.FromArgb(100, 100, 100);
-                    b.BackColor = Color.FromArgb(60, 65, 60);
-                    b.ForeColor = Color.Gold;
+                    // borde tipo tierra
+                    b.FlatAppearance.BorderColor = Color.FromArgb(160, 120, 80);
+                    // tono arena claro
+                    b.BackColor = Color.FromArgb(237, 201, 175);
+                    // texto en negro para máxima legibilidad
+                    b.ForeColor = Color.Black;
                     b.Font = new Font("Impact", 12);
                     b.Tag = new Point(i, j);
                     b.MouseDown += ClicCelda;
@@ -90,23 +87,28 @@ namespace Poke_tank
                 }
             }
 
-            lblContadorBanderas = new Label
-            {
-                Text = $"Banderas: 0 / {minas}",
-                ForeColor = Color.Yellow,
-                Location = new Point(10, 40), // Debajo del título principal
-                Size = new Size(380, 20),
-                Font = new Font("Impact", 10),
-                TextAlign = ContentAlignment.MiddleCenter
-            };
-            this.Controls.Add(lblContadorBanderas); 
+            lblContadorBanderas = new Label();
+            lblContadorBanderas.Text = $"Banderas: 0 / {minas}";
+            lblContadorBanderas.ForeColor = Color.Black;
+            // fondo semi-opaco para asegurar legibilidad sobre la imagen
+            lblContadorBanderas.BackColor = Color.FromArgb(200, 237, 201, 175);
+            lblContadorBanderas.Location = new Point(inicioX, inicioY - 50);
+            // Hacemos un ancho fijo para evitar que se recorte y centramos el texto
+            lblContadorBanderas.AutoSize = false;
+            lblContadorBanderas.Size = new Size(180, 28);
+            lblContadorBanderas.Font = new Font("Impact", 10);
+            lblContadorBanderas.TextAlign = ContentAlignment.MiddleCenter;
+            lblContadorBanderas.BorderStyle = BorderStyle.FixedSingle;
+            this.Controls.Add(lblContadorBanderas);
+            lblContadorBanderas.BringToFront();
 
             Label lblInfo = new Label
             {
-                Text = ">>> BUSCA LAS MINAS (O AL FLAVIO) <<<",
-                ForeColor = Color.LimeGreen,
-                Location = new Point(10, 10),
-                Size = new Size(380, 40),
+                Text = "Despeja el campo minado",
+                ForeColor = Color.Black,
+                BackColor = Color.Transparent,
+                Location = new Point(inicioX, inicioY - 100),
+                Size = new Size(anchoTablero, 40),
                 Font = new Font("Stencil", 12),
                 TextAlign = ContentAlignment.MiddleCenter
             };
@@ -145,7 +147,8 @@ namespace Poke_tank
                 else if (banderasColocadas < minas)
                 {
                     b.Text = "🚩";
-                    b.ForeColor = Color.Yellow;
+                    // bandera en naranja para destacar sobre la arena
+                    b.ForeColor = Color.Orange;
                     banderasColocadas++;
                 }
 
@@ -172,11 +175,14 @@ namespace Poke_tank
                     else
                     {
                         b.Text = "💣";
+                        b.ForeColor = Color.Black; // asegurar legibilidad del símbolo
                     }
-                    b.BackColor = Color.DarkRed;
+                    // color de explosión sobre arena (polvo/fuego)
+                    b.BackColor = Color.DarkOrange;
 
+                    ReproducirExplosion();
                     DatosGlobales.GuardarDatos();
-                    MessageBox.Show("¡BOOM! Activaste al flavio sorpresa. Perdiste, vuelve a intentarlo.", "ERROR DE LOGÍSTICA");
+                    MessageBox.Show("¡BOOM! Activaste la mina. Perdiste, vuelve a intentarlo.", "Alerta");
                     this.Close();
                 }
                 else
@@ -199,15 +205,15 @@ namespace Poke_tank
             if (r < 0 || r >= filas || c < 0 || c >= columnas || revelado[r, c]) return;
 
             revelado[r, c] = true;
-            botones[r, c].BackColor = Color.FromArgb(20, 20, 20);
+            // color de celda revelada tipo arena compacta
+            botones[r, c].BackColor = Color.FromArgb(210, 180, 140);
 
             int n = minasAdyacentes[r, c];
             if (n > 0)
             {
                 botones[r, c].Text = n.ToString();
-                if (n == 1) botones[r, c].ForeColor = Color.DeepSkyBlue;
-                else if (n == 2) botones[r, c].ForeColor = Color.SpringGreen;
-                else if (n == 3) botones[r, c].ForeColor = Color.Red;
+                // texto negro para máxima legibilidad
+                botones[r, c].ForeColor = Color.Black;
             }
             celdasRestantes--;
 
@@ -216,6 +222,25 @@ namespace Poke_tank
                 for (int i = -1; i <= 1; i++)
                     for (int j = -1; j <= 1; j++) Revelar(r + i, c + j);
             }
+        }
+        private void ReproducirExplosion()
+        {
+            // Usamos Task.Run para que no congele el juego ni un milisegundo al cargar
+            Task.Run(() => {
+                var lector = new WaveFileReader(Properties.Resources.explosion_1);
+                var reproductor = new WaveOutEvent();
+
+                reproductor.Volume = 1f;
+
+                reproductor.Init(lector);
+                reproductor.Play();
+
+                reproductor.PlaybackStopped += (sender, args) =>
+                {
+                    lector.Dispose();
+                    reproductor.Dispose();
+                };
+            });
         }
     }
 }
