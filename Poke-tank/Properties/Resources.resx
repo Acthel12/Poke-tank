@@ -283,9 +283,6 @@
   <data name="misil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\misil.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="dron" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dron.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Torreta" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Torreta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -300,5 +297,14 @@
   </data>
   <data name="LOGO FLAVIO ADVENTURES SIN FONDO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LOGO FLAVIO ADVENTURES SIN FONDO.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo partidas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo partidas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="estadisticas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\estadisticas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dron" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dron.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

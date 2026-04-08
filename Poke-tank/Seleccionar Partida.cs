@@ -9,14 +9,15 @@ namespace Poke_tank
 {
     public partial class Seleccionar_Partida : Form
     {
-        // --- NUEVA PALETA DE COLORES "PREMIUM TACTICAL" ---
-        private readonly Color COLOR_FONDO = Color.FromArgb(20, 20, 22);
-        private readonly Color COLOR_TABLA = Color.FromArgb(30, 30, 35);
-        private readonly Color COLOR_TABLA_ALT = Color.FromArgb(38, 38, 45); // Para el efecto cebra
-        private readonly Color COLOR_ACENTO = Color.FromArgb(46, 204, 113); // Verde Esmeralda elegante
-        private readonly Color COLOR_PELIGRO = Color.FromArgb(231, 76, 60); // Rojo táctico
-        private readonly Color COLOR_TEXTO = Color.WhiteSmoke;
-        private readonly Color COLOR_BORDE = Color.FromArgb(50, 50, 60);
+        // --- PALETA DE COLORES: TEMA DESIERTO ---
+        // Tonos principales: arena, beige, ocre, marrón
+        private readonly Color COLOR_FONDO = Color.FromArgb(245, 222, 179); // wheat / arena claro
+        private readonly Color COLOR_TABLA = Color.FromArgb(237, 201, 175); // arena medio
+        private readonly Color COLOR_TABLA_ALT = Color.FromArgb(222, 184, 135); // burlywood / alternado
+        private readonly Color COLOR_ACENTO = Color.FromArgb(204, 119, 34); // ocre / acento
+        private readonly Color COLOR_PELIGRO = Color.FromArgb(150, 75, 0); // marrón oscuro para acciones peligrosas
+        private readonly Color COLOR_TEXTO = Color.FromArgb(60, 40, 20); // texto marrón oscuro para legibilidad
+        private readonly Color COLOR_BORDE = Color.FromArgb(180, 150, 120); // borde tipo arena oscura
 
         public Seleccionar_Partida()
         {
@@ -40,8 +41,8 @@ namespace Poke_tank
             // 3. Encabezados Modernos y Centrados
             dgvPartidas.EnableHeadersVisualStyles = false;
             dgvPartidas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgvPartidas.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(15, 15, 18);
-            dgvPartidas.ColumnHeadersDefaultCellStyle.ForeColor = Color.Gold;
+            dgvPartidas.ColumnHeadersDefaultCellStyle.BackColor = COLOR_TABLA_ALT;
+            dgvPartidas.ColumnHeadersDefaultCellStyle.ForeColor = COLOR_TEXTO;
             dgvPartidas.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             dgvPartidas.ColumnHeadersHeight = 45;
             dgvPartidas.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centrado
@@ -50,7 +51,7 @@ namespace Poke_tank
             dgvPartidas.DefaultCellStyle.BackColor = COLOR_TABLA;
             dgvPartidas.DefaultCellStyle.ForeColor = COLOR_TEXTO;
             dgvPartidas.DefaultCellStyle.SelectionBackColor = COLOR_ACENTO;
-            dgvPartidas.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgvPartidas.DefaultCellStyle.SelectionForeColor = COLOR_TEXTO;
             dgvPartidas.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centrado
             dgvPartidas.RowTemplate.Height = 45;
 
@@ -87,11 +88,13 @@ namespace Poke_tank
             btnCargar.Padding = new Padding(10, 0, 10, 0);
 
             // Efecto Hover
-            btnCargar.MouseEnter += (s, e) => {
+            btnCargar.MouseEnter += (s, e) =>
+            {
                 btnCargar.BackColor = COLOR_ACENTO;
                 btnCargar.ForeColor = Color.White;
             };
-            btnCargar.MouseLeave += (s, e) => {
+            btnCargar.MouseLeave += (s, e) =>
+            {
                 btnCargar.BackColor = COLOR_FONDO;
                 btnCargar.ForeColor = COLOR_ACENTO;
             };
@@ -115,11 +118,13 @@ namespace Poke_tank
             btnEliminar.Padding = new Padding(10, 0, 10, 0);
 
             // Efecto Hover
-            btnEliminar.MouseEnter += (s, e) => {
+            btnEliminar.MouseEnter += (s, e) =>
+            {
                 btnEliminar.BackColor = COLOR_PELIGRO;
                 btnEliminar.ForeColor = Color.White;
             };
-            btnEliminar.MouseLeave += (s, e) => {
+            btnEliminar.MouseLeave += (s, e) =>
+            {
                 btnEliminar.BackColor = COLOR_FONDO;
                 btnEliminar.ForeColor = COLOR_PELIGRO;
             };

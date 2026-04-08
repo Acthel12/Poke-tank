@@ -31,11 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mapa));
             botonSorpresaFlavio = new Button();
             botonFinalizar = new Button();
+            buttonEstadisticas = new Button();
             SuspendLayout();
             // 
             // botonSorpresaFlavio
             // 
-            botonSorpresaFlavio.Location = new Point(1180, 585);
+            botonSorpresaFlavio.Location = new Point(1181, 585);
             botonSorpresaFlavio.Name = "botonSorpresaFlavio";
             botonSorpresaFlavio.Size = new Size(5, 5);
             botonSorpresaFlavio.TabIndex = 3;
@@ -56,6 +57,20 @@
             botonFinalizar.UseVisualStyleBackColor = false;
             botonFinalizar.Click += botonFinalizar_Click;
             // 
+            // buttonEstadisticas
+            // 
+            buttonEstadisticas.BackColor = Color.FromArgb(128, 128, 255);
+            buttonEstadisticas.FlatStyle = FlatStyle.Flat;
+            buttonEstadisticas.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            buttonEstadisticas.ForeColor = Color.White;
+            buttonEstadisticas.Location = new Point(786, 29);
+            buttonEstadisticas.Name = "buttonEstadisticas";
+            buttonEstadisticas.Size = new Size(171, 40);
+            buttonEstadisticas.TabIndex = 5;
+            buttonEstadisticas.Text = "Estadisticas";
+            buttonEstadisticas.UseVisualStyleBackColor = false;
+            buttonEstadisticas.Click += buttonEstadisticas_Click;
+            // 
             // Mapa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -63,6 +78,7 @@
             BackgroundImage = Properties.Resources.MAPA_FLAVIO_ADVENTURES;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1262, 673);
+            Controls.Add(buttonEstadisticas);
             Controls.Add(botonFinalizar);
             Controls.Add(botonSorpresaFlavio);
             DoubleBuffered = true;
@@ -83,5 +99,6 @@
         #endregion
         private Button botonSorpresaFlavio;
         private Button botonFinalizar;
+        private Button buttonEstadisticas;
     }
 }
