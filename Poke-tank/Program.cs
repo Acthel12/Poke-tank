@@ -14,9 +14,6 @@ namespace Poke_tank
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            //para probar 
-            //Application.Run(new Tienda());
-
             Application.Run(new Menu_Principal());
             
         }

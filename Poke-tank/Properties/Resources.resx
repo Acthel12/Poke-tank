@@ -229,9 +229,6 @@
   <data name="gifFondoMenuPrincipal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gifFondoMenuPrincipal.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LOGO FLAVIO ADVENTURES SIN FONDO" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LOGO FLAVIO ADVENTURES SIN FONDO.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="luna luna de frente" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\luna luna de frente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -363,5 +360,59 @@
   </data>
   <data name="mazo_golpe" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mazo_golpe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="explosion_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\explosion_1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="explosion_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\explosion_2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="misil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\misil.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Torreta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Torreta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="laser" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\laser.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BaseTorreta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BaseTorreta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondoMina" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondoMina.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LOGO FLAVIO ADVENTURES SIN FONDO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LOGO FLAVIO ADVENTURES SIN FONDO.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo partidas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondo partidas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="estadisticas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\estadisticas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dron" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dron.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Vida1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Vida1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Vida2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Vida2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="exclamacion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\exclamacion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Vida3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Vida3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ataque1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ataque1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ataque2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ataque2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ataque3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ataque3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

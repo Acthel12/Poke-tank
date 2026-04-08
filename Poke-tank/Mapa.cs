@@ -471,5 +471,12 @@ namespace Poke_tank
         {
             FinalizarAventura();
         }
+
+        private void buttonEstadisticas_Click(object sender, EventArgs e)
+        {
+            Estadisticas from = new Estadisticas();
+
+            from.ShowDialog();
+        }
     }
 }
