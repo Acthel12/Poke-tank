@@ -28,15 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 600); // Tamaño ajustado para la lógica
-            this.Name = "MinijuegoRedes";
-            this.Text = "MinijuegoRedes";
-            this.ResumeLayout(false);
+            components = new System.ComponentModel.Container();
+            cursorTimer = new System.Windows.Forms.Timer(components);
+            timerGlobal = new System.Windows.Forms.Timer(components);
+            estudiantesTimer = new System.Windows.Forms.Timer(components);
+            animSalidaTimer = new System.Windows.Forms.Timer(components);
+            mazoTimer = new System.Windows.Forms.Timer(components);
+            SuspendLayout();
+            // 
+            // cursorTimer
+            // 
+            cursorTimer.Enabled = true;
+            cursorTimer.Interval = 10;
+            // 
+            // timerGlobal
+            // 
+            timerGlobal.Enabled = true;
+            timerGlobal.Interval = 1000;
+            // 
+            // estudiantesTimer
+            // 
+            estudiantesTimer.Interval = 500;
+            // 
+            // animSalidaTimer
+            // 
+            animSalidaTimer.Interval = 2000;
+            // 
+            // mazoTimer
+            // 
+            mazoTimer.Interval = 300;
+            // 
+            // MinijuegoRedes
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1262, 673);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "MinijuegoRedes";
+            Text = "MinijuegoRedes";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer cursorTimer;
+        private System.Windows.Forms.Timer timerGlobal;
+        private System.Windows.Forms.Timer estudiantesTimer;
+        private System.Windows.Forms.Timer animSalidaTimer;
+        private System.Windows.Forms.Timer mazoTimer;
     }
 }
